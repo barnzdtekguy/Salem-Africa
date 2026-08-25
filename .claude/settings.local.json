@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(timeout 60 npm view three version)",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}
