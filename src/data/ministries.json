@@ -1,0 +1,387 @@
+[
+  {
+    "name": "Missions",
+    "description": "Taking the uncompromised Gospel to local communities, nations, and unreached global populations through aggressive evangelism, outreach development, and targeted crusades.",
+    "image": "/assets/images/ministry-placeholder-1.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Peter Generation",
+      "Paul Generation",
+      "David Generation",
+      "Prison & Hospital Ministry"
+    ]
+  },
+  {
+    "name": "Prayer",
+    "description": "The foundational engine house of Salem Africa, dedicated to continuous intercession, spiritual warfare, global prophetic prayer chains, and cultivating an atmospheric culture of deep prayer.",
+    "image": "/assets/images/ministry-placeholder-2.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Prophetic Watch",
+      "Intercessory Guild",
+      "24/7 Prayer Chain"
+    ]
+  },
+  {
+    "name": "KDF",
+    "description": "Empowering believers with deep spiritual leadership doctrines, intentional discipleship path pipelines, and administrative capacity to drive structural excellence.",
+    "image": "/assets/images/ministry-placeholder-3.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Strategic Planning",
+      "Leadership Academy",
+      "Cadet Training"
+    ]
+  },
+  {
+    "name": "Training",
+    "description": "Systematic foundational classes designed to anchor new converts in core spiritual truths, operational biblical principles, and kingdom strategies.",
+    "image": "/assets/images/ministry-placeholder-4.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Believers Foundation",
+      "Membership School",
+      "Workers Certification"
+    ]
+  },
+  {
+    "name": "Assimilation & Covenant Friends",
+    "description": "Seamlessly welcoming first-time worshippers, tracking follow-up processes, and bridging guests into localized dynamic covenant cell groups.",
+    "image": "/assets/images/ministry-placeholder-5.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "First Timers Welcome",
+      "Covenant Cells Integration",
+      "Follow-up Team"
+    ]
+  },
+  {
+    "name": "Transport",
+    "description": "Managing transit logistical networks to ensure accessible, safe, and synchronized transport options for worshippers coming across metropolitan centers.",
+    "image": "/assets/images/ministry-placeholder-6.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Logistics Coordination",
+      "Fleet Management",
+      "Route Operations"
+    ]
+  },
+  {
+    "name": "Wealth Creation & Cooperative",
+    "description": "An economic ecosystem framework offering entrepreneurial incubation, financial literacy modules, and community credit cooperatives to secure kingdom financial liberty.",
+    "image": "/assets/images/ministry-placeholder-7.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Business Guild",
+      "SME Incubation",
+      "Micro-Credit Pool"
+    ]
+  },
+  {
+    "name": "Faith Dynamite Voice",
+    "description": "Our world-class music arts platform, steering worship configurations, choral alignments, and leading the congregation into structural encounters with God's presence.",
+    "image": "/assets/images/ministry-placeholder-8.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "The Mass Choir",
+      "Praise Team",
+      "Instrumental Ensemble"
+    ]
+  },
+  {
+    "name": "Decoration",
+    "description": "Transforming our worship environment auditoriums visually to reflect the beauty, structural order, and premium glory of the Sanctuary.",
+    "image": "/assets/images/ministry-placeholder-9.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Sanctuary Design",
+      "Event Styling",
+      "Floral Arrangements"
+    ]
+  },
+  {
+    "name": "Media",
+    "description": "Broadcasting structural salvation narratives globally via production operations, professional digital live streaming systems, sound acoustics management, and content creation pipelines.",
+    "image": "/assets/images/ministry-placeholder-10.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Broadcast TV",
+      "Audio Engineering",
+      "Graphic Arts & Socials",
+      "Photography"
+    ]
+  },
+  {
+    "name": "Facility Management & Projects",
+    "description": "Ensuring top-tier preventative preservation, civil structural execution, and technical mechanical up-keep of all capital assets within the campus perimeter.",
+    "image": "/assets/images/ministry-placeholder-11.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Civil Projects",
+      "Maintenance Control",
+      "Electrical Systems"
+    ]
+  },
+  {
+    "name": "Security",
+    "description": "Maintaining strict situational awareness protective measures, secure perimeter cordons, and vehicular control schemes to keep worshippers safe.",
+    "image": "/assets/images/ministry-placeholder-12.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Perimeter Guard",
+      "Traffic Control",
+      "Intelligence & Protocol"
+    ]
+  },
+  {
+    "name": "Welfare",
+    "description": "Extending hands of mercy through active philanthropic allocations, food support systems, and urgent critical resource distributions to the vulnerable.",
+    "image": "/assets/images/ministry-placeholder-13.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Benevolence Unit",
+      "Community Relief",
+      "Hospitality Welfare"
+    ]
+  },
+  {
+    "name": "Finance",
+    "description": "Ensuring world-class corporate auditing, strict financial management compliance, secure tracking models, and transparent strategic allocations.",
+    "image": "/assets/images/ministry-placeholder-14.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Auditing Team",
+      "Treasury Operations",
+      "Reconciliation Control"
+    ]
+  },
+  {
+    "name": "Medical",
+    "description": "Licensed medical clinical professionals delivering first-responder urgent care, community health check operations, and wellness education clinics during live services.",
+    "image": "/assets/images/ministry-placeholder-15.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "First Responder Clinic",
+      "Health Education",
+      "Emergency Triage"
+    ]
+  },
+  {
+    "name": "Education & Scholarship",
+    "description": "Overseeing educational academic programs and allocating specialized academic scholarship funds to empower promising minds within the ministry context.",
+    "image": "/assets/images/ministry-placeholder-16.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Scholarship Board",
+      "Literacy Initiatives",
+      "Academic Mentorship"
+    ]
+  },
+  {
+    "name": "Baptism Ministry",
+    "description": "Conducting spiritual preparations, doctrine classes, and running sacramental immersion execution cycles for maturing believers entering public confession.",
+    "image": "/assets/images/ministry-placeholder-17.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Sacramental Classes",
+      "Immersion Service Logistics"
+    ]
+  },
+  {
+    "name": "Legal Council",
+    "description": "Elite statutory advisors managing institutional compliance legalities, regulatory documentation setups, and protecting organizational operational rights.",
+    "image": "/assets/images/ministry-placeholder-18.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Statutory Compliance",
+      "Advisory Board",
+      "Document Verification"
+    ]
+  },
+  {
+    "name": "Bookshop & Reading Culture",
+    "description": "Curating resource hubs containing written literary works, distribution networks, and fostering robust intellectual knowledge-acquisition programs.",
+    "image": "/assets/images/ministry-placeholder-19.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Resource Center",
+      "Literary Clubs",
+      "Publication Distribution"
+    ]
+  },
+  {
+    "name": "Healing & Deliverance Crack Team",
+    "description": "A highly consecrated specialized frontline intercessory cluster trained to minister directly into complex demonic captivities, spiritual bondages, and systemic infirmities.",
+    "image": "/assets/images/ministry-placeholder-20.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Deliverance Core",
+      "Consecration Wing",
+      "Intercessory Pillars"
+    ]
+  },
+  {
+    "name": "Counselling & Call Centre",
+    "description": "Offering remote mental wellness checks, tele-pastoral emergency prayer infrastructure, and grounded scriptural psychological diagnostic triage options.",
+    "image": "/assets/images/ministry-placeholder-21.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Tele-Pastoral Triage",
+      "Mental Wellness",
+      "Crisis Intervention"
+    ]
+  },
+  {
+    "name": "Marriage & Couples",
+    "description": "Fortifying marital structures through periodic enrichment symposium assemblies, targeted pre-marital classes, and specialized dynamic conflict resolution tools.",
+    "image": "/assets/images/ministry-placeholder-22.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Pre-Marital Classes",
+      "Enrichment Circles",
+      "Couples Retreats"
+    ]
+  },
+  {
+    "name": "Singles Connect",
+    "description": "Providing healthy interaction networks for processing life purpose, career development parameters, and building value-driven pre-marriage pathways.",
+    "image": "/assets/images/ministry-placeholder-23.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Career & Purpose",
+      "Relationship Forums",
+      "Professional Networking"
+    ]
+  },
+  {
+    "name": "Ushering",
+    "description": "Ambassadors of first impressions executing operational sanctuary routing protocols, guest protocol distributions, and managing dynamic seat assignments seamlessly.",
+    "image": "/assets/images/ministry-placeholder-24.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Sanctuary Routing",
+      "Guest Protocol",
+      "Crowd Control"
+    ]
+  },
+  {
+    "name": "Visitation",
+    "description": "Deploying active home care teams to hospitalized, isolated, or grieving covenant family members, providing continuous corporate solidarity.",
+    "image": "/assets/images/ministry-placeholder-25.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Home Care Deployment",
+      "Hospital Solidarity",
+      "Follow-up Missions"
+    ]
+  },
+  {
+    "name": "Publicity & Branding",
+    "description": "Guarding corporate identity consistency across spatial physical configurations, print layouts, digital campaigns, and community public relations windows.",
+    "image": "/assets/images/ministry-placeholder-26.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Campaign Strategy",
+      "Corporate Identity",
+      "Public Relations"
+    ]
+  },
+  {
+    "name": "Salem Elders Ministry",
+    "description": "A respected collective of seasoned senior saints channeling historic foundational wisdom, long-form mentorship pipelines, and stabilizing corporate institutional structure.",
+    "image": "/assets/images/ministry-placeholder-27.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Long-form Mentorship",
+      "Advisory Council",
+      "Heritage Preservation"
+    ]
+  },
+  {
+    "name": "Communion",
+    "description": "Preparing the elements of the Holy Communion tables with sacred care and high sanitary standards, honoring sacramental excellence.",
+    "image": "/assets/images/ministry-placeholder-28.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Sacramental Setup",
+      "Sanitary Management",
+      "Distribution Logic"
+    ]
+  },
+  {
+    "name": "Sanctuary Keepers",
+    "description": "A highly esteemed operational unit managing technical sanitation procedures inside the main auditorium complex, maintaining pristine holiness parameters.",
+    "image": "/assets/images/ministry-placeholder-29.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Sanitation Care",
+      "Auditorium Layout Setup",
+      "Order Maintenance"
+    ]
+  },
+  {
+    "name": "Affinity Leadership",
+    "description": "Fostering strategic cross-functional operations across distinct age sub-groups, demographics, and special occupational guilds inside the church structure.",
+    "image": "/assets/images/ministry-placeholder-30.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Age Sub-Groups",
+      "Occupational Guilds",
+      "Demographic Alignment"
+    ]
+  },
+  {
+    "name": "Announcement",
+    "description": "Processing dynamic media briefs and delivering highly articulated, engaging administrative instructions and opportunities directly to the congregation.",
+    "image": "/assets/images/ministry-placeholder-31.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Media Briefing",
+      "Script Articulation",
+      "Bulletin Management"
+    ]
+  },
+  {
+    "name": "Salem Theatre",
+    "description": "Using dramatic theatrical visual scripts, spoken word arrangements, and performance cinematography arts to visually articulate powerful redemption themes.",
+    "image": "/assets/images/ministry-placeholder-32.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Performance Arts",
+      "Cinematography Unit",
+      "Script Writing"
+    ]
+  },
+  {
+    "name": "Dedication",
+    "description": "Coordinating ceremonial presentation operations for new-born infancies, real-estate corporate acquisitions, and physical capital assets offerings.",
+    "image": "/assets/images/ministry-placeholder-33.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Infant Presentation",
+      "Asset Dedication Logistics"
+    ]
+  },
+  {
+    "name": "Protocol",
+    "description": "Managing international operations, specialized transport arrangements, host accommodations, and processing requirements for visiting global speaker alignments.",
+    "image": "/assets/images/ministry-placeholder-34.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "International Hosting",
+      "Speaker Logistics",
+      "Dignitary Care"
+    ]
+  },
+  {
+    "name": "Conflict Resolution Team",
+    "description": "An elite biblical mediation tribunal panel focused on maintaining institutional unity by rectifying internal community relational frictions diplomatically.",
+    "image": "/assets/images/ministry-placeholder-35.jpg",
+    "joinLink": "#",
+    "subMinistries": [
+      "Biblical Mediation",
+      "Internal Harmony Tribunal",
+      "Reconciliation Support"
+    ]
+  }
+]

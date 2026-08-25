@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Colour tokens are stored as **channels only** so Tailwind's `<alpha-value>`
+ * opacity modifiers keep working (`border-ink/[0.07]`, `bg-gold/15`, …).
+ * Generated and contrast-verified by `scripts/tokens.mjs` — `npm run tokens`.
+ * Do not hand-edit these values; change the ramp in the script and re-emit.
+ */
+:root {
+  /* navy — the cool dark family: text, and every dark surface */
+  --navy-50: 248 250 252;
+  --navy-100: 233 239 246;
+  --navy-200: 209 221 235;
+  --navy-300: 170 189 213;
+  --navy-400: 118 144 178;
+  --navy-500: 83 107 141;
+  --navy-600: 59 80 109;
+  --navy-700: 40 60 88;
+  --navy-800: 24 41 68;
+  --navy-900: 11 27 51; /* brand navy */
+  --navy-950: 7 15 29;
+
+  /* red — the scarce accent. Light surfaces only. */
+  --red-50: 252 232 234;
+  --red-100: 249 210 212;
+  --red-200: 243 175 179;
+  --red-300: 233 129 133;
+  --red-400: 218 82 85;
+  --red-500: 205 55 55;
+  --red-600: 184 46 44; /* brand red */
+  --red-700: 161 40 38;
+  --red-800: 138 34 33;
+  --red-900: 101 28 27;
+  --red-950: 64 19 17;
+
+  /* gold — the dark-surface accent. 8.79:1 on navy-900. */
+  --gold-50: 251 246 234;
+  --gold-100: 246 233 202;
+  --gold-200: 240 214 157;
+  --gold-300: 235 194 111;
+  --gold-400: 231 176 75;
+  --gold-500: 217 148 38;
+  --gold-600: 184 117 30;
+  --gold-700: 151 89 23;
+  --gold-800: 121 67 17;
+  --gold-900: 93 50 14;
+  --gold-950: 58 29 9;
+
+  /* sand — warm neutral surfaces */
+  --sand-50: 254 253 251;
+  --sand-100: 250 247 242;
+  --sand-200: 242 236 228;
+  --sand-300: 236 230 220;
+  --sand-400: 215 205 193;
+  --sand-500: 182 169 154;
+  --sand-600: 147 133 118;
+  --sand-700: 114 101 90;
+  --sand-800: 81 70 62;
+  --sand-900: 53 45 39;
+  --sand-950: 33 27 23;
+
+  /* semantic */
+  --paper: 255 255 255;
+  --ink: 15 23 42;
+  --ink-deep: 11 27 51;
+  --ink-muted: 71 85 105;
+  --ink-faint: 88 104 126; /* was 148 163 184 — 2.40:1 on sand. Now 5.32:1. */
+  --sand: 250 247 242;
+  --sand-line: 236 230 220;
+
+  /* the light-theme depth ladder — base is warm off-white so cards can rise
+     to pure white and actually read as elevated */
+  --surface: 253 251 247;
+  --surface-alt: 250 247 242;
+  --surface-sunken: 242 236 228;
+  --surface-elevated: 255 255 255;
+
+  --shadow: 34 26 20; /* warm dark, drives every box-shadow layer */
+
+  /* Focus indicator. Red clears 6.06:1 on the light surfaces but only 2.84:1
+     on the navy, so dark contexts swap to gold (8.79:1) below. */
+  --focus-ring: var(--red-600);
+
+  /* Scrollbar, same cascade trick as the focus ring: any dark surface that
+     scrolls swaps these rather than restyling its own scrollbar. */
+  --sb-track: var(--sand-100);
+  --sb-thumb: var(--sand-400);
+  --sb-thumb-hover: var(--sand-500);
+
+  /* Film grain. One definition, consumed by `.grain-layer` and `bg-grain`. */
+  --noise-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/*
+ * Dark contexts inherit a legible focus ring without any markup change —
+ * the custom property cascades to descendants of the existing dark utilities.
+ *
+ * Note the `data-surface` / `.on-dark` opt-ins are not redundant: a dark
+ * surface written with an opacity modifier (`bg-ink-deep/95`) compiles to the
+ * escaped class `.bg-ink-deep\/95`, which the bare class selectors below do
+ * not match. Those surfaces must declare themselves.
+ */
+.on-dark,
+[data-surface='dark'],
+:where(.bg-ink-deep, .bg-navy-900, .bg-navy-950, .bg-black) {
+  --focus-ring: var(--gold-400);
+  --sb-track: var(--navy-900);
+  --sb-thumb: var(--navy-600);
+  --sb-thumb-hover: var(--navy-500);
+}
+
+@layer base {
+  /* `scroll-behavior: smooth` used to live here. Removed: Lenis owns scroll
+     position, and the two fight — the CSS rule makes Lenis' rAF loop and the
+     browser's own interpolation compete on the same anchor jump. */
+  html {
+    -webkit-tap-highlight-color: rgb(var(--red-600) / 0.15);
+  }
+
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+    /* Brief calls for 1.6–1.75 body leading; this was 1.5. */
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  /*
+   * Display face is Bebas Neue — condensed, all-caps, no lowercase and no
+   * descenders. All-caps needs *positive* tracking to breathe: the letterforms
+   * have no x-height variation to separate them, so tightening them closes the
+   * counters up. This is the original `tracking-wide` (+0.025em) value.
+   */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-wide;
+    text-wrap: balance;
+  }
+
+  h5,
+  h6 {
+    @apply font-display tracking-wide;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: rgb(var(--red-600) / 0.22);
+    color: rgb(var(--ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--focus-ring));
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Lists get the accent as their marker rather than default black bullets. */
+  ::marker {
+    color: rgb(var(--red-600) / 0.75);
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--sb-thumb)) transparent;
+  }
+
+  /* WebKit — subtle, matched to the warm neutral ramp. */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--sb-track));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--sb-thumb));
+    border: 3px solid rgb(var(--sb-track));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--sb-thumb-hover));
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  /* 65–75 character body measure. */
+  .measure {
+    max-width: 68ch;
+  }
+  .measure-tight {
+    max-width: 58ch;
+  }
+
+  /* TPH-style kicker: small italic label above a headline. */
+  .kicker {
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  /* Tabular figures — stops count-up animations from reflowing their row. */
+  .nums-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /*
+   * Film grain as an explicit child element rather than a pseudo-element
+   * utility, so it never fights the parent's `position` class.
+   * Usage: <div className="grain-layer" aria-hidden="true" />
+   */
+  .grain-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: var(--noise-svg);
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    opacity: 0.035;
+  }
+  /* Overlay barely registers against near-black, so dark sections need more. */
+  .grain-layer-dark {
+    mix-blend-mode: overlay;
+    opacity: 0.09;
+  }
+
+  /*
+   * Soft mesh gradients. These are what replace flat fills behind the hero and
+   * feature sections — depth from colour, not from another box-shadow.
+   */
+  .mesh-warm {
+    background-image:
+      radial-gradient(62% 52% at 12% -5%, rgb(var(--gold-200) / 0.34) 0%, transparent 68%),
+      radial-gradient(52% 46% at 88% 8%, rgb(var(--red-200) / 0.24) 0%, transparent 70%),
+      radial-gradient(74% 62% at 50% 104%, rgb(var(--sand-300) / 0.6) 0%, transparent 74%);
+  }
+
+  .mesh-deep {
+    background-image:
+      radial-gradient(58% 48% at 10% -8%, rgb(var(--navy-700) / 0.9) 0%, transparent 68%),
+      radial-gradient(46% 42% at 90% 12%, rgb(var(--red-800) / 0.42) 0%, transparent 70%),
+      radial-gradient(64% 58% at 52% 108%, rgb(var(--gold-900) / 0.38) 0%, transparent 74%);
+  }
+
+  .mesh-accent {
+    background-image:
+      radial-gradient(50% 60% at 85% 0%, rgb(var(--gold-400) / 0.18) 0%, transparent 65%),
+      radial-gradient(60% 70% at 10% 100%, rgb(var(--red-950) / 0.5) 0%, transparent 70%);
+  }
+
+  /* Gradient hairline seam — a section divider that fades at both ends. */
+  .seam {
+    background-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgb(var(--ink) / 0.1) 22%,
+      rgb(var(--ink) / 0.1) 78%,
+      transparent 100%
+    );
+  }
+  .seam-on-dark {
+    background-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgb(var(--paper) / 0.16) 22%,
+      rgb(var(--paper) / 0.16) 78%,
+      transparent 100%
+    );
+  }
+}
+
+/*
+ * Reduced motion. Framer Motion handles its own via
+ * <MotionConfig reducedMotion="user">, which keeps opacity and drops
+ * transforms. This covers the CSS side:
+ *   - every keyframe animation stops (marquees hold at their start offset
+ *     rather than snapping to translateX(-50%), which would leave a gap)
+ *   - transitions survive for colour, opacity and shadow, so interactive
+ *     feedback is not lost — but `transform` leaves the transition list, so
+ *     nothing animates through space.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-property: opacity, color, background-color, border-color, box-shadow, fill, stroke,
+      outline-color !important;
+    transition-duration: 200ms !important;
+  }
+}

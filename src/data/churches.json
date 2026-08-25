@@ -1,0 +1,569 @@
+[
+  {
+    "id": 1,
+    "churchName": "Salem International Christian Centre, Lekki",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Lekki",
+    "fullAddress": "Salem Bus Stop, Lekki, Lagos",
+    "pastorName": "Bishop Enobong Etteh",
+    "pastorPhones": [
+      "08033609066"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Lekki Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-1.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 2,
+    "churchName": "Salem Family, Ogombo",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ogombo",
+    "fullAddress": "St. John's Street, Meadow View Estate, Opposite Cedar Care Hospital, Ogombo Road, Lagos",
+    "pastorName": "Pastor Francis Igbede",
+    "pastorPhones": [
+      "08037746427"
+    ],
+    "googleMapsQuery": "Salem Family Ogombo Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-2.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 3,
+    "churchName": "Salem Family, Epe",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Epe",
+    "fullAddress": "Sikky Role Hotel Hall, Off Petrocam Filling Station, Beside Wadala Street, Lagos Road, Epe",
+    "pastorName": "Rev. Blossom Benjamin",
+    "pastorPhones": [
+      "08068583825"
+    ],
+    "googleMapsQuery": "Salem Family Epe Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-3.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 4,
+    "churchName": "Salem Family, Badore Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Badore",
+    "fullAddress": "No. 13 Ifeyi Coker Crescent, Off Black Gate, Badore, Lagos",
+    "pastorName": "Rev. Simon Odomokwu",
+    "pastorPhones": [
+      "08033004908"
+    ],
+    "googleMapsQuery": "Salem Family Badore Headquarters Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-4.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 5,
+    "churchName": "Salem Family, Maryland",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Maryland",
+    "fullAddress": "No. 7 Kemi Shola Street, By Unity Road, Maryland, Lagos",
+    "pastorName": "Rev. Babatunde Ajayi",
+    "pastorPhones": [
+      "08037055822",
+      "07013338579"
+    ],
+    "googleMapsQuery": "Salem Family Maryland Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-5.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 6,
+    "churchName": "Salem Family, Owode",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ajah",
+    "fullAddress": "No. 3 Anu Crescent, Cele Bus Stop, Opposite Forte Oil Filling Station, Badore Ajah, Lagos",
+    "pastorName": "Pastor Chris Emmanuel",
+    "pastorPhones": [
+      "08038534406"
+    ],
+    "googleMapsQuery": "Salem Family Owode Ajah Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-6.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 7,
+    "churchName": "Salem Family, Onosa",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Onosa",
+    "fullAddress": "KM 22 Lekki-Epe Expressway, Rainbow Plaza, Onosa Bus Stop, Ibeju Lekki, Lagos",
+    "pastorName": "Pastor Chris Aduradu",
+    "pastorPhones": [
+      "08036161487"
+    ],
+    "googleMapsQuery": "Salem Family Onosa Ibeju Lekki Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-7.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 8,
+    "churchName": "Salem Family, Gbagada Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Gbagada",
+    "fullAddress": "36 Ajoke Salako Street, Ifako, Gbagada, Lagos",
+    "pastorName": "Rev. Joe Esenwa",
+    "pastorPhones": [
+      "08022246802"
+    ],
+    "googleMapsQuery": "Salem Family Gbagada Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-8.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 9,
+    "churchName": "Salem Family, Oworonshoki",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Oworonshoki",
+    "fullAddress": "No. 17B Akin Labake Street, Akerele Estate, Oworonshoki, Lagos",
+    "pastorName": "Pastor Elijah Urube",
+    "pastorPhones": [
+      "0802319318"
+    ],
+    "googleMapsQuery": "Salem Family Oworonshoki Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-9.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 10,
+    "churchName": "Salem Family, Ilupeju",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ilupeju",
+    "fullAddress": "No. 23 Association Avenue, Ilupeju, By Vitafoam Building, Lagos",
+    "pastorName": "Rev. Chika Okoronkwo",
+    "pastorPhones": [
+      "08087184901",
+      "07015237122"
+    ],
+    "googleMapsQuery": "Salem Family Ilupeju Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-10.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 11,
+    "churchName": "Salem Family, Bariga",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Bariga",
+    "fullAddress": "No. 32 Tijani Ashogbon Street, Bariga Market, Odunsi Junction, Bariga, Lagos",
+    "pastorName": "Pastor Simeon Thompson Iheoma",
+    "pastorPhones": [
+      "08026825940",
+      "08056056012"
+    ],
+    "googleMapsQuery": "Salem Family Bariga Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-11.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 12,
+    "churchName": "Salem Family, Shomolu",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Shomolu",
+    "fullAddress": "No. 1 Bankole Street, Off Pedro, Palm Grove, Shomolu, Lagos",
+    "pastorName": "Pastor Prince Effiong Ekpo",
+    "pastorPhones": [
+      "08026755681",
+      "08088958884"
+    ],
+    "googleMapsQuery": "Salem Family Shomolu Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-12.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 13,
+    "churchName": "Salem Family, Festac Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Festac",
+    "fullAddress": "The Plaza, By FIRS Office, First Avenue, Before Festac Link Bridge, Festac, Lagos",
+    "pastorName": "Rev. Paul Audu",
+    "pastorPhones": [
+      "08033050580",
+      "08033813937"
+    ],
+    "googleMapsQuery": "Salem Family Festac Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-13.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 14,
+    "churchName": "Salem Family, Ibaa",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Akesan",
+    "fullAddress": "Plot 25, LASU\u2013Igando Road, Opposite PrimeTouch School, Obadore Bus Stop, Akesan, Lagos",
+    "pastorName": "Pastor Tola Elijah Omotayo",
+    "pastorPhones": [
+      "0705836343"
+    ],
+    "googleMapsQuery": "Salem Family Ibaa Akesan Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-14.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 15,
+    "churchName": "Salem Family, Ojo",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ojo",
+    "fullAddress": "No. 3 Beach Side, Beside Paragon Hotel, Via Police Corner, Volks, Ojo, Lagos",
+    "pastorName": "Pastor Uchenna Eze",
+    "pastorPhones": [
+      "07034213428"
+    ],
+    "googleMapsQuery": "Salem Family Ojo Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-15.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 16,
+    "churchName": "Salem Family, Ahoyaya District Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ahoyaya",
+    "fullAddress": "Km 35, Lekki\u2013Epe Expressway, Lagos",
+    "pastorName": "Rev. Olumuyiwa Falade",
+    "pastorPhones": [
+      "08039795032",
+      "08033088069"
+    ],
+    "googleMapsQuery": "Salem Family Ahoyaya District Headquarters Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-16.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 17,
+    "churchName": "Salem Family, Ahoyaya 2",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ahoyaya",
+    "fullAddress": "No. 13 Kamony Villa, Along Alakun Elepete, Lagos",
+    "pastorName": "Bro. David Diare",
+    "pastorPhones": [
+      "08036428413"
+    ],
+    "googleMapsQuery": "Salem Family Ahoyaya 2 Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-17.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 18,
+    "churchName": "Salem Family, Ajah Area Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ajah",
+    "fullAddress": "No. 10 Akin Shittu Street, By Divine Homes Gate, Thomas Estate, Ajah, Lagos",
+    "pastorName": "Rev. Kennedy Okoruwa",
+    "pastorPhones": [
+      "08033033137",
+      "08063982763"
+    ],
+    "googleMapsQuery": "Salem Family Ajah Area Headquarters Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-18.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 19,
+    "churchName": "Salem Family, Okun Ajah",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ajah",
+    "fullAddress": "Plot 5/7 Saratu Imam Street, By Salem Bus Stop, Okun Ajah, Lagos",
+    "pastorName": "Pastor Israel Negedu",
+    "pastorPhones": [
+      "08038634327",
+      "08063099841"
+    ],
+    "googleMapsQuery": "Salem Family Okun Ajah Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-19.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 20,
+    "churchName": "Salem Family, Ajah 2",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ajah",
+    "fullAddress": "View Point Plaza, First Floor, Off NEPA Road, Ajah, Lekki, Lagos",
+    "pastorName": "Pastor Emmanuel Ajayi",
+    "pastorPhones": [
+      "08179594620"
+    ],
+    "googleMapsQuery": "Salem Family Ajah 2 Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-20.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 21,
+    "churchName": "Salem Family, Jesutedo Area Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ajah",
+    "fullAddress": "No. 1 Alhaji Rasak Taiwo Street, Hopeville Estate, Haruna Bus Stop, Jesutedo, Ajah, Lagos",
+    "pastorName": "Rev. Austin Oriaku",
+    "pastorPhones": [
+      "08029110718"
+    ],
+    "googleMapsQuery": "Salem Family Jesutedo Ajah Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-21.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 22,
+    "churchName": "Salem Family, Ketu Area Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ketu",
+    "fullAddress": "No. 24 Gregory Arueya Street, Off Adedoyin Street, Kosofe, Ketu, Lagos",
+    "pastorName": "Rev. Oluwadare Pius Ojo",
+    "pastorPhones": [
+      "08051008665",
+      "08169049389"
+    ],
+    "googleMapsQuery": "Salem Family Ketu Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-22.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 23,
+    "churchName": "Salem Family, Ikorodu",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ikorodu",
+    "fullAddress": "No. 5 Ogunnike Close, Ojokoro New Town, Agric, Ikorodu, Lagos",
+    "pastorName": "Pastor Isaac Okon",
+    "pastorPhones": [
+      "07060979938"
+    ],
+    "googleMapsQuery": "Salem Family Ikorodu Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-23.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 24,
+    "churchName": "Salem Family, Victoria Island Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Victoria Island",
+    "fullAddress": "Victoria Island, Lagos",
+    "pastorName": "Rev. Raymond Haruna",
+    "pastorPhones": [
+      "08023164113",
+      "08055826281"
+    ],
+    "googleMapsQuery": "Salem Family Victoria Island Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-24.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 25,
+    "churchName": "Salem Family, Ojodu Area Headquarters",
+    "country": "Nigeria",
+    "state": "Lagos",
+    "city": "Ojodu",
+    "fullAddress": "No. 1 Agbejina Street, Olowo Isheri Bus Stop, Ojodu, Lagos",
+    "pastorName": "Rev. John Iwori",
+    "pastorPhones": [
+      "08020604986",
+      "08121999685"
+    ],
+    "googleMapsQuery": "Salem Family Ojodu Lagos",
+    "imagePlaceholder": "/assets/images/church-placeholder-25.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 26,
+    "churchName": "Family City of Grace, Ibadan",
+    "country": "Nigeria",
+    "state": "Oyo",
+    "city": "Ibadan",
+    "fullAddress": "2nd Pipeline, Off 2nd Powerline, Ologuneru, Ibadan",
+    "pastorName": "Rev. Folorunsho Emmanuel",
+    "pastorPhones": [
+      "08034090792"
+    ],
+    "googleMapsQuery": "Family City of Grace Ologuneru Ibadan",
+    "imagePlaceholder": "/assets/images/church-placeholder-26.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 27,
+    "churchName": "Salem Family, Sango, Ibadan",
+    "country": "Nigeria",
+    "state": "Oyo",
+    "city": "Ibadan",
+    "fullAddress": "34 Old Oyo Road, Opposite BJ Rentals, Oluwaseun House, Coca-Cola, Makola, Ibadan",
+    "pastorName": "Rev. Aladedunye Amos Adeniyi",
+    "pastorPhones": [
+      "08052011955"
+    ],
+    "googleMapsQuery": "Salem Family Sango Ibadan Oyo",
+    "imagePlaceholder": "/assets/images/church-placeholder-27.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 28,
+    "churchName": "Salem International Christian Centre, Ekiti",
+    "country": "Nigeria",
+    "state": "Ekiti",
+    "city": "Ado-Ekiti",
+    "fullAddress": "No. 45 Ekute Road, Opposite Water Corporation, Oreofe Community Zone 13, Ekute, Ado-Ekiti",
+    "pastorName": "Pastor Temitope Adeusi",
+    "pastorPhones": [
+      "08169406892"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Ado Ekiti",
+    "imagePlaceholder": "/assets/images/church-placeholder-28.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 29,
+    "churchName": "Salem International Christian Centre, Mowe",
+    "country": "Nigeria",
+    "state": "Ogun",
+    "city": "Mowe",
+    "fullAddress": "Salem International Christian Centre, Mowe, Ogun State",
+    "pastorName": "Pastor David Onos Ovwovwadia",
+    "pastorPhones": [
+      "07034496112"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Mowe Ogun",
+    "imagePlaceholder": "/assets/images/church-placeholder-29.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 30,
+    "churchName": "Salem International Christian Centre, Dome",
+    "country": "Ghana",
+    "state": "Greater Accra",
+    "city": "Dome",
+    "fullAddress": "No. 35 Atomic Down, Dome Kwabenya Roundabout, Taifa, Ghana",
+    "pastorName": "Bishop Israel Eze",
+    "pastorPhones": [
+      "+233243503225"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Dome Kwabenya Ghana",
+    "imagePlaceholder": "/assets/images/church-placeholder-30.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 31,
+    "churchName": "Salem Family, Ashaiman",
+    "country": "Ghana",
+    "state": "Greater Accra",
+    "city": "Ashaiman",
+    "fullAddress": "Off DB Plaza, Night Market, Mexico Lane, Ashaiman, Ghana",
+    "pastorName": "Pastor Chris Odonkor",
+    "pastorPhones": [
+      "+233245894575"
+    ],
+    "googleMapsQuery": "Salem Family Ashaiman Ghana",
+    "imagePlaceholder": "/assets/images/church-placeholder-31.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 32,
+    "churchName": "Salem Family, Abeka",
+    "country": "Ghana",
+    "state": "Greater Accra",
+    "city": "Abeka",
+    "fullAddress": "Abeka Post Office, Accra, Ghana",
+    "pastorName": "Rev. Confidence Pere",
+    "pastorPhones": [
+      "+233547056353"
+    ],
+    "googleMapsQuery": "Salem Family Abeka Ghana",
+    "imagePlaceholder": "/assets/images/church-placeholder-32.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 33,
+    "churchName": "Salem Family, Kasoa",
+    "country": "Ghana",
+    "state": "Central Region",
+    "city": "Kasoa",
+    "fullAddress": "Opeikuma High Tension Street, Kasoa, Ghana",
+    "pastorName": "Pastor Esmeralda Pere",
+    "pastorPhones": [
+      "+233249581599"
+    ],
+    "googleMapsQuery": "Salem Family Kasoa Ghana",
+    "imagePlaceholder": "/assets/images/church-placeholder-33.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 34,
+    "churchName": "Salem Family, Kutunse",
+    "country": "Ghana",
+    "state": "Greater Accra",
+    "city": "Kutunse",
+    "fullAddress": "Satellite, Behind Chinese Shoe Factory, Off GHS Estate Road, Kutunse, Ghana",
+    "pastorName": "Prince MacRich",
+    "pastorPhones": [
+      "+233249486136"
+    ],
+    "googleMapsQuery": "Salem Family Kutunse Ghana",
+    "imagePlaceholder": "/assets/images/church-placeholder-34.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 35,
+    "churchName": "Foundation Eglise de Foi Universelle de Salem",
+    "country": "Togo",
+    "state": "Maritime",
+    "city": "Lom\u00e9",
+    "fullAddress": "Kokolovikpe-Attieguegan, Lom\u00e9, Togo",
+    "pastorName": "Pastor Irene Orji",
+    "pastorPhones": [
+      "+22896870013"
+    ],
+    "googleMapsQuery": "Foundation Eglise de Foi Universelle de Salem Lome Togo",
+    "imagePlaceholder": "/assets/images/church-placeholder-35.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 36,
+    "churchName": "Salem International Christian Centre, Freetown",
+    "country": "Sierra Leone",
+    "state": "Western Area",
+    "city": "Freetown",
+    "fullAddress": "#31 Fort Street, Freetown, Sierra Leone",
+    "pastorName": "Rev. Andrew Obeten",
+    "pastorPhones": [
+      "075566176",
+      "08132807052"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Fort Street Freetown Sierra Leone",
+    "imagePlaceholder": "/assets/images/church-placeholder-36.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  },
+  {
+    "id": 37,
+    "churchName": "Salem International Christian Centre, Benin Republic",
+    "country": "Benin Republic",
+    "state": "Littoral",
+    "city": "Cotonou",
+    "fullAddress": "Avotrou, Akpakpa, Bloc 3, Cotonou, Benin Republic",
+    "pastorName": "Rev. Valois Bayela",
+    "pastorPhones": [
+      "+22996391329"
+    ],
+    "googleMapsQuery": "Salem International Christian Centre Akpakpa Cotonou Benin Republic",
+    "imagePlaceholder": "/assets/images/church-placeholder-37.jpg",
+    "serviceTimes": "Sunday Worship Service"
+  }
+]

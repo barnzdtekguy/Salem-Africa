@@ -1,0 +1,101 @@
+[
+  {
+    "slug": "continental-faith-convention-2026",
+    "title": "Continental Faith Convention",
+    "category": "Convention",
+    "startDateTime": "2026-08-18T08:00:00",
+    "endDateTime": "2026-08-21T16:00:00",
+    "location": "Salem City Headquarters, Lekki, Lagos",
+    "image": "/assets/events/event-placeholder-1.jpg",
+    "description": "Four days of unbroken worship, apostolic teaching and impartation as ministers and delegates gather from every Salem Africa region. This year's theme, \"Raising an Army,\" carries daily sessions at 8:00 AM and 4:00 PM, closing each night with a corporate healing and prophetic service open to the public.",
+    "featured": true
+  },
+  {
+    "slug": "teens-summer-camp-2026",
+    "title": "Teens Summer Camp",
+    "category": "Youth",
+    "startDateTime": "2026-08-24T09:00:00",
+    "endDateTime": "2026-08-28T18:00:00",
+    "location": "Salem Retreat Grounds, Epe, Lagos",
+    "image": "/assets/events/event-placeholder-2.jpg",
+    "description": "A five-day live-in camp for teens aged 13–19 built around games, worship, small-group discipleship and a bonfire commissioning night. Registration includes accommodation, meals and camp merchandise. Online registration for parents opens two weeks before camp begins.",
+    "featured": true
+  },
+  {
+    "slug": "first-friday-night-of-prayer",
+    "title": "First Friday Night of Prayer",
+    "category": "Prayer",
+    "startDateTime": "2026-09-04T22:00:00",
+    "endDateTime": "2026-09-05T02:00:00",
+    "location": "Main Auditorium & Livestream",
+    "image": "/assets/events/event-placeholder-3.jpg",
+    "description": "Our monthly all-night prayer watch — four hours of intercession, prophetic declaration and worship, led by the Prayer Ministry team. Come with your prayer list, or join the livestream from wherever you are in the world.",
+    "featured": false
+  },
+  {
+    "slug": "marriage-couples-retreat",
+    "title": "Marriage & Couples Retreat",
+    "category": "Family",
+    "startDateTime": "2026-09-12T10:00:00",
+    "endDateTime": "2026-09-13T17:00:00",
+    "location": "Salem Conference Centre, Lekki",
+    "image": "/assets/events/event-placeholder-4.jpg",
+    "description": "A two-day retreat for engaged and married couples, hosted by the Marriage & Couples Ministry. Sessions cover communication, covenant finances and intimacy, with dedicated counselling slots available on request.",
+    "featured": false
+  },
+  {
+    "slug": "salem-women-international-conference",
+    "title": "Salem Women International Conference",
+    "category": "Conference",
+    "startDateTime": "2026-09-22T09:00:00",
+    "endDateTime": "2026-09-25T16:00:00",
+    "location": "Salem City Headquarters, Lekki, Lagos",
+    "image": "/assets/events/event-placeholder-5.jpg",
+    "description": "Bishop Dr Love Sam Amaga leads women from across the continent in four days of teaching, mentorship tracks and business clinics under Salem Women International, closing with a Saturday gala honouring women in ministry and marketplace.",
+    "featured": true
+  },
+  {
+    "slug": "community-medical-outreach",
+    "title": "Community Medical & Welfare Outreach",
+    "category": "Outreach",
+    "startDateTime": "2026-10-03T08:00:00",
+    "endDateTime": "2026-10-03T15:00:00",
+    "location": "Ogombo Community Grounds, Lagos",
+    "image": "/assets/events/event-placeholder-6.jpg",
+    "description": "Free medical screenings, basic treatment and food distribution provided by the Medical and Welfare Ministries for the Ogombo community. Volunteers are welcome — sign up through the Welfare Ministry desk after any Sunday service.",
+    "featured": false
+  },
+  {
+    "slug": "salem-theatre-passion-play",
+    "title": "Salem Theatre: The Passion Play",
+    "category": "Arts",
+    "startDateTime": "2026-10-10T17:00:00",
+    "endDateTime": "2026-10-10T19:30:00",
+    "location": "Main Auditorium, Lekki",
+    "image": "/assets/events/event-placeholder-7.jpg",
+    "description": "An original dramatic production from the Salem Theatre ministry retelling the passion of Christ through dance, live orchestration and stagecraft. Free entry, seating on a first-come basis from 4:00 PM.",
+    "featured": false
+  },
+  {
+    "slug": "singles-connect-mixer",
+    "title": "Singles Connect Evening",
+    "category": "Fellowship",
+    "startDateTime": "2026-10-17T18:00:00",
+    "endDateTime": "2026-10-17T21:00:00",
+    "location": "Salem Rooftop Terrace, Lekki",
+    "image": "/assets/events/event-placeholder-8.jpg",
+    "description": "An evening of worship, games and honest conversation for singles in the Salem Family, hosted by the Singles Connect ministry. Light refreshments served.",
+    "featured": false
+  },
+  {
+    "slug": "harvest-thanksgiving-crusade",
+    "title": "Harvest Thanksgiving Crusade",
+    "category": "Crusade",
+    "startDateTime": "2026-11-07T16:00:00",
+    "endDateTime": "2026-11-08T21:00:00",
+    "location": "Salem City Field, Lekki-Epe Expressway",
+    "image": "/assets/events/event-placeholder-9.jpg",
+    "description": "A two-night open-air crusade of thanksgiving, healing and evangelism led by the Missions Ministry, closing the ministry year with testimonies from across our 37 locations. Free shuttle buses run from major bus stops along the Expressway.",
+    "featured": true
+  }
+]
