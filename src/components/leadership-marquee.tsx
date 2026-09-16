@@ -5,11 +5,10 @@ import { Reveal } from '@/components/reveal';
 
 const LEADERS = [
   { name: 'Archbishop Dr Sam Amaga', role: 'Founder & Visionary', img: '/images/samamaga.jpg' },
-  { name: 'Bishop Dr Love Sam Amaga', role: 'Co-Founder', img: '/images/bishoplove.jpg' },
+  { name: 'Bishop Dr Love Sam Amaga', role: 'Bishop', img: '/images/bishoplove.jpg' },
   { name: 'Bishop Enobong Etteh', role: 'Continental Bishop Africa', img: '/images/bishopenobong.jpg' },
-  { name: 'Rev Catherine Etteh', role: 'Senior Minister', img: '/images/catherine.jpg' },
-  { name: 'Bishop David Onimisi', role: 'Regional Director', img: '/images/onimisi.jpg' },
-  { name: 'Pastor Israel Eze', role: 'International Missions', img: '/images/israeleze.jpg' },
+  { name: 'Rev Catherine Etteh', role: 'Reverend', img: '/images/catherine.jpg' },
+   { name: 'Bishop Israel Eze', role: 'Dioceesan Bishop', img: '/images/israeleze.jpg' },
 ];
 
 // Duplicated once for a seamless CSS-only marquee loop.
