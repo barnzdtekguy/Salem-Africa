@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const SLIDES = [
   {
     src: '/images/hero-bg-1.jpg',
-    kicker: 'Salem Family · 37 Locations',
+    kicker: 'Salem Family',
     title: 'SAVING, HEALING, MAKING MANY MIGHTY.',
     href: '/churches',
     cta: 'Find a Church Near You',
@@ -23,7 +23,7 @@ const SLIDES = [
   },
   {
     src: '/images/hero-bg-3.jpg',
-    kicker: 'One Family, Five Nations',
+    kicker: 'One Family',
     title: 'STRONG IN FAITH, EMPOWERED BY WISDOM.',
     href: '/about',
     cta: 'Our Story',
