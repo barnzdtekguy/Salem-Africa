@@ -4,7 +4,7 @@ import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
 import { MediaTabs } from '@/components/media-tabs';
 import { Reveal } from '@/components/reveal';
-import { Radio, CalendarClock, Bell } from 'lucide-react';
+import { Radio, CalendarClock, Bell, MapPin } from 'lucide-react';
 import { EVENTS } from '@/data/events';
 
 export const metadata: Metadata = { title: 'Live | Salem Africa' };
@@ -51,6 +51,12 @@ export default function LivePage() {
                   </p>
                   <h3 className="mt-2 font-display text-lg text-ink">{event.title}</h3>
                   <p className="mt-1.5 text-sm leading-6 text-ink-muted">{event.schedule}</p>
+                  {event.location && (
+                    <p className="mt-2 flex items-start gap-2 text-sm leading-6 text-ink-muted">
+                      <MapPin size={15} className="mt-1 shrink-0" />
+                      <span>{event.location}</span>
+                    </p>
+                  )}
                 </div>
               </Reveal>
             ))}

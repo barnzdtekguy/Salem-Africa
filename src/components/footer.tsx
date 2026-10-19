@@ -68,6 +68,7 @@ export function Footer() {
                 <div key={event.slug}>
                   <p className="text-sm font-black text-terracotta">{event.title}</p>
                   <p className="mt-1 text-sm leading-5 text-ink-muted">{event.frequency} · {event.schedule}</p>
+                  {event.location && <p className="mt-1 text-xs leading-5 text-ink-muted">{event.location}</p>}
                 </div>
               ))}
               <div>

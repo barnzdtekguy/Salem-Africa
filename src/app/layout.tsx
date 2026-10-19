@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { WhatsAppButton } from '@/components/whatsapp-button';
+import { WHATSAPP_PHONE_NUMBER } from '@/data/contact';
 import './globals.css';
 
 /*
@@ -47,7 +49,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <WhatsAppButton phoneNumber={WHATSAPP_PHONE_NUMBER} />
+      </body>
     </html>
   );
 }

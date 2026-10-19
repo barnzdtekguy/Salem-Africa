@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { CalendarClock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CalendarClock, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import { EVENTS } from '@/data/events';
 import { ImageWithFallback } from '@/components/image-with-fallback';
 import { Reveal } from '@/components/reveal';
@@ -66,6 +66,11 @@ export function UpcomingEvents() {
                 <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
                   <CalendarClock size={13} className="mt-0.5 shrink-0" /> {event.schedule}
                 </p>
+                {event.location && (
+                  <p className="mt-1 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
+                    <MapPin size={13} className="mt-0.5 shrink-0" /> {event.location}
+                  </p>
+                )}
               </Link>
           ))}
         </div>

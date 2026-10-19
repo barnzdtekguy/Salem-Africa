@@ -1,4 +1,4 @@
-import { CalendarClock, Clock } from 'lucide-react';
+import { CalendarClock, Clock, MapPin } from 'lucide-react';
 import type { SalemEvent } from '@/data/events';
 import { ImageWithFallback } from '@/components/image-with-fallback';
 import { Reveal } from '@/components/reveal';
@@ -31,6 +31,12 @@ function WeeklyServiceCard({ event, index }: { event: SalemEvent; index: number 
               <Clock size={16} className="mt-1 shrink-0" />
               <span>{event.schedule}</span>
             </p>
+            {event.location && (
+              <p className="flex items-start gap-2 leading-6 text-ink-muted">
+                <MapPin size={16} className="mt-1 shrink-0" />
+                <span>{event.location}</span>
+              </p>
+            )}
           </div>
 
           <p className="mt-4 text-sm leading-6 text-ink-muted">{event.description}</p>

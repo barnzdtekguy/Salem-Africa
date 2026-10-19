@@ -6,6 +6,7 @@ export interface SalemEvent {
   category: string;
   frequency: string;
   schedule: string;
+  location?: string;
   image: string;
   description: string;
 }
