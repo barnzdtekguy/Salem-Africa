@@ -26,8 +26,8 @@ const TILES: Tile[] = [
   {
     href: '/events',
     eyebrow: 'What\u2019s On',
-    title: 'Upcoming events',
-    text: 'Conventions, camps, prayer nights and more — with a calendar you can save to your own.',
+    title: 'Weekly services',
+    text: 'See the weekly service schedule and the latest flyers.',
     image: '/images/hero-bg-2.jpg',
     area: 'lg:col-start-3 lg:row-start-1 lg:col-span-2 lg:row-span-1',
   },

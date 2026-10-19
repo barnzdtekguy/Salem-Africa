@@ -5,14 +5,9 @@ import { PageHero } from '@/components/page-hero';
 import { MediaTabs } from '@/components/media-tabs';
 import { Reveal } from '@/components/reveal';
 import { Radio, CalendarClock, Bell } from 'lucide-react';
+import { EVENTS } from '@/data/events';
 
 export const metadata: Metadata = { title: 'Live | Salem Africa' };
-
-const SERVICE_TIMES = [
-  { day: 'Sunday', name: 'Celebration Service', time: '8:00 AM & 10:30 AM' },
-  { day: 'Tuesday', name: 'Word Encounter', time: '6:00 PM' },
-  { day: 'Thursday', name: 'Prayer & Intercession', time: '6:00 PM' },
-];
 
 export default function LivePage() {
   return (
@@ -45,17 +40,17 @@ export default function LivePage() {
           </Reveal>
 
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {SERVICE_TIMES.map(({ day, name, time }, i) => (
-              <Reveal key={day} delay={i * 0.08}>
+            {EVENTS.map((event, i) => (
+              <Reveal key={event.slug} delay={i * 0.08}>
                 <div className="h-full rounded-2xl border border-ink/[0.07] bg-white p-7 shadow-soft">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta-soft text-terracotta">
                     <CalendarClock size={22} strokeWidth={1.8} />
                   </div>
                   <p className="mt-5 font-label text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-                    {day}
+                    {event.frequency}
                   </p>
-                  <h3 className="mt-2 font-display text-lg text-ink">{name}</h3>
-                  <p className="mt-1.5 text-sm text-ink-muted">{time} (WAT)</p>
+                  <h3 className="mt-2 font-display text-lg text-ink">{event.title}</h3>
+                  <p className="mt-1.5 text-sm leading-6 text-ink-muted">{event.schedule}</p>
                 </div>
               </Reveal>
             ))}

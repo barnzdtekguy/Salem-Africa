@@ -88,21 +88,18 @@ This folder is where your real photography goes. The site already works without 
 | `church-placeholder-36.jpg` | Salem International Christian Centre, Freetown |
 | `church-placeholder-37.jpg` | Salem International Christian Centre, Benin Republic |
 
-## /public/assets/events — Events (9)
+## /public/assets/events — Weekly service flyers (3)
 
-| Filename | Event |
+| Filename | Weekly service |
 |---|---|
-| `event-placeholder-1.jpg` | Continental Faith Convention |
-| `event-placeholder-2.jpg` | Teens Summer Camp |
-| `event-placeholder-3.jpg` | First Friday Night of Prayer |
-| `event-placeholder-4.jpg` | Marriage & Couples Retreat |
-| `event-placeholder-5.jpg` | Salem Women International Conference |
-| `event-placeholder-6.jpg` | Community Medical & Welfare Outreach |
-| `event-placeholder-7.jpg` | Salem Theatre: The Passion Play |
-| `event-placeholder-8.jpg` | Singles Connect Evening |
-| `event-placeholder-9.jpg` | Harvest Thanksgiving Crusade |
+| extraordinary-life-service-flyer.jpg | Extraordinary Life Service |
+| covenant-breakthrough-service-flyer.jpg | Covenant Breakthrough Service |
+| continental-family-prayer-hour-flyer.jpg | Continental Family Prayer Hour |
+
+Replace the flyer at its matching path under public/assets/events/ each week. If you want to keep an older flyer, upload the new one under a new filename and change the matching image path in src/data/events.json.
+Portrait JPG flyers display in full without cropping.
 
 ---
 
 ## Adding a brand-new ministry, church, or event
-Add the entry to the matching file in `src/data/` (`ministries.json`, `churches.json`, or `events.json`), pointing its `image`/`imagePlaceholder` field at a new filename in this folder using the same naming pattern. The card, marquee, calendar and detail modal all pick it up automatically — nothing else needs to change.
+Add the entry to the matching file in `src/data/` (`ministries.json`, `churches.json`, or `events.json`), pointing its `image`/`imagePlaceholder` field at a new filename in this folder using the same naming pattern. Cards pick it up automatically.

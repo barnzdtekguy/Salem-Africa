@@ -2,19 +2,12 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CalendarClock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { EVENTS } from '@/data/events';
 import { ImageWithFallback } from '@/components/image-with-fallback';
-import { formatEventTimeLabel } from '@/lib/calendar';
 import { Reveal } from '@/components/reveal';
 
-const UPCOMING = EVENTS.filter((e) => new Date(e.endDateTime ?? e.startDateTime) >= new Date()).slice(0, 6);
-
-/**
- * Homepage "Upcoming Events" strip — mirrors thispresenthouse.org's
- * connect-wrap: a horizontally scrolling row of cards, each with an
- * image, a month/day date badge, a title, and a location + time line.
- */
+/** Homepage strip for recurring weekly services and their current flyers. */
 export function UpcomingEvents() {
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -22,13 +15,13 @@ export function UpcomingEvents() {
     trackRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
   }
 
-  if (UPCOMING.length === 0) return null;
+  if (EVENTS.length === 0) return null;
 
   return (
     <section className="bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="text-3xl text-ink sm:text-4xl">Upcoming Events</h2>
+          <h2 className="text-3xl text-ink sm:text-4xl">Weekly Services</h2>
           <div className="hidden items-center gap-2 sm:flex">
             <button
               type="button"
@@ -50,9 +43,7 @@ export function UpcomingEvents() {
         </Reveal>
 
         <div ref={trackRef} className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
-          {UPCOMING.map((event) => {
-            const start = new Date(event.startDateTime);
-            return (
+          {EVENTS.map((event) => (
               <Link
                 key={event.slug}
                 href="/events"
@@ -63,24 +54,20 @@ export function UpcomingEvents() {
                     src={event.image}
                     alt={event.title}
                     label={event.title}
-                    className="aspect-[4/5] w-full"
-                    imgClassName="object-cover transition duration-500 group-hover:scale-105"
+                    className="aspect-[4/5] w-full bg-sand"
+                    imgClassName="object-contain transition duration-500 group-hover:scale-105"
                     sizes="288px"
                   />
-                  <div className="absolute left-3 top-3 flex w-14 flex-col items-center justify-center rounded-xl bg-white py-2 shadow-soft">
-                    <span className="text-[11px] font-bold uppercase tracking-wide text-terracotta">
-                      {start.toLocaleDateString('en-US', { month: 'short' })}
-                    </span>
-                    <span className="text-lg font-black leading-none text-ink">{start.getDate()}</span>
+                  <div className="absolute left-3 top-3 rounded-xl bg-white px-3 py-2 font-label text-[11px] font-bold uppercase tracking-wide text-terracotta shadow-soft">
+                    {event.frequency}
                   </div>
                 </div>
                 <h3 className="mt-4 text-lg text-ink transition group-hover:text-terracotta">{event.title}</h3>
-                <p className="mt-1 flex items-center gap-1.5 text-xs text-ink-muted">
-                  <MapPin size={13} /> {event.location} · {formatEventTimeLabel(event)}
+                <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
+                  <CalendarClock size={13} className="mt-0.5 shrink-0" /> {event.schedule}
                 </p>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </div>
     </section>

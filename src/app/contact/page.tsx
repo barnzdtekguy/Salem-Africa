@@ -14,10 +14,10 @@ const FAQS: AccordionItem[] = [
     title: 'What are your service times?',
     content: (
       <p>
-        Service times vary by branch. Please visit our{' '}
-        <a href="/churches" className="text-terracotta underline underline-offset-2">Churches</a> page to
-        find the exact service times for a location near you. Our Headquarters holds services at 8:00
-        AM and 10:00 AM on Sundays.
+        Extraordinary Life Service is every Sunday at 8:00 AM, and Covenant Breakthrough Service is
+        every Wednesday at 5:30 PM. Continental Family Prayer Hour is every Friday at 5:00 AM in
+        Benin Republic and Togo, and 6:00 AM WAT in Nigeria. See our{' '}
+        <a href="/events" className="text-terracotta underline underline-offset-2">weekly schedule</a>.
       </p>
     ),
   },

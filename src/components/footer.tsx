@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
+import { EVENTS } from '@/data/events';
 
 const QUICK_LINKS = [
   { href: '/', label: 'Home' },
@@ -61,16 +62,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-black">Service Times</h4>
-            <div className="mt-7 space-y-6">
-              <div>
-                <p className="text-sm font-black text-terracotta">Sunday Worship</p>
-                <p className="mt-1 text-sm text-ink-muted">8:00 AM &amp; 10:00 AM</p>
-              </div>
-              <div>
-                <p className="text-sm font-black text-terracotta">Mid-Week Service</p>
-                <p className="mt-1 text-sm text-ink-muted">Wednesdays · 6:00 PM</p>
-              </div>
+            <h4 className="text-lg font-black">Weekly Services</h4>
+            <div className="mt-7 space-y-5">
+              {EVENTS.map((event) => (
+                <div key={event.slug}>
+                  <p className="text-sm font-black text-terracotta">{event.title}</p>
+                  <p className="mt-1 text-sm leading-5 text-ink-muted">{event.frequency} · {event.schedule}</p>
+                </div>
+              ))}
               <div>
                 <p className="text-sm font-black text-terracotta">Office Hours</p>
                 <p className="mt-1 text-sm text-ink-muted">Mon&ndash;Fri: 9am &ndash; 5pm</p>
