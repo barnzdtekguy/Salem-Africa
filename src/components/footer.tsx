@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
 import { EVENTS } from '@/data/events';
+import { CONTACT_EMAIL } from '@/data/contact';
 
 const QUICK_LINKS = [
   { href: '/', label: 'Home' },
@@ -31,16 +32,17 @@ export function Footer() {
             </p>
             <div className="mt-6 flex gap-3">
               {[
-                { Icon: Facebook, href: 'https://www.facebook.com/SalemLagosLive' },
-                { Icon: Instagram, href: 'https://www.instagram.com/SalemLagosLive' },
-                { Icon: Youtube, href: 'https://www.youtube.com/@SalemLagosLive' },
-              ].map(({ Icon, href }) => (
+                { Icon: Facebook, href: 'https://www.facebook.com/SalemLagosLive', label: 'Salem Africa on Facebook' },
+                { Icon: Instagram, href: 'https://www.instagram.com/SalemLagosLive', label: 'Salem Africa on Instagram' },
+                { Icon: Youtube, href: 'https://www.youtube.com/@SalemLagosLive', label: 'Salem Africa on YouTube' },
+              ].map(({ Icon, href, label }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 text-ink transition hover:bg-terracotta-soft hover:text-terracotta"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 text-ink transition hover:bg-blue-soft hover:text-blue-dark"
                 >
                   <Icon size={16} />
                 </a>
@@ -88,12 +90,16 @@ export function Footer() {
                 </p>
               </li>
               <li className="flex items-start gap-4">
-                <Phone size={20} className="mt-0.5 shrink-0 text-terracotta" />
-                <p className="text-sm leading-6 text-ink-muted">+234 (0) 818 170 6865</p>
+                <Phone size={20} className="mt-0.5 shrink-0 text-blue-dark" />
+                <a href="tel:+2348181706865" className="text-sm leading-6 text-ink-muted transition hover:text-blue-dark">
+                  +234 (0) 818 170 6865
+                </a>
               </li>
               <li className="flex items-start gap-4">
-                <Mail size={20} className="mt-0.5 shrink-0 text-terracotta" />
-                <p className="text-sm leading-6 text-ink-muted">info@salemafrica.org</p>
+                <Mail size={20} className="mt-0.5 shrink-0 text-blue-dark" />
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm leading-6 text-ink-muted transition hover:text-blue-dark">
+                  {CONTACT_EMAIL}
+                </a>
               </li>
             </ul>
           </div>

@@ -26,7 +26,7 @@ const LEADERS = [
     id: 'love-amaga',
     img: '/images/bishoplove.jpg',
     role: 'Co-Founder',
-    name: 'Bishop Dr Love Sam Amaga',
+    name: 'Dr Love Sam Amaga',
     preview:
       'A pillar of strength, profound teacher, and passionate intercessor. Bishop Dr Love Sam Amaga champions the cause of women and the vulnerable through extensive philanthropic and ministerial efforts.',
     body: [

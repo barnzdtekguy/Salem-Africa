@@ -4,30 +4,7 @@ import { WhatsAppButton } from '@/components/whatsapp-button';
 import { WHATSAPP_PHONE_NUMBER } from '@/data/contact';
 import './globals.css';
 
-/*
- * Self-hosted through next/font/local rather than the previous @fontsource CSS
- * imports. The typefaces are unchanged from the original design — Bebas Neue
- * for display, Jost for UI — only the loading mechanism is different, for two
- * reasons that matter to the performance and CLS budgets:
- *   1. Next emits <link rel="preload"> for these in the document head, so the
- *      faces are discovered immediately instead of three round trips deep
- *      (HTML → CSS → @font-face → woff2).
- *   2. `adjustFontFallback` synthesises a size-adjusted local fallback from the
- *      font's own metrics, so the swap from fallback to webfont does not shift
- *      layout.
- */
-const display = localFont({
-  src: './../fonts/bebas-neue-latin-400.woff2',
-  variable: '--font-display',
-  display: 'swap',
-  weight: '400',
-  style: 'normal',
-  adjustFontFallback: 'Arial',
-  // Condensed fallbacks, so a swap from the local metric-adjusted face to Bebas
-  // does not visibly reflow the all-caps headlines.
-  fallback: ['Arial Narrow', 'Haettenschweiler', 'Impact', 'sans-serif'],
-});
-
+// A single locally hosted variable face keeps the editorial headings and UI cohesive.
 const sans = localFont({
   src: [
     { path: './../fonts/jost-latin-variable.woff2', style: 'normal', weight: '100 900' },
@@ -48,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={sans.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
         {children}
         <WhatsAppButton phoneNumber={WHATSAPP_PHONE_NUMBER} />

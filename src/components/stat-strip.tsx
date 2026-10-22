@@ -24,11 +24,7 @@ export function StatStrip() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-6">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06} className="text-center sm:text-left">
-              {/*
-                Gold, not terracotta: the red measured 2.84:1 on this navy and
-                failed WCAG even at 60px. Gold clears 8.79:1.
-              */}
-              <p className="text-5xl text-gold sm:text-6xl">
+              <p className="text-5xl font-semibold tracking-[-0.06em] text-red-300 sm:text-6xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </p>
               <p className="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-white/55 sm:text-sm">

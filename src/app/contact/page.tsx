@@ -5,6 +5,7 @@ import { Reveal } from '@/components/reveal';
 import { ContactForm } from '@/components/contact-form';
 import { Accordion, type AccordionItem } from '@/components/accordion';
 import { MapPin, Phone, Mail, ExternalLink, HelpCircle } from 'lucide-react';
+import { CONTACT_EMAIL } from '@/data/contact';
 
 export const metadata: Metadata = { title: 'Contact Us | Salem Africa' };
 
@@ -92,7 +93,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-display text-sm text-ink">Phone Numbers</h3>
                   <p className="mt-1 text-sm leading-6 text-ink-muted">
-                    +234 (0) XXX XXX XXXX<br />+234 (0) YYY YYY YYYY
+                    +234 (0) 818 170 6865<br />+234 (0) 802 392 2533
                   </p>
                 </div>
               </div>
@@ -103,7 +104,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-display text-sm text-ink">Email Address</h3>
-                  <p className="mt-1 text-sm leading-6 text-ink-muted">info@salemafrica.placeholder.org</p>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="mt-1 inline-block text-sm leading-6 text-blue-dark transition hover:underline hover:underline-offset-4"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
                 </div>
               </div>
             </div>

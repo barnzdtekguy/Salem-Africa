@@ -32,7 +32,7 @@ export function ChurchLocator() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by city, state, country, or pastor..."
-          className="w-full rounded-full border border-ink/10 bg-white py-3.5 pl-12 pr-5 text-sm text-ink shadow-soft placeholder:text-ink-faint focus:border-terracotta focus:outline-none"
+          className="w-full rounded-full border border-ink/10 bg-white py-3.5 pl-12 pr-5 text-sm text-ink shadow-soft placeholder:text-ink-faint focus:border-blue focus:outline-none"
         />
       </div>
 
@@ -51,8 +51,8 @@ export function ChurchLocator() {
                 onClick={() => setSelected(church)}
                 className={`flex w-full gap-4 rounded-2xl border p-4 text-left transition ${
                   active
-                    ? 'border-terracotta/30 bg-terracotta-soft shadow-soft'
-                    : 'border-ink/[0.07] bg-white hover:border-terracotta/20 hover:shadow-soft'
+                    ? 'border-blue/30 bg-blue-soft shadow-soft'
+                    : 'border-ink/[0.07] bg-white hover:border-blue/20 hover:shadow-soft'
                 }`}
               >
                 <ImageWithFallback
@@ -66,15 +66,15 @@ export function ChurchLocator() {
                 <div className="min-w-0 flex-1">
                   <h3 className="font-display text-sm leading-snug text-ink">{church.churchName}</h3>
                   <p className="mt-1 text-xs text-ink-muted">{church.fullAddress}</p>
-                  <p className="mt-1.5 text-xs font-semibold text-terracotta">{church.pastorName}</p>
+                  <p className="mt-1.5 text-xs font-semibold text-blue-dark">{church.pastorName}</p>
 
                   {active && (
-                    <div className="mt-3 flex flex-wrap gap-2 border-t border-terracotta/10 pt-3">
+                    <div className="mt-3 flex flex-wrap gap-2 border-t border-blue/15 pt-3">
                       {church.pastorPhones[0] && (
                         <a
                           href={`tel:${church.pastorPhones[0]}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-sm transition hover:text-terracotta"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-sm transition hover:text-blue-dark"
                         >
                           <Phone size={13} /> {church.pastorPhones[0]}
                         </a>
@@ -84,7 +84,7 @@ export function ChurchLocator() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 rounded-full bg-terracotta px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-terracotta-dark"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-blue px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-blue-dark"
                       >
                         <ExternalLink size={13} /> Directions
                       </a>

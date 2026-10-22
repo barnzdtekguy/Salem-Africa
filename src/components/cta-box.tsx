@@ -1,21 +1,18 @@
 import Link from 'next/link';
 
-/**
- * The black, glowing CTA box thispresenthouse.org closes its homepage
- * with — two soft red blurs behind a centered headline and one pill CTA.
- */
+/** Closing invitation on a charcoal panel with restrained brand-red light. */
 export function CtaBox() {
   return (
     <section className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
       <div className="relative mx-auto max-w-container overflow-hidden rounded-3xl bg-black px-6 py-20 text-center sm:py-28">
         <div
           className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(184,46,44,0.45) 0%, rgba(184,46,44,0) 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgb(var(--red-600) / 0.45) 0%, rgb(var(--red-600) / 0) 70%)' }}
           aria-hidden
         />
         <div
           className="pointer-events-none absolute -bottom-32 -right-16 h-96 w-96 rounded-full blur-3xl"
-          style={{ background: 'radial-gradient(circle, rgba(138,34,33,0.4) 0%, rgba(138,34,33,0) 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgb(var(--red-800) / 0.4) 0%, rgb(var(--red-800) / 0) 70%)' }}
           aria-hidden
         />
 
@@ -31,7 +28,7 @@ export function CtaBox() {
           </p>
           <Link
             href="/contact"
-            className="mt-9 inline-flex items-center justify-center rounded-full bg-terracotta px-9 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:bg-terracotta-dark"
+            className="mt-9 inline-flex items-center justify-center rounded-[3px] bg-terracotta px-7 py-4 text-xs font-semibold text-white transition hover:bg-terracotta-dark"
           >
             Visit Us
           </Link>

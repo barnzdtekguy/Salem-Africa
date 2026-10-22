@@ -9,33 +9,46 @@
  * Do not hand-edit these values; change the ramp in the script and re-emit.
  */
 :root {
-  /* navy — the cool dark family: text, and every dark surface */
-  --navy-50: 248 250 252;
-  --navy-100: 233 239 246;
-  --navy-200: 209 221 235;
-  --navy-300: 170 189 213;
-  --navy-400: 118 144 178;
-  --navy-500: 83 107 141;
-  --navy-600: 59 80 109;
-  --navy-700: 40 60 88;
-  --navy-800: 24 41 68;
-  --navy-900: 11 27 51; /* brand navy */
-  --navy-950: 7 15 29;
+  /* charcoal — text and every dark surface */
+  --navy-50: 245 245 244;
+  --navy-100: 231 229 228;
+  --navy-200: 214 211 209;
+  --navy-300: 183 179 176;
+  --navy-400: 139 135 132;
+  --navy-500: 104 101 98;
+  --navy-600: 75 72 71;
+  --navy-700: 53 51 52;
+  --navy-800: 36 35 35;
+  --navy-900: 23 23 25; /* brand charcoal */
+  --navy-950: 12 12 13;
 
-  /* red — the scarce accent. Light surfaces only. */
-  --red-50: 252 232 234;
-  --red-100: 249 210 212;
-  --red-200: 243 175 179;
-  --red-300: 233 129 133;
-  --red-400: 218 82 85;
-  --red-500: 205 55 55;
-  --red-600: 184 46 44; /* brand red */
-  --red-700: 161 40 38;
-  --red-800: 138 34 33;
-  --red-900: 101 28 27;
-  --red-950: 64 19 17;
+  /* red — vivid accent for key actions and small highlights */
+  --red-50: 251 236 238;
+  --red-100: 247 215 218;
+  --red-200: 242 182 188;
+  --red-300: 235 137 146;
+  --red-400: 228 87 100;
+  --red-500: 224 52 65;
+  --red-600: 212 28 41; /* brand red */
+  --red-700: 180 23 34;
+  --red-800: 142 18 27;
+  --red-900: 103 16 24;
+  --red-950: 68 10 16;
 
-  /* gold — the dark-surface accent. 8.79:1 on navy-900. */
+  /* Salem blue — restrained accent for wayfinding, utility actions, and focus */
+  --blue-50: 239 245 252;
+  --blue-100: 223 235 248;
+  --blue-200: 194 216 239;
+  --blue-300: 148 185 223;
+  --blue-400: 95 145 197;
+  --blue-500: 53 111 167;
+  --blue-600: 36 91 150;
+  --blue-700: 30 74 123;
+  --blue-800: 26 59 97;
+  --blue-900: 20 46 73;
+  --blue-950: 12 30 49;
+
+  /* Salem gold — the secondary accent for dark sections and highlights */
   --gold-50: 251 246 234;
   --gold-100: 246 233 202;
   --gold-200: 240 214 157;
@@ -48,40 +61,39 @@
   --gold-900: 93 50 14;
   --gold-950: 58 29 9;
 
-  /* sand — warm neutral surfaces */
-  --sand-50: 254 253 251;
-  --sand-100: 250 247 242;
-  --sand-200: 242 236 228;
-  --sand-300: 236 230 220;
-  --sand-400: 215 205 193;
-  --sand-500: 182 169 154;
-  --sand-600: 147 133 118;
-  --sand-700: 114 101 90;
-  --sand-800: 81 70 62;
-  --sand-900: 53 45 39;
-  --sand-950: 33 27 23;
+  /* paper — warm neutral surfaces */
+  --sand-50: 252 251 250;
+  --sand-100: 248 247 245;
+  --sand-200: 240 238 235;
+  --sand-300: 224 223 220;
+  --sand-400: 205 202 198;
+  --sand-500: 174 170 165;
+  --sand-600: 133 129 125;
+  --sand-700: 107 103 99;
+  --sand-800: 81 78 75;
+  --sand-900: 57 55 53;
+  --sand-950: 38 37 36;
 
   /* semantic */
   --paper: 255 255 255;
-  --ink: 15 23 42;
-  --ink-deep: 11 27 51;
-  --ink-muted: 71 85 105;
-  --ink-faint: 88 104 126; /* was 148 163 184 — 2.40:1 on sand. Now 5.32:1. */
-  --sand: 250 247 242;
-  --sand-line: 236 230 220;
+  --ink: 23 23 25;
+  --ink-deep: 23 23 25;
+  --ink-muted: 100 97 94;
+  --ink-faint: 107 104 101;
+  --sand: 240 238 235;
+  --sand-line: 224 223 220;
 
   /* the light-theme depth ladder — base is warm off-white so cards can rise
      to pure white and actually read as elevated */
-  --surface: 253 251 247;
-  --surface-alt: 250 247 242;
-  --surface-sunken: 242 236 228;
+  --surface: 248 247 245;
+  --surface-alt: 240 238 235;
+  --surface-sunken: 224 223 220;
   --surface-elevated: 255 255 255;
 
-  --shadow: 34 26 20; /* warm dark, drives every box-shadow layer */
+  --shadow: 23 23 25; /* charcoal, drives every box-shadow layer */
 
-  /* Focus indicator. Red clears 6.06:1 on the light surfaces but only 2.84:1
-     on the navy, so dark contexts swap to gold (8.79:1) below. */
-  --focus-ring: var(--red-600);
+  /* Use Salem blue for keyboard focus on light surfaces and gold on dark. */
+  --focus-ring: var(--blue-600);
 
   /* Scrollbar, same cascade trick as the focus ring: any dark surface that
      scrolls swaps these rather than restyling its own scrollbar. */
@@ -121,28 +133,22 @@
 
   body {
     @apply bg-surface font-sans text-ink antialiased;
-    /* Brief calls for 1.6–1.75 body leading; this was 1.5. */
-    line-height: 1.65;
+    font-size: 15px;
+    line-height: 1.7;
     text-rendering: optimizeLegibility;
   }
 
-  /*
-   * Display face is Bebas Neue — condensed, all-caps, no lowercase and no
-   * descenders. All-caps needs *positive* tracking to breathe: the letterforms
-   * have no x-height variation to separate them, so tightening them closes the
-   * counters up. This is the original `tracking-wide` (+0.025em) value.
-   */
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display tracking-wide;
+    @apply font-display font-semibold tracking-tight;
     text-wrap: balance;
   }
 
   h5,
   h6 {
-    @apply font-display tracking-wide;
+    @apply font-display font-semibold tracking-tight;
   }
 
   p {
@@ -201,10 +207,34 @@
     max-width: 58ch;
   }
 
-  /* TPH-style kicker: small italic label above a headline. */
+  /* Small editorial label above a headline. */
   .kicker {
     font-style: italic;
     letter-spacing: 0.01em;
+  }
+
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    position: absolute;
+    right: 100%;
+    bottom: -0.65rem;
+    left: 0;
+    height: 2px;
+    background: rgb(var(--red-600));
+    content: '';
+    transition: right 250ms ease;
+  }
+  .nav-underline:hover::after,
+  .nav-underline[aria-current='page']::after,
+  .group:hover .nav-underline::after {
+    right: 0;
+  }
+
+  a.rounded-full.bg-terracotta,
+  button.rounded-full.bg-terracotta {
+    border-radius: 3px;
   }
 
   /* Tabular figures — stops count-up animations from reflowing their row. */

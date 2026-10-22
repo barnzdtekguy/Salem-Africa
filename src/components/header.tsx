@@ -49,13 +49,13 @@ const NAV: NavEntry[] = [
     ],
   },
   { label: 'Events', href: '/events' },
+  { label: 'Store', href: '/store' },
   { label: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   // The mobile panel is portalled, which can only happen after mount. `open` is
   // false on the server anyway, so nothing visible is missing from the SSR
@@ -63,13 +63,6 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -111,12 +104,7 @@ export function Header() {
   const mobileMenu = (
     <div
       id="mobile-menu"
-      // `bg-ink-deep/95` compiles to an escaped class the stylesheet's dark
-      // selectors can't match, so the surface declares itself: this swaps the
-      // focus ring to gold (8.79:1 here, vs. red's failing 2.84:1) and darkens
-      // the scrollbar the nav now shows.
-      data-surface="dark"
-      className={`fixed inset-0 z-[60] bg-ink-deep/95 backdrop-blur-xl transition-[transform,visibility] duration-500 ease-entrance lg:hidden ${
+      className={`fixed inset-0 z-[60] bg-surface/95 backdrop-blur-xl transition-[transform,visibility] duration-500 ease-entrance lg:hidden ${
         open ? 'visible translate-x-0' : 'invisible translate-x-full'
       }`}
     >
@@ -126,7 +114,7 @@ export function Header() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="flex h-10 w-10 items-center justify-center text-white"
+            className="flex h-10 w-10 items-center justify-center text-ink"
           >
             <X size={28} strokeWidth={1.8} />
           </button>
@@ -135,13 +123,13 @@ export function Header() {
         <nav className="mt-6 flex flex-1 flex-col gap-1 overflow-y-auto">
           {NAV.map((entry) =>
             entry.items ? (
-              <div key={entry.label} className="border-b border-white/10 py-3">
+              <div key={entry.label} className="border-b border-ink/10 py-3">
                 <button
                   type="button"
                   onClick={() => setMobileGroup((g) => (g === entry.label ? null : entry.label))}
                   aria-expanded={mobileGroup === entry.label}
                   aria-controls={`mobile-group-${entry.label}`}
-                  className="flex w-full items-center justify-between text-left text-2xl font-bold text-white"
+                  className="flex w-full items-center justify-between text-left text-2xl font-semibold text-ink"
                 >
                   {entry.label}
                   <ChevronDown
@@ -164,7 +152,7 @@ export function Header() {
                         // focus disappears into a zero-height row.
                         tabIndex={mobileGroup === entry.label ? undefined : -1}
                         aria-hidden={mobileGroup !== entry.label}
-                        className="py-2 text-base font-medium text-white/70"
+                        className="py-2 text-base font-medium text-ink-muted"
                       >
                         {item.title}
                       </Link>
@@ -176,7 +164,7 @@ export function Header() {
               <Link
                 key={entry.label}
                 href={entry.href!}
-                className="border-b border-white/10 py-3 text-2xl font-bold text-white"
+                className="border-b border-ink/10 py-3 text-2xl font-semibold text-ink"
               >
                 {entry.label}
               </Link>
@@ -186,7 +174,7 @@ export function Header() {
 
         <Link
           href="/give"
-          className="mt-6 flex shrink-0 items-center justify-center rounded-full bg-terracotta px-5 py-4 text-sm font-bold uppercase tracking-[0.1em] text-white"
+          className="mt-6 flex shrink-0 items-center justify-center rounded-[3px] bg-terracotta px-5 py-4 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
         >
           Give Online
         </Link>
@@ -195,18 +183,13 @@ export function Header() {
   );
 
   return (
-    <header
-      data-surface="dark"
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-ink-deep/90 backdrop-blur-md' : 'bg-black/15 backdrop-blur-sm'
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-container items-center justify-between border-b border-white/10 px-4 sm:px-6 lg:h-24 lg:px-8">
+    <header className="sticky inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/95 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-container items-center justify-between px-4 sm:px-6 lg:h-[5.75rem] lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image src="/images/logo.png" alt="Salem Africa" width={44} height={44} className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
-          <span className="hidden text-sm font-semibold leading-tight text-white sm:block">
+          <span className="hidden text-sm font-semibold leading-tight text-ink sm:block">
             Salem Int&apos;l Christian Centre
-            <span className="block text-xs font-normal text-white/60">Lekki, Lagos</span>
+            <span className="block text-xs font-normal text-ink-muted">Lekki, Lagos</span>
           </span>
         </Link>
 
@@ -216,7 +199,7 @@ export function Header() {
               <div key={entry.label} className="group relative py-8">
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-sm font-medium tracking-wide text-white/75 transition hover:text-white"
+                  className="nav-underline flex items-center gap-1 text-xs font-semibold text-ink-muted transition hover:text-ink"
                 >
                   {entry.label}
                   <ChevronDown size={13} className="transition-transform duration-300 group-hover:rotate-180" />
@@ -241,8 +224,9 @@ export function Header() {
               <Link
                 key={entry.label}
                 href={entry.href!}
-                className={`text-sm font-medium tracking-wide transition hover:text-white ${
-                  pathname === entry.href ? 'text-white' : 'text-white/75'
+                aria-current={pathname === entry.href ? 'page' : undefined}
+                className={`nav-underline text-xs font-semibold transition hover:text-ink ${
+                  pathname === entry.href ? 'text-ink' : 'text-ink-muted'
                 }`}
               >
                 {entry.label}
@@ -254,7 +238,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/give"
-            className="hidden rounded-full bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.1em] text-ink transition hover:bg-terracotta-soft lg:inline-block"
+            className="hidden rounded-[3px] bg-terracotta px-7 py-3 text-xs font-semibold text-white transition hover:bg-terracotta-dark lg:inline-block"
           >
             Give
           </Link>
@@ -265,7 +249,7 @@ export function Header() {
             aria-label="Open menu"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="flex h-10 w-10 items-center justify-center text-white lg:hidden"
+            className="flex h-10 w-10 items-center justify-center text-ink lg:hidden"
           >
             <Menu size={26} strokeWidth={1.8} />
           </button>

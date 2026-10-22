@@ -47,6 +47,22 @@ const config: Config = {
           950: c('--red-950'),
           DEFAULT: c('--red-600'),
         },
+        blue: {
+          50: c('--blue-50'),
+          100: c('--blue-100'),
+          200: c('--blue-200'),
+          300: c('--blue-300'),
+          400: c('--blue-400'),
+          500: c('--blue-500'),
+          600: c('--blue-600'),
+          700: c('--blue-700'),
+          800: c('--blue-800'),
+          900: c('--blue-900'),
+          950: c('--blue-950'),
+          DEFAULT: c('--blue-600'),
+          dark: c('--blue-700'),
+          soft: c('--blue-50'),
+        },
         gold: {
           50: c('--gold-50'),
           100: c('--gold-100'),
@@ -59,9 +75,7 @@ const config: Config = {
           800: c('--gold-800'),
           900: c('--gold-900'),
           950: c('--gold-950'),
-          // `text-gold` used to be the brand red wearing a gold name, which is
-          // why every eyebrow on the navy measured 2.84:1. It is now a real
-          // gold: 8.79:1 on navy-900.
+          // Salem gold remains the warm secondary accent for dark surfaces.
           DEFAULT: c('--gold-400'),
           dark: c('--gold-800'), // the only gold safe as text on light surfaces
           soft: c('--gold-50'),
@@ -78,7 +92,7 @@ const config: Config = {
           800: c('--sand-800'),
           900: c('--sand-900'),
           950: c('--sand-950'),
-          DEFAULT: c('--sand-100'),
+          DEFAULT: c('--sand-200'),
           line: c('--sand-300'),
         },
 
@@ -96,7 +110,7 @@ const config: Config = {
           faint: c('--ink-faint'),
         },
         paper: c('--paper'),
-        black: c('--navy-900'), // deliberate override: `bg-black` is the brand navy
+        black: c('--navy-900'), // deliberate override: `bg-black` is brand charcoal
 
         /* ------------------------------------------------------ semantic */
         surface: {
@@ -135,10 +149,8 @@ const config: Config = {
       },
 
       fontFamily: {
-        // Both faces are self-hosted through next/font/local, which injects
-        // these variables and the fallback metric overrides. Faces themselves
-        // are the originals: Bebas Neue display, Jost UI.
-        display: ['var(--font-display)', 'Arial Narrow', 'Impact', 'sans-serif'],
+        // One local Jost family is used for display and interface text.
+        display: ['var(--font-sans)', 'Arial', 'sans-serif'],
         sans: ['var(--font-sans)', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
         // Eyebrows/labels were using `font-mono`, which resolved to Jost — a
         // geometric sans, not a monospace. Renamed to what it actually is; the
@@ -146,17 +158,14 @@ const config: Config = {
         label: ['var(--font-sans)', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif'],
       },
 
-      // Additive: Tailwind's own scale is untouched so no existing heading
-      // resizes. Sections opt into the fluid display scale as they are built.
-      // Tracking is positive throughout — Bebas Neue is set in all caps, and
-      // caps need opening up, not tightening.
+      // Additive fluid scale for the new editorial headline style.
       fontSize: {
-        'display-2xl': ['clamp(3.25rem, 1.35rem + 7.6vw, 7rem)', { lineHeight: '0.92', letterSpacing: '0.02em' }],
-        'display-xl': ['clamp(2.75rem, 1.45rem + 5.2vw, 5.25rem)', { lineHeight: '0.96', letterSpacing: '0.022em' }],
-        'display-lg': ['clamp(2.25rem, 1.35rem + 3.6vw, 4rem)', { lineHeight: '1', letterSpacing: '0.024em' }],
-        'display-md': ['clamp(1.875rem, 1.3rem + 2.3vw, 3rem)', { lineHeight: '1.04', letterSpacing: '0.026em' }],
-        'display-sm': ['clamp(1.5rem, 1.15rem + 1.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '0.028em' }],
-        'display-xs': ['clamp(1.25rem, 1.08rem + 0.7vw, 1.625rem)', { lineHeight: '1.24', letterSpacing: '0.03em' }],
+        'display-2xl': ['clamp(3.25rem, 1.35rem + 7.6vw, 7rem)', { lineHeight: '0.92', letterSpacing: '-0.055em' }],
+        'display-xl': ['clamp(2.75rem, 1.45rem + 5.2vw, 5.25rem)', { lineHeight: '0.96', letterSpacing: '-0.05em' }],
+        'display-lg': ['clamp(2.25rem, 1.35rem + 3.6vw, 4rem)', { lineHeight: '1', letterSpacing: '-0.045em' }],
+        'display-md': ['clamp(1.875rem, 1.3rem + 2.3vw, 3rem)', { lineHeight: '1.04', letterSpacing: '-0.04em' }],
+        'display-sm': ['clamp(1.5rem, 1.15rem + 1.4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '-0.03em' }],
+        'display-xs': ['clamp(1.25rem, 1.08rem + 0.7vw, 1.625rem)', { lineHeight: '1.24', letterSpacing: '-0.02em' }],
         // Body copy at the measure and leading the brief calls for.
         'body-lg': ['1.0625rem', { lineHeight: '1.7' }],
         'body-md': ['1rem', { lineHeight: '1.65' }],
@@ -165,8 +174,8 @@ const config: Config = {
       },
 
       letterSpacing: {
-        display: '0.025em',
-        'display-open': '0.04em',
+        display: '-0.035em',
+        'display-open': '-0.015em',
         eyebrow: '0.22em',
       },
 
@@ -182,6 +191,10 @@ const config: Config = {
       },
 
       borderRadius: {
+        lg: '0.25rem',
+        xl: '0.3rem',
+        '2xl': '0.35rem',
+        '3xl': '0.4rem',
         '4xl': '2rem',
         '5xl': '2.5rem',
       },

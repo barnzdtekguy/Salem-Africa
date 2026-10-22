@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send } from 'lucide-react';
+import { CONTACT_EMAIL } from '@/data/contact';
 
 const CATEGORIES = ['Prayer Request', 'General Inquiry', 'Counseling'];
 
@@ -17,7 +18,7 @@ export function ContactForm() {
 
     const subject = encodeURIComponent(`[${category}] Message from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:info@salemafrica.placeholder.org?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   }
 
   return (
@@ -30,7 +31,7 @@ export function ContactForm() {
           type="text"
           required
           placeholder="Your name"
-          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-terracotta focus:outline-none"
+          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-blue focus:outline-none"
         />
       </div>
 
@@ -42,7 +43,7 @@ export function ContactForm() {
           type="email"
           required
           placeholder="you@example.com"
-          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-terracotta focus:outline-none"
+          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-blue focus:outline-none"
         />
       </div>
 
@@ -52,7 +53,7 @@ export function ContactForm() {
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink focus:border-terracotta focus:outline-none"
+          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink focus:border-blue focus:outline-none"
         >
           {CATEGORIES.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -68,13 +69,13 @@ export function ContactForm() {
           required
           rows={4}
           placeholder="How can we help?"
-          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-terracotta focus:outline-none"
+          className="w-full rounded-lg border border-ink/10 bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint focus:border-blue focus:outline-none"
         />
       </div>
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-dark"
       >
         Send Message
         <Send size={15} />

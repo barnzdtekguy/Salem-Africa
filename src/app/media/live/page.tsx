@@ -9,6 +9,11 @@ import { EVENTS } from '@/data/events';
 
 export const metadata: Metadata = { title: 'Live | Salem Africa' };
 
+const YOUTUBE_CHANNEL_ID = 'UCJ1RPuT4zkFJ6aDcQhglB4A';
+const YOUTUBE_LIVE_STREAMS_PLAYLIST_ID = `UULV${YOUTUBE_CHANNEL_ID.slice(2)}`;
+const LIVE_STREAM_EMBED_URL = `https://www.youtube.com/embed/videoseries?list=${YOUTUBE_LIVE_STREAMS_PLAYLIST_ID}&autoplay=1&mute=1&playsinline=1`;
+const YOUTUBE_STREAMS_URL = 'https://www.youtube.com/@SalemLagosLive/streams';
+
 export default function LivePage() {
   return (
     <PageShell>
@@ -23,18 +28,31 @@ export default function LivePage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
           <Reveal>
-            {/* Stream player slot. Replace this block with the YouTube/Facebook
-                live embed iframe once the channel URL is confirmed. */}
-            <div className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-ink-deep text-center shadow-panel">
-              <div className="px-6">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-white">
-                  <Radio size={28} strokeWidth={1.8} />
-                </div>
-                <p className="mt-5 font-display text-2xl text-white">The stream is currently offline</p>
-                <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-white/60">
-                  The live player embed goes here. It will go live automatically a few minutes before
-                  each service begins.
+            <div className="mx-auto max-w-4xl">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-ink-deep shadow-panel">
+                <iframe
+                  src={LIVE_STREAM_EMBED_URL}
+                  title="Salem Lagos live service"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  className="absolute inset-0 h-full w-full"
+                />
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <p className="text-sm text-ink-muted">
+                  The newest Salem service stream or replay loads here automatically.
                 </p>
+                <a
+                  href={YOUTUBE_STREAMS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-terracotta px-5 py-3 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
+                >
+                  <Radio size={16} />
+                  Browse Salem streams
+                </a>
               </div>
             </div>
           </Reveal>

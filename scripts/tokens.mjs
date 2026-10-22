@@ -12,15 +12,6 @@
 
 /* ------------------------------------------------------------------ helpers */
 
-const hsl = (h, s, l) => {
-  s /= 100;
-  l /= 100;
-  const k = (n) => (n + h / 30) % 12;
-  const a = s * Math.min(l, 1 - l);
-  const f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-  return [f(0), f(8), f(4)].map((v) => Math.round(v * 255));
-};
-
 const hex = (h) => {
   const n = parseInt(h.replace('#', ''), 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
@@ -44,72 +35,86 @@ const ratio = (a, b) => {
 
 /* -------------------------------------------------------------------- ramps */
 /*
- * Brand anchors are pinned to their exact existing values so the site's
- * identity is untouched and no current component shifts colour:
- *   navy.900 #0B1B33  (ink-deep / black)      red.600 #B82E2C  (terracotta)
- *   navy.950 …deeper   red.800 #8A2221 (terracotta-dark)  red.50 #FCE8EA (soft)
- * Everything else is generated so the ramp reads as one deliberate family.
+ * The palette follows Salem's refreshed editorial direction: charcoal ink,
+ * a bright but accessible red, warm paper neutrals, and muted rose neutrals.
+ * The dark red remains legible on light surfaces while the brighter steps
+ * carry the visual energy of the reference design.
  */
 
 const RAMPS = {
   // Cool dark family. Carries text and every dark surface.
   navy: {
-    50: hsl(210, 40, 98),
-    100: hsl(211, 42, 94),
-    200: hsl(212, 40, 87),
-    300: hsl(213, 34, 75),
-    400: hsl(214, 28, 58),
-    500: hsl(215, 26, 44),
-    600: hsl(215, 30, 33),
-    700: hsl(215, 38, 25),
-    800: hsl(216, 48, 18),
-    900: hex('#0B1B33'), // brand navy — pinned
-    950: hsl(217, 62, 7),
+    50: hex('#F5F5F4'),
+    100: hex('#E7E5E4'),
+    200: hex('#D6D3D1'),
+    300: hex('#B7B3B0'),
+    400: hex('#8B8784'),
+    500: hex('#686562'),
+    600: hex('#4B4847'),
+    700: hex('#353334'),
+    800: hex('#242323'),
+    900: hex('#171719'), // brand charcoal
+    950: hex('#0C0C0D'),
   },
 
-  // The scarce accent. Light surfaces only.
+  // Primary red accent for links, highlights, and high-contrast actions.
   red: {
-    50: hex('#FCE8EA'), // terracotta-soft — pinned
-    100: hsl(357, 78, 90),
-    200: hsl(357, 74, 82),
-    300: hsl(358, 70, 71),
-    400: hsl(359, 65, 59),
-    500: hsl(0, 60, 51),
-    600: hex('#B82E2C'), // terracotta — pinned
-    700: hsl(1, 62, 39),
-    800: hex('#8A2221'), // terracotta-dark — pinned
-    900: hsl(1, 58, 25),
-    950: hsl(2, 58, 16),
+    50: hex('#FBECEE'),
+    100: hex('#F7D7DA'),
+    200: hex('#F2B6BC'),
+    300: hex('#EB8992'),
+    400: hex('#E45764'),
+    500: hex('#E03441'),
+    600: hex('#D41C29'), // vivid, accessible Salem red
+    700: hex('#B41722'),
+    800: hex('#8E121B'),
+    900: hex('#671018'),
+    950: hex('#440A10'),
   },
 
-  // The dark-surface accent. Replaces the fake `gold` alias of red.
+  // Muted Salem blue for utility actions, focus states, and quiet details.
+  blue: {
+    50: hex('#EFF5FC'),
+    100: hex('#DFEBF8'),
+    200: hex('#C2D8EF'),
+    300: hex('#94B9DF'),
+    400: hex('#5F91C5'),
+    500: hex('#356FA7'),
+    600: hex('#245B96'), // logo-inspired, high-contrast blue
+    700: hex('#1E4A7B'),
+    800: hex('#1A3B61'),
+    900: hex('#142E49'),
+    950: hex('#0C1E31'),
+  },
+
+  // Salem's gold identity remains as the secondary accent on dark surfaces.
   gold: {
-    50: hsl(42, 68, 95),
-    100: hsl(42, 72, 88),
-    200: hsl(41, 74, 78),
-    300: hsl(40, 76, 68),
-    400: hsl(39, 76, 60), // primary accent on navy
-    500: hsl(37, 70, 50),
-    600: hsl(34, 72, 42),
-    700: hsl(31, 74, 34),
-    800: hsl(29, 76, 27),
-    900: hsl(27, 74, 21),
-    950: hsl(25, 74, 13),
+    50: hex('#FBF6EA'),
+    100: hex('#F6E9CA'),
+    200: hex('#F0D69D'),
+    300: hex('#EBC26F'),
+    400: hex('#E7B04B'),
+    500: hex('#D99426'),
+    600: hex('#B8751E'),
+    700: hex('#975917'),
+    800: hex('#794311'),
+    900: hex('#5D320E'),
+    950: hex('#3A1D09'),
   },
 
   // Warm neutral surfaces. Gives the light theme its layered depth.
   sand: {
-    50: hsl(40, 60, 99),
-    100: hex('#FAF7F2'), // existing sand — pinned exactly
-    200: hsl(36, 34, 92),
-    300: hex('#ECE6DC'), // existing sand-line - pinned exactly
-    400: hsl(33, 22, 80),
-    500: hsl(32, 16, 66),
-    600: hsl(30, 12, 52),
-    700: hsl(28, 12, 40),
-    800: hsl(26, 13, 28),
-    900: hsl(24, 15, 18),
-    950: hsl(22, 18, 11),
+    50: hex('#FCFBFA'),
+    100: hex('#F8F7F5'),
+    200: hex('#F0EEEB'),
+    300: hex('#E0DFDC'),
+    400: hex('#CDCAC6'),
+    500: hex('#AEAAA5'),
+    600: hex('#85817D'),
+    700: hex('#6B6763'),
+    800: hex('#514E4B'),
+    900: hex('#393735'),
+    950: hex('#262524'),
   },
 };
 
@@ -117,26 +122,24 @@ const RAMPS = {
 
 const SEMANTIC = {
   paper: hex('#FFFFFF'),
-  ink: hex('#0F172A'), // pinned — `text-ink` is the site's default heading colour
+  ink: hex('#171719'), // primary charcoal text
   'ink-deep': RAMPS.navy[900],
-  'ink-muted': hex('#475569'), // pinned — 7.4:1 on white, already compliant
-  // was #94A3B8 → 2.40:1 on sand. Darkened to clear 4.5:1 on the warmest surface.
-  'ink-faint': hsl(215, 18, 42),
-  sand: RAMPS.sand[100],
+  'ink-muted': hex('#64615E'),
+  'ink-faint': hex('#6B6865'),
+  sand: RAMPS.sand[200],
   'sand-line': RAMPS.sand[300],
 
   /*
-   * The light-theme depth ladder. The page base is a warm off-white rather
-   * than #FFFFFF so that cards can rise to pure white and actually read as
-   * elevated — "never pure #fff on #fff".
-   *   surface (base)  #FDFBF7  <  surface-alt  <  surface-sunken
+   * The light-theme depth ladder. The page base is warm paper so that cards
+   * can rise to pure white and read as elevated — "never pure #fff on #fff".
+   *   surface (base)  #F8F7F5  <  surface-alt  <  surface-sunken
    *   surface-elevated  #FFFFFF  — cards, panels, popovers
    */
-  surface: hex('#FDFBF7'),
-  'surface-alt': RAMPS.sand[100],
-  'surface-sunken': RAMPS.sand[200],
+  surface: hex('#F8F7F5'),
+  'surface-alt': RAMPS.sand[200],
+  'surface-sunken': RAMPS.sand[300],
   'surface-elevated': hex('#FFFFFF'),
-  shadow: hex('#221A14'), // warm dark, drives every box-shadow layer
+  shadow: hex('#171719'), // charcoal, drives every box-shadow layer
 };
 
 /* ------------------------------------------------------- contrast assertions */
@@ -156,6 +159,9 @@ const SURFACES = {
   'navy-800': RAMPS.navy[800],
   'red-600': RAMPS.red[600],
   'red-50': RAMPS.red[50],
+  'blue-600': RAMPS.blue[600],
+  'blue-700': RAMPS.blue[700],
+  'blue-50': RAMPS.blue[50],
   'gold-50': RAMPS.gold[50],
 };
 
@@ -170,15 +176,19 @@ const CHECKS = [
   ['red-600', RAMPS.red[600], [...LIGHT, 'red-50'], 4.5],
   ['red-700', RAMPS.red[700], [...LIGHT, 'red-50'], 4.5],
   ['red-800', RAMPS.red[800], [...LIGHT, 'red-50', 'gold-50'], 4.5],
+  // Blue is reserved for utility actions and focus states, with white labels.
+  ['blue-600', RAMPS.blue[600], [...LIGHT, 'blue-50'], 4.5],
+  ['blue-700', RAMPS.blue[700], [...LIGHT, 'blue-50'], 4.5],
   // gold as text on light surfaces — only the deep end may be used
   ['gold-800', RAMPS.gold[800], [...LIGHT, 'gold-50'], 4.5],
   ['gold-900', RAMPS.gold[900], [...LIGHT, 'gold-50'], 4.5],
   // dark-surface text
   ['paper', SEMANTIC.paper, ['navy', 'navy-950', 'navy-800', 'red-600'], 4.5],
+  ['paper', SEMANTIC.paper, ['blue-600', 'blue-700'], 4.5],
   ['navy-100', RAMPS.navy[100], ['navy', 'navy-950'], 4.5],
   ['navy-200', RAMPS.navy[200], ['navy', 'navy-950'], 4.5],
   ['navy-300', RAMPS.navy[300], ['navy', 'navy-950'], 4.5],
-  // the whole point of the gold: an accent that survives the navy
+  // Salem gold remains legible as the secondary accent on charcoal surfaces.
   ['gold-400', RAMPS.gold[400], ['navy', 'navy-950', 'navy-800'], 4.5],
   ['gold-300', RAMPS.gold[300], ['navy', 'navy-950'], 4.5],
   ['gold-200', RAMPS.gold[200], ['navy', 'navy-950'], 4.5],
@@ -225,9 +235,9 @@ if (mode === 'css') {
 
   // Regression guards: the three failures found in the audit must be gone.
   const before = [
-    ['stat number on navy', RAMPS.gold[400], RAMPS.navy[900], 3],
-    ['eyebrow on navy', RAMPS.gold[400], RAMPS.navy[900], 4.5],
-    ['footer copyright on sand', SEMANTIC['ink-faint'], SEMANTIC.sand, 4.5],
+    ['stat number on charcoal', RAMPS.red[300], RAMPS.navy[900], 3],
+    ['accent on charcoal', RAMPS.gold[400], RAMPS.navy[900], 4.5],
+    ['footer copyright on paper', SEMANTIC['ink-faint'], SEMANTIC.sand, 4.5],
   ];
   console.log('\nAudit regressions:');
   for (const [what, fg, bg, min] of before) {

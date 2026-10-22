@@ -5,7 +5,7 @@ import { Reveal } from '@/components/reveal';
 
 const LEADERS = [
   { name: 'Archbishop Dr Sam Amaga', role: 'Founder & Visionary', img: '/images/samamaga.jpg' },
-  { name: 'Bishop Dr Love Sam Amaga', role: 'Bishop', img: '/images/bishoplove.jpg' },
+  { name: 'Dr Love Sam Amaga', role: 'Co-Founder', img: '/images/bishoplove.jpg' },
   { name: 'Bishop Enobong Etteh', role: 'Continental Bishop Africa', img: '/images/bishopenobong.jpg' },
   { name: 'Rev Catherine Etteh', role: 'Reverend', img: '/images/catherine.jpg' },
    { name: 'Bishop Israel Eze', role: 'Dioceesan Bishop', img: '/images/israeleze.jpg' },
