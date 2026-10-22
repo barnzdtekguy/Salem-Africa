@@ -86,7 +86,7 @@ export function Footer() {
               <li className="flex items-start gap-4">
                 <MapPin size={20} className="mt-0.5 shrink-0 text-terracotta" />
                 <p className="text-sm leading-6 text-ink-muted">
-                  By Total Filling Station, Lekki-Epe Expressway, Lekki Peninsula II, Lagos, Nigeria
+                  Salem International Christian Centre, Off Salem Bust Stop Lekki, Lagos, Nigeria
                 </p>
               </li>
               <li className="flex items-start gap-4">
