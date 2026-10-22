@@ -93,7 +93,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-4">
                 <Mail size={20} className="mt-0.5 shrink-0 text-terracotta" />
-                <p className="text-sm leading-6 text-ink-muted">info@salemafrica.placeholder.org</p>
+                <p className="text-sm leading-6 text-ink-muted">info@salemafrica.org</p>
               </li>
             </ul>
           </div>
