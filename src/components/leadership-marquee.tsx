@@ -44,7 +44,7 @@ export function LeadershipMarquee() {
               className="w-56 shrink-0 overflow-hidden rounded-2xl border border-ink/[0.06] bg-white shadow-soft transition hover:shadow-hover"
             >
               <div className="relative aspect-[4/5] w-full">
-                <Image src={leader.img} alt={leader.name} fill className="object-cover" />
+                <Image src={leader.img} alt={leader.name} fill sizes="224px" className="object-cover" />
               </div>
               <div className="p-4 text-center">
                 <h4 className="font-display text-sm text-ink">{leader.name}</h4>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
@@ -125,10 +126,11 @@ export default async function MessagesPage() {
                       aria-label={`Watch ${message.title} on YouTube`}
                       className="relative block aspect-video w-full overflow-hidden bg-ink-deep"
                     >
-                      <img
+                      <Image
                         src={`https://i.ytimg.com/vi/${message.id}/hqdefault.jpg`}
                         alt=""
-                        loading="lazy"
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       />
                       <span className="absolute inset-0 flex items-center justify-center bg-ink/15 text-white transition group-hover:bg-ink/35">

@@ -97,6 +97,7 @@ export default function LeadershipPage() {
                   alt={leader.name}
                   width={480}
                   height={580}
+                  sizes="(min-width: 416px) 384px, calc(100vw - 32px)"
                   className="mx-auto h-[500px] w-full max-w-sm rounded-2xl object-cover shadow-panel"
                 />
               </Reveal>

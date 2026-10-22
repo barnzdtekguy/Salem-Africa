@@ -5,7 +5,7 @@ import Link from 'next/link';
 export function FeatureBanner() {
   return (
     <section className="relative flex h-[70vh] min-h-[480px] items-center justify-center overflow-hidden bg-black text-center text-white">
-      <Image src="/images/bg-ministries.jpg" alt="" fill className="object-cover opacity-60" />
+      <Image src="/images/bg-ministries.jpg" alt="" fill sizes="100vw" className="object-cover opacity-60" />
       <div className="absolute inset-0 bg-black/35" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6">

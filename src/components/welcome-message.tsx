@@ -19,6 +19,7 @@ export function WelcomeMessage() {
               alt="Bishop Enobong Etteh"
               width={480}
               height={600}
+              sizes="(min-width: 416px) 384px, calc(100vw - 32px)"
               className="h-[540px] w-full rounded-2xl object-cover object-top shadow-panel"
             />
           </div>

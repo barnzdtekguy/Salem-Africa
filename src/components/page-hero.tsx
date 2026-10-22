@@ -13,7 +13,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative flex h-[56vh] min-h-[420px] items-end overflow-hidden bg-black">
-      <Image src={image} alt="" fill priority className="object-cover opacity-50" />
+      <Image src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-50" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/15" />
 

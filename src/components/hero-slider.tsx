@@ -58,7 +58,7 @@ export function HeroSlider() {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.4, ease: 'easeInOut' }}
         >
-          <Image src={slide.src} alt="" fill priority={index === 0} className="object-cover" />
+          <Image src={slide.src} alt="" fill priority={index === 0} sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/42 to-black/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20" />
         </motion.div>

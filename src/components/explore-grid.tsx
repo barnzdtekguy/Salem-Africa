@@ -12,7 +12,11 @@ interface Tile {
   gradient?: string;
   icon?: React.ReactNode;
   area: string;
+  imageSizes?: string;
 }
+
+const WIDE_TILE_SIZES = '(min-width: 1280px) 640px, (min-width: 1024px) 50vw, (min-width: 640px) 90vw, calc(100vw - 2rem)';
+const STANDARD_TILE_SIZES = '(min-width: 1280px) 304px, (min-width: 1024px) 25vw, (min-width: 640px) 50vw, calc(100vw - 2rem)';
 
 const TILES: Tile[] = [
   {
@@ -21,6 +25,7 @@ const TILES: Tile[] = [
     title: 'Find where you fit',
     text: 'From Prayer to Media to Missions — browse every ministry and see how to get involved.',
     image: '/images/bg-ministries.jpg',
+    imageSizes: WIDE_TILE_SIZES,
     area: 'lg:col-start-1 lg:row-start-1 lg:col-span-2 lg:row-span-2',
   },
   {
@@ -29,6 +34,7 @@ const TILES: Tile[] = [
     title: 'Weekly services',
     text: 'See the weekly service schedule and the latest flyers.',
     image: '/images/hero-bg-2.jpg',
+    imageSizes: WIDE_TILE_SIZES,
     area: 'lg:col-start-3 lg:row-start-1 lg:col-span-2 lg:row-span-1',
   },
   {
@@ -37,6 +43,7 @@ const TILES: Tile[] = [
     title: 'About Salem',
     text: 'The mandate, the history, the founder.',
     image: '/images/samamaga.jpg',
+    imageSizes: STANDARD_TILE_SIZES,
     area: 'lg:col-start-3 lg:row-start-2 lg:col-span-1 lg:row-span-1',
   },
   {
@@ -54,6 +61,7 @@ const TILES: Tile[] = [
     title: 'Leadership',
     text: 'Meet the team.',
     image: '/images/bishopenobong.jpg',
+    imageSizes: STANDARD_TILE_SIZES,
     area: 'lg:col-start-1 lg:row-start-3 lg:col-span-1 lg:row-span-1',
   },
   {
@@ -62,6 +70,7 @@ const TILES: Tile[] = [
     title: 'Find a church',
     text: 'Search by city or country.',
     image: '/images/hero-bg-3.jpg',
+    imageSizes: STANDARD_TILE_SIZES,
     area: 'lg:col-start-2 lg:row-start-3 lg:col-span-1 lg:row-span-1',
   },
   {
@@ -116,7 +125,7 @@ export function ExploreGrid() {
                       alt=""
                       fill
                       className="object-cover transition duration-700 ease-out group-hover:scale-105"
-                      sizes="(min-width: 1024px) 40vw, 90vw"
+                      sizes={tile.imageSizes}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/90 via-ink-deep/35 to-ink-deep/10" />
                   </>
