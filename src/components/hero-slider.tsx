@@ -17,7 +17,7 @@ const SLIDES = [
   {
     src: '/images/hero-bg-2.jpg',
     kicker: 'This Season',
-    title: <>Raising God&apos;s <em>army.</em></>,
+    title: <>Raising God an <em>army.</em></>,
     href: '/vision',
     cta: 'See Our Mandate',
   },
