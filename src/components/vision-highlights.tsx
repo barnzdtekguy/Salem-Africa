@@ -1,4 +1,5 @@
-import { ShieldCheck, BookOpen, Heart, Rocket } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, BookOpen, Heart, Rocket } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 import { SectionTexture } from '@/components/section-texture';
 
@@ -49,6 +50,15 @@ export function VisionHighlights() {
             </Reveal>
           ))}
         </div>
+        <Reveal delay={0.15} className="mt-9 text-center">
+          <Link
+            href="/vision"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-gold/60 hover:text-gold"
+          >
+            Explore our vision and mandate
+            <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

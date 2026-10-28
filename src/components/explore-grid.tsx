@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, HandCoins, Mail, Compass } from 'lucide-react';
+import { ArrowUpRight, BookOpen, HandCoins, Mail, Compass } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 
 interface Tile {
@@ -11,11 +11,10 @@ interface Tile {
   image?: string;
   gradient?: string;
   icon?: React.ReactNode;
-  area: string;
   imageSizes?: string;
+  external?: boolean;
 }
 
-const WIDE_TILE_SIZES = '(min-width: 1280px) 640px, (min-width: 1024px) 50vw, (min-width: 640px) 90vw, calc(100vw - 2rem)';
 const STANDARD_TILE_SIZES = '(min-width: 1280px) 304px, (min-width: 1024px) 25vw, (min-width: 640px) 50vw, calc(100vw - 2rem)';
 
 const TILES: Tile[] = [
@@ -25,8 +24,7 @@ const TILES: Tile[] = [
     title: 'Find where you fit',
     text: 'From Prayer to Media to Missions — browse every ministry and see how to get involved.',
     image: '/images/bg-ministries.jpg',
-    imageSizes: WIDE_TILE_SIZES,
-    area: 'lg:col-start-1 lg:row-start-1 lg:col-span-2 lg:row-span-2',
+    imageSizes: STANDARD_TILE_SIZES,
   },
   {
     href: '/events',
@@ -34,8 +32,7 @@ const TILES: Tile[] = [
     title: 'Weekly services',
     text: 'See the weekly service schedule and the latest flyers.',
     image: '/images/hero-bg-2.jpg',
-    imageSizes: WIDE_TILE_SIZES,
-    area: 'lg:col-start-3 lg:row-start-1 lg:col-span-2 lg:row-span-1',
+    imageSizes: STANDARD_TILE_SIZES,
   },
   {
     href: '/about',
@@ -44,7 +41,6 @@ const TILES: Tile[] = [
     text: 'The mandate, the history, the founder.',
     image: '/images/samamaga.jpg',
     imageSizes: STANDARD_TILE_SIZES,
-    area: 'lg:col-start-3 lg:row-start-2 lg:col-span-1 lg:row-span-1',
   },
   {
     href: '/vision',
@@ -53,7 +49,6 @@ const TILES: Tile[] = [
     text: 'Our message, priorities and goals.',
     gradient: 'from-ink to-black',
     icon: <Compass size={26} strokeWidth={1.6} />,
-    area: 'lg:col-start-4 lg:row-start-2 lg:col-span-1 lg:row-span-1',
   },
   {
     href: '/leadership',
@@ -62,7 +57,6 @@ const TILES: Tile[] = [
     text: 'Meet the team.',
     image: '/images/bishopenobong.jpg',
     imageSizes: STANDARD_TILE_SIZES,
-    area: 'lg:col-start-1 lg:row-start-3 lg:col-span-1 lg:row-span-1',
   },
   {
     href: '/churches',
@@ -71,7 +65,6 @@ const TILES: Tile[] = [
     text: 'Search by city or country.',
     image: '/images/hero-bg-3.jpg',
     imageSizes: STANDARD_TILE_SIZES,
-    area: 'lg:col-start-2 lg:row-start-3 lg:col-span-1 lg:row-span-1',
   },
   {
     href: '/give',
@@ -80,7 +73,6 @@ const TILES: Tile[] = [
     text: 'Tithes, missions & building.',
     gradient: 'from-terracotta to-terracotta-dark',
     icon: <HandCoins size={26} strokeWidth={1.6} />,
-    area: 'lg:col-start-3 lg:row-start-3 lg:col-span-1 lg:row-span-1',
   },
   {
     href: '/contact',
@@ -89,7 +81,23 @@ const TILES: Tile[] = [
     text: 'Questions, prayer, counsel.',
     gradient: 'from-terracotta-dark to-black',
     icon: <Mail size={26} strokeWidth={1.6} />,
-    area: 'lg:col-start-4 lg:row-start-3 lg:col-span-1 lg:row-span-1',
+  },
+  {
+    href: '/media/messages',
+    eyebrow: 'Watch Again',
+    title: 'Sermons & media',
+    text: 'Watch previous messages and explore Salem media.',
+    image: '/images/hero-bg-1.jpg',
+    imageSizes: STANDARD_TILE_SIZES,
+  },
+  {
+    href: 'https://www.freshimpact.store/',
+    eyebrow: 'Fresh Impact',
+    title: 'Bookshop',
+    text: 'Browse books and resources from the Fresh Impact Bookshop.',
+    gradient: 'from-ink to-navy-700',
+    icon: <BookOpen size={26} strokeWidth={1.6} />,
+    external: true,
   },
 ];
 
@@ -98,7 +106,7 @@ export function ExploreGrid() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-xl text-center">
-          <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">
+          <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">
             Explore Salem Africa
           </span>
           <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Everything, in one place</h2>
@@ -107,15 +115,17 @@ export function ExploreGrid() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {TILES.map((tile, i) => (
             <Reveal
               key={tile.href}
               delay={i * 0.05}
-              className={`${tile.area} ${tile.title === 'Find where you fit' ? 'sm:col-span-2' : ''}`}
+              className={tile.title === 'Find where you fit' ? 'sm:col-span-2 lg:col-span-2' : ''}
             >
               <Link
                 href={tile.href}
+                target={tile.external ? '_blank' : undefined}
+                rel={tile.external ? 'noopener noreferrer' : undefined}
                 className="group relative flex h-full min-h-[180px] flex-col justify-end overflow-hidden rounded-2xl shadow-soft transition hover:shadow-hover"
               >
                 {tile.image ? (

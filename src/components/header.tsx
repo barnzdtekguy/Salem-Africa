@@ -57,12 +57,20 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   // The mobile panel is portalled, which can only happen after mount. `open` is
   // false on the server anyway, so nothing visible is missing from the SSR
   // output and there is no hydration mismatch.
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const updateScrollState = () => setScrolled(window.scrollY > 12);
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -114,7 +122,7 @@ export function Header() {
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="flex h-10 w-10 items-center justify-center text-ink"
+            className="flex h-11 w-11 items-center justify-center text-ink"
           >
             <X size={28} strokeWidth={1.8} />
           </button>
@@ -183,13 +191,17 @@ export function Header() {
   );
 
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/95 backdrop-blur-md">
+    <header
+      className={`sticky inset-x-0 top-0 z-50 border-b border-ink/10 backdrop-blur-md transition-[background-color,box-shadow] duration-300 ${
+        scrolled ? 'bg-white shadow-soft' : 'bg-white/95'
+      }`}
+    >
       <div className="mx-auto flex h-20 max-w-container items-center justify-between px-4 sm:px-6 lg:h-[5.75rem] lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image src="/images/logo.png" alt="Salem Africa" width={44} height={44} className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
-          <span className="hidden text-sm font-semibold leading-tight text-ink sm:block">
+          <span className="max-w-[200px] text-[10px] font-semibold leading-tight text-ink sm:text-sm">
             Salem Int&apos;l Christian Centre
-            <span className="block text-xs font-normal text-ink-muted">Lekki, Lagos</span>
+            <span className="block text-[9px] font-normal text-ink-muted sm:text-xs">Lekki, Lagos</span>
           </span>
         </Link>
 

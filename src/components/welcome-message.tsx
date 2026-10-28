@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 
@@ -26,7 +27,7 @@ export function WelcomeMessage() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">A Word for You</span>
+          <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">A Word for You</span>
           <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
             A Welcome from Our Continental Bishop Africa
           </h2>
@@ -76,11 +77,18 @@ export function WelcomeMessage() {
           <button
             type="button"
             onClick={() => setExpanded((e) => !e)}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
           >
             {expanded ? 'Read Less' : 'Read More'}
             <ChevronDown size={16} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
           </button>
+          <Link
+            href="/about"
+            className="ml-3 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink transition hover:text-gold-dark"
+          >
+            Discover our story
+            <span aria-hidden="true">→</span>
+          </Link>
         </Reveal>
       </div>
     </section>

@@ -50,8 +50,8 @@ export function EventsDirectory({ events }: { events: SalemEvent[] }) {
   return (
     <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-baseline justify-between">
-        <h2 className="font-display text-xl text-ink">Our Weekly Services</h2>
-        <span className="font-label text-xs text-ink-muted">{events.length} weekly gatherings</span>
+        <h2 className="font-display text-xl text-ink">Services &amp; Events</h2>
+        <span className="font-label text-xs text-ink-muted">{events.length} gatherings</span>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

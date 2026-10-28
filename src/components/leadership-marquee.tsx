@@ -20,7 +20,7 @@ export function LeadershipMarquee() {
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">Our Covering</span>
+            <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">Our Covering</span>
             <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Leadership</h2>
           </div>
           <Link

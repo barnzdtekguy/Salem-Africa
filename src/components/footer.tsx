@@ -64,7 +64,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-black">Weekly Services</h4>
+            <h4 className="text-lg font-black">Services &amp; Events</h4>
             <div className="mt-7 space-y-5">
               {EVENTS.map((event) => (
                 <div key={event.slug}>
