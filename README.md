@@ -88,7 +88,7 @@ Copy `.env.example` to `.env.local` for local development. In Hostinger, enter t
 
 Administrators manage staff and all content; Editors manage content only. Protected APIs check the authenticated database-backed role server-side. Public content queries return only published items and scheduled items whose `publish_at` has passed. Drafts and future scheduled items are never returned publicly. Optimistic version checks prevent one editor from silently overwriting another's changes. Public routes are rendered dynamically and invalidated after admin changes.
 
-Uploads accept JPEG, PNG, and WebP, validate their signatures and enforce a 10 MB server-side limit. The dashboard can resize oversized source images in the browser while preserving proportions. Uploaded objects are never deleted from the admin UI, so replacing a cover cannot break published content. Public devotional Markdown is sanitized before rendering.
+Uploads accept JPEG, PNG, and WebP, validate their signatures and enforce a 10 MB server-side limit. Original uploaded image bytes are stored without browser-side resizing or lossy re-encoding. Website images are served without Next.js image re-encoding, preserving source quality; use appropriately sized, optimized source files to keep page loads fast. Uploaded objects are never deleted from the admin UI, so replacing a cover cannot break published content. Public devotional Markdown is sanitized before rendering.
 
 ### Backup and recovery
 

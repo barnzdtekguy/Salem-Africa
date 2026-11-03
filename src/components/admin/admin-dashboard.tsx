@@ -299,9 +299,8 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
     setBusy(true);
     setError('');
     try {
-      const image = await optimizeImage(selectedImage);
       const body = new FormData();
-      body.set('file', image);
+      body.set('file', selectedImage);
       body.set('altText', draft.imageAlt);
       const response = await fetch('/api/admin/media', { method: 'POST', body });
       const result = await response.json();
@@ -864,26 +863,4 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
       </section>
     </main>
   );
-}
-
-async function optimizeImage(file: File): Promise<File> {
-  if (typeof createImageBitmap === 'undefined') return file;
-  const bitmap = await createImageBitmap(file);
-  try {
-    const maxDimension = 2400;
-    const scale = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
-    if (scale === 1) return file;
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.round(bitmap.width * scale);
-    canvas.height = Math.round(bitmap.height * scale);
-    const context = canvas.getContext('2d');
-    if (!context) throw new Error('This browser could not prepare the image for upload.');
-    context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-    const resized = await new Promise<Blob>((resolve, reject) => {
-      canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error('Could not resize the image.')), file.type, 0.94);
-    });
-    return new File([resized], file.name, { type: file.type, lastModified: Date.now() });
-  } finally {
-    bitmap.close();
-  }
 }
