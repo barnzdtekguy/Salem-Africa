@@ -106,12 +106,12 @@ export function MinistriesMarquee() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search 35 ministries..."
+            placeholder="Search 35 departments..."
             className="w-full rounded-full border border-ink/10 bg-white py-3.5 pl-12 pr-5 text-sm text-ink shadow-soft placeholder:text-ink-faint focus:border-terracotta focus:outline-none"
           />
         </div>
         <p className="mt-4 text-center text-xs text-ink-muted">
-          {results ? `${results.length} of ${MINISTRIES.length} ministries` : `${MINISTRIES.length} ministries — tap any card for full details`}
+          {results ? `${results.length} of ${MINISTRIES.length} departments` : `${MINISTRIES.length} departments. Tap any card for full details`}
         </p>
       </div>
 
@@ -123,7 +123,7 @@ export function MinistriesMarquee() {
             ))}
             {results.length === 0 && (
               <p className="col-span-full rounded-2xl border border-ink/[0.07] bg-white p-8 text-center text-sm text-ink-muted">
-                No ministries match that search.
+                No departments match that search.
               </p>
             )}
           </div>
@@ -175,7 +175,7 @@ export function MinistriesMarquee() {
 
               {active.subMinistries.length > 0 && (
                 <div className="mt-6">
-                  <h3 className="font-label text-xs font-semibold uppercase tracking-wider text-terracotta">Sub-Ministries</h3>
+                  <h3 className="font-label text-xs font-semibold uppercase tracking-wider text-terracotta">Sub-departments</h3>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {active.subMinistries.map((s) => (
                       <span key={s} className="rounded-full border border-ink/10 bg-sand px-3 py-1.5 text-xs text-ink">

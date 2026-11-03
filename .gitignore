@@ -10,3 +10,8 @@
 npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
+
+/dist/
+/.sites-runtime/
+/.wrangler/
+/.vite/

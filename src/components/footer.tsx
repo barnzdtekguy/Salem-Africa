@@ -10,7 +10,7 @@ const QUICK_LINKS = [
   { href: '/events', label: 'Events' },
   { href: '/give', label: 'Give Online' },
   { href: '/contact', label: 'Contact Us' },
-  { href: '/ministries', label: 'Ministries' },
+  { href: '/ministries', label: 'Departments' },
   { href: '/churches', label: 'Our Churches' },
 ];
 
@@ -21,14 +21,14 @@ export function Footer() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <Image src="/images/logo.png" alt="Salem Africa" width={56} height={56} className="h-12 w-12 object-contain" />
+              <Image src="/images/logo.png" alt="" width={56} height={56} className="h-12 w-12 object-contain" />
               <span className="text-sm font-semibold leading-tight text-ink">
-                Salem Int&apos;l Christian Centre
+                Salem Int&apos;l Christian Centre, Lagos | Africa
               </span>
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-6 text-ink-muted">
-              Where God is Saving, Healing and Making Many Mighty — raising an army strong in faith,
-              empowered by wisdom, across Africa and beyond.
+              Where God is Saving, Healing and Making Many Mighty. We are raising God an army that is
+              strong in faith and empowered by wisdom across Africa and beyond.
             </p>
             <div className="mt-6 flex gap-3">
               {[

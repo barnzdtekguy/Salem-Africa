@@ -34,7 +34,9 @@ export function VisionHighlights() {
       <div className="relative mx-auto max-w-container px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-xl text-center">
           <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold">Our Mandate</span>
-          <h2 className="mt-3 font-display text-3xl text-white sm:text-4xl">Vision Highlights</h2>
+          <h2 className="mt-3 font-display text-3xl text-white sm:text-4xl">
+            Raising God an Army.
+          </h2>
         </Reveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

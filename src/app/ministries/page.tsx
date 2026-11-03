@@ -3,15 +3,15 @@ import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
 import { MinistriesMarquee } from '@/components/ministries-marquee';
 
-export const metadata: Metadata = { title: 'Ministries | Salem Africa' };
+export const metadata: Metadata = { title: 'Departments | Salem Africa' };
 
 export default function MinistriesPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="35 Ministry Arms"
-        title="Our Ministries"
-        subtitle="One mandate, many hands — find where you fit and tap any card for the full picture."
+        eyebrow="35 Departments"
+        title="Our Departments"
+        subtitle="One mandate, many hands. Find your department and tap any card for the full picture."
         image="/images/bg-ministries.jpg"
       />
 

@@ -49,9 +49,9 @@ function WeeklyServiceCard({ event, index }: { event: SalemEvent; index: number 
 export function EventsDirectory({ events }: { events: SalemEvent[] }) {
   return (
     <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-      <div className="mb-8 flex items-baseline justify-between">
+      <div className="section-title-group mb-8">
         <h2 className="font-display text-xl text-ink">Services &amp; Events</h2>
-        <span className="font-label text-xs text-ink-muted">{events.length} gatherings</span>
+        <span className="mt-2 block font-label text-xs text-ink-muted">{events.length} gatherings</span>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

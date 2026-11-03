@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, BookOpen, HandCoins, Mail, Compass } from 'lucide-react';
+import { ArrowUpRight, BookOpen, HandCoins, Mail, Compass, GraduationCap } from 'lucide-react';
 import { Reveal } from '@/components/reveal';
 
 interface Tile {
@@ -20,9 +20,9 @@ const STANDARD_TILE_SIZES = '(min-width: 1280px) 304px, (min-width: 1024px) 25vw
 const TILES: Tile[] = [
   {
     href: '/ministries',
-    eyebrow: '35 Ministry Arms',
+    eyebrow: '35 Departments',
     title: 'Find where you fit',
-    text: 'From Prayer to Media to Missions — browse every ministry and see how to get involved.',
+    text: 'From Prayer to Media to Missions: browse every department and see how to get involved.',
     image: '/images/bg-ministries.jpg',
     imageSizes: STANDARD_TILE_SIZES,
   },
@@ -99,6 +99,15 @@ const TILES: Tile[] = [
     icon: <BookOpen size={26} strokeWidth={1.6} />,
     external: true,
   },
+  {
+    href: 'https://salemuniversity.edu.ng/',
+    eyebrow: 'Salem University',
+    title: 'Learn with purpose',
+    text: 'Explore a values-led learning community in Lokoja.',
+    gradient: 'from-[#293b32] to-[#151c19]',
+    icon: <GraduationCap size={26} strokeWidth={1.6} />,
+    external: true,
+  },
 ];
 
 export function ExploreGrid() {
@@ -111,7 +120,7 @@ export function ExploreGrid() {
           </span>
           <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Everything, in one place</h2>
           <p className="mt-3 text-sm leading-6 text-ink-muted">
-            Tap into any part of the Salem family — the full story sits one click away.
+            Tap into any part of the Salem family. The full story sits one click away.
           </p>
         </Reveal>
 

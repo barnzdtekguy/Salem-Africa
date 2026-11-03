@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: 'i.ytimg.com',
         pathname: '/vi/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.freshimpact.store',
+        pathname: '/wp-content/uploads/**',
+      },
     ],
   },
   async headers() {

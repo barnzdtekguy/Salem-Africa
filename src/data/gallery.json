@@ -1,0 +1,852 @@
+[
+  {
+    "id": "hero-000",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-001.webp",
+    "thumbnail": "/images/hero/salem-hero-001-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 1536,
+    "height": 1505,
+    "original": "001.jpg"
+  },
+  {
+    "id": "hero-001",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-002.webp",
+    "thumbnail": "/images/hero/salem-hero-002-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "002.png"
+  },
+  {
+    "id": "hero-002",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-003.webp",
+    "thumbnail": "/images/hero/salem-hero-003-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2200,
+    "height": 1032,
+    "original": "003.png"
+  },
+  {
+    "id": "hero-003",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-004.webp",
+    "thumbnail": "/images/hero/salem-hero-004-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "004.png"
+  },
+  {
+    "id": "hero-004",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-005.webp",
+    "thumbnail": "/images/hero/salem-hero-005-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 768,
+    "height": 511,
+    "original": "005.jpg"
+  },
+  {
+    "id": "hero-005",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-006.webp",
+    "thumbnail": "/images/hero/salem-hero-006-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "006.jpg"
+  },
+  {
+    "id": "hero-006",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-007.webp",
+    "thumbnail": "/images/hero/salem-hero-007-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2200,
+    "height": 809,
+    "original": "007.png"
+  },
+  {
+    "id": "hero-007",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-008.webp",
+    "thumbnail": "/images/hero/salem-hero-008-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "008.png"
+  },
+  {
+    "id": "hero-008",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-009.webp",
+    "thumbnail": "/images/hero/salem-hero-009-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "009.jpg"
+  },
+  {
+    "id": "hero-009",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-010.webp",
+    "thumbnail": "/images/hero/salem-hero-010-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "010.png"
+  },
+  {
+    "id": "hero-010",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-011.webp",
+    "thumbnail": "/images/hero/salem-hero-011-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2048,
+    "height": 1363,
+    "original": "011.png"
+  },
+  {
+    "id": "hero-011",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-012.webp",
+    "thumbnail": "/images/hero/salem-hero-012-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 1536,
+    "height": 1022,
+    "original": "012.jpg"
+  },
+  {
+    "id": "hero-012",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-013.webp",
+    "thumbnail": "/images/hero/salem-hero-013-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2200,
+    "height": 884,
+    "original": "013.png"
+  },
+  {
+    "id": "hero-013",
+    "album": "hero",
+    "src": "/images/hero/salem-hero-014.webp",
+    "thumbnail": "/images/hero/salem-hero-014-thumb.webp",
+    "alt": "Salem Africa \u00b7 Our church family",
+    "width": 2200,
+    "height": 809,
+    "original": "014.png"
+  },
+  {
+    "id": "lagos-000",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-001.webp",
+    "thumbnail": "/images/lagos/salem-lagos-001-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1345,
+    "original": "681370946_1388975859934149_5537048150510301302_n.jpg"
+  },
+  {
+    "id": "lagos-001",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-002.webp",
+    "thumbnail": "/images/lagos/salem-lagos-002-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1312,
+    "original": "729437555_986126120726591_5020623418889247085_n.png"
+  },
+  {
+    "id": "lagos-002",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-003.webp",
+    "thumbnail": "/images/lagos/salem-lagos-003-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 1638,
+    "height": 2048,
+    "original": "791361245_1506383651526702_436021407284371303_n.jpg"
+  },
+  {
+    "id": "lagos-003",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-004.webp",
+    "thumbnail": "/images/lagos/salem-lagos-004-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 1365,
+    "height": 2048,
+    "original": "792149592_1506383701526697_6733907442646034519_n.jpg"
+  },
+  {
+    "id": "lagos-004",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-005.webp",
+    "thumbnail": "/images/lagos/salem-lagos-005-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "825278552_1069405139203387_6395636129196126690_n.png"
+  },
+  {
+    "id": "lagos-005",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-006.webp",
+    "thumbnail": "/images/lagos/salem-lagos-006-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "825340838_3555034711330421_8008387751050091860_n.png"
+  },
+  {
+    "id": "lagos-006",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-007.webp",
+    "thumbnail": "/images/lagos/salem-lagos-007-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 809,
+    "original": "857369806_1770498237548514_8033092331915238779_n.png"
+  },
+  {
+    "id": "lagos-007",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-008.webp",
+    "thumbnail": "/images/lagos/salem-lagos-008-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "859454076_1141492698276191_4847580477105745622_n.png"
+  },
+  {
+    "id": "lagos-008",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-009.webp",
+    "thumbnail": "/images/lagos/salem-lagos-009-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "860299938_1802701530980259_1503712774052484738_n.png"
+  },
+  {
+    "id": "lagos-009",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-010.webp",
+    "thumbnail": "/images/lagos/salem-lagos-010-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 884,
+    "original": "860704347_1815479173133467_3341902404665774427_n.png"
+  },
+  {
+    "id": "lagos-010",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-011.webp",
+    "thumbnail": "/images/lagos/salem-lagos-011-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "861576750_1653686639778898_4468565448837977933_n.png"
+  },
+  {
+    "id": "lagos-011",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-012.webp",
+    "thumbnail": "/images/lagos/salem-lagos-012-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1032,
+    "original": "862656870_1679559493791484_8458517509040483156_n.png"
+  },
+  {
+    "id": "lagos-012",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-013.webp",
+    "thumbnail": "/images/lagos/salem-lagos-013-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 809,
+    "original": "862887132_1687892192911476_2784322662209313282_n.png"
+  },
+  {
+    "id": "lagos-013",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-014.webp",
+    "thumbnail": "/images/lagos/salem-lagos-014-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "863443753_1477622380921374_9119222898163117051_n.png"
+  },
+  {
+    "id": "lagos-014",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-015.webp",
+    "thumbnail": "/images/lagos/salem-lagos-015-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "867593173_1786767375929735_1335080201737327671_n.png"
+  },
+  {
+    "id": "lagos-015",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6649.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6649-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6649.JPG"
+  },
+  {
+    "id": "lagos-016",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6652.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6652-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 1464,
+    "height": 2200,
+    "original": "DSC_6652.JPG"
+  },
+  {
+    "id": "lagos-017",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6653.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6653-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6653.JPG"
+  },
+  {
+    "id": "lagos-018",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6654.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6654-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6654.JPG"
+  },
+  {
+    "id": "lagos-019",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6655.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6655-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6655.JPG"
+  },
+  {
+    "id": "lagos-020",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6656.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6656-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6656.JPG"
+  },
+  {
+    "id": "lagos-021",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6657.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6657-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6657.JPG"
+  },
+  {
+    "id": "lagos-022",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6658.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6658-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6658.JPG"
+  },
+  {
+    "id": "lagos-023",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6659.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6659-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1300,
+    "original": "DSC_6659.JPG"
+  },
+  {
+    "id": "lagos-024",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6661.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6661-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1107,
+    "original": "DSC_6661.JPG"
+  },
+  {
+    "id": "lagos-025",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6662.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6662-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6662.JPG"
+  },
+  {
+    "id": "lagos-026",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6664.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6664-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6664.JPG"
+  },
+  {
+    "id": "lagos-027",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6665.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6665-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 1464,
+    "height": 2200,
+    "original": "DSC_6665.JPG"
+  },
+  {
+    "id": "lagos-028",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6667.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6667-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6667.JPG"
+  },
+  {
+    "id": "lagos-029",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6668.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6668-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6668.JPG"
+  },
+  {
+    "id": "lagos-030",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6669.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6669-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 1678,
+    "height": 2200,
+    "original": "DSC_6669.JPG"
+  },
+  {
+    "id": "lagos-031",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6671.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6671-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1100,
+    "original": "DSC_6671.JPG"
+  },
+  {
+    "id": "lagos-032",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6672.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6672-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1311,
+    "original": "DSC_6672.JPG"
+  },
+  {
+    "id": "lagos-033",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6673.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6673-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6673.JPG"
+  },
+  {
+    "id": "lagos-034",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6674.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6674-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1859,
+    "original": "DSC_6674.JPG"
+  },
+  {
+    "id": "lagos-035",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6675.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6675-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1154,
+    "original": "DSC_6675.JPG"
+  },
+  {
+    "id": "lagos-036",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6678.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6678-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1200,
+    "original": "DSC_6678.JPG"
+  },
+  {
+    "id": "lagos-037",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6680.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6680-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1071,
+    "original": "DSC_6680.JPG"
+  },
+  {
+    "id": "lagos-038",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6682.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6682-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6682.JPG"
+  },
+  {
+    "id": "lagos-039",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6683.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6683-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6683.JPG"
+  },
+  {
+    "id": "lagos-040",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6684.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6684-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6684.JPG"
+  },
+  {
+    "id": "lagos-041",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6685.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6685-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6685.JPG"
+  },
+  {
+    "id": "lagos-042",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6686.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6686-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6686.JPG"
+  },
+  {
+    "id": "lagos-043",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6687.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6687-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6687.JPG"
+  },
+  {
+    "id": "lagos-044",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6688.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6688-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6688.JPG"
+  },
+  {
+    "id": "lagos-045",
+    "album": "lagos",
+    "src": "/images/lagos/salem-lagos-service-6689.webp",
+    "thumbnail": "/images/lagos/salem-lagos-service-6689-thumb.webp",
+    "alt": "Salem Lagos \u00b7 Service moments",
+    "width": 2200,
+    "height": 1464,
+    "original": "DSC_6689.JPG"
+  },
+  {
+    "id": "saoc-005",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-006.webp",
+    "thumbnail": "/images/saoc/salem-saoc-006-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "674995138_1386899586808443_1613892058265359965_n.jpg"
+  },
+  {
+    "id": "saoc-011",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-012.webp",
+    "thumbnail": "/images/saoc/salem-saoc-012-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "675135197_1386900756808326_3971889253733371446_n-1.jpg"
+  },
+  {
+    "id": "saoc-023",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-024.webp",
+    "thumbnail": "/images/saoc/salem-saoc-024-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "676062542_1386900036808398_8226959439057133665_n.jpg"
+  },
+  {
+    "id": "saoc-029",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-030.webp",
+    "thumbnail": "/images/saoc/salem-saoc-030-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "676692602_1386901686808233_7811823345950268383_n.jpg"
+  },
+  {
+    "id": "saoc-035",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-036.webp",
+    "thumbnail": "/images/saoc/salem-saoc-036-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "676999221_1386899460141789_887734769226978206_n-1.jpg"
+  },
+  {
+    "id": "saoc-047",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-048.webp",
+    "thumbnail": "/images/saoc/salem-saoc-048-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "679055561_1386900643475004_5293737279483720678_n.jpg"
+  },
+  {
+    "id": "saoc-053",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-054.webp",
+    "thumbnail": "/images/saoc/salem-saoc-054-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1638,
+    "original": "679471755_1387126723452396_9155797687824324227_n.jpg"
+  },
+  {
+    "id": "saoc-058",
+    "album": "saoc",
+    "src": "/images/saoc/aoc-full-flyier.webp",
+    "thumbnail": "/images/saoc/aoc-full-flyier-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1080,
+    "height": 808,
+    "original": "AOC-FULL-FLYIER-.jpeg"
+  },
+  {
+    "id": "saoc-064",
+    "album": "saoc",
+    "src": "/images/saoc/arch-bishop-sam-amaga.webp",
+    "thumbnail": "/images/saoc/arch-bishop-sam-amaga-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "Arch-Bishop-Sam-Amaga.jpg"
+  },
+  {
+    "id": "saoc-070",
+    "album": "saoc",
+    "src": "/images/saoc/bishop-enobong-mama-k.webp",
+    "thumbnail": "/images/saoc/bishop-enobong-mama-k-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "Bishop-Enobong-Mama-K.jpg"
+  },
+  {
+    "id": "saoc-076",
+    "album": "saoc",
+    "src": "/images/saoc/bishop-enobong-smiing.webp",
+    "thumbnail": "/images/saoc/bishop-enobong-smiing-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1638,
+    "height": 2048,
+    "original": "Bishop-Enobong-smiing.jpg"
+  },
+  {
+    "id": "saoc-082",
+    "album": "saoc",
+    "src": "/images/saoc/chioma-jesus-2.webp",
+    "thumbnail": "/images/saoc/chioma-jesus-2-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 2048,
+    "height": 1363,
+    "original": "Chioma-Jesus-2.jpg"
+  },
+  {
+    "id": "saoc-088",
+    "album": "saoc",
+    "src": "/images/saoc/mama-dancing.webp",
+    "thumbnail": "/images/saoc/mama-dancing-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1638,
+    "height": 2048,
+    "original": "Mama-dancing.jpg"
+  },
+  {
+    "id": "saoc-092",
+    "album": "saoc",
+    "src": "/images/saoc/salem-saoc-093.webp",
+    "thumbnail": "/images/saoc/salem-saoc-093-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1058,
+    "height": 1495,
+    "original": "Salem-Africa-Outpouring-Conference-2026-BROCHURE-pdf.jpg"
+  },
+  {
+    "id": "saoc-096",
+    "album": "saoc",
+    "src": "/images/saoc/whatsapp-image-2026-04-23-at-09-50-22.webp",
+    "thumbnail": "/images/saoc/whatsapp-image-2026-04-23-at-09-50-22-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 828,
+    "height": 823,
+    "original": "WhatsApp-Image-2026-04-23-at-09.50.22.jpeg"
+  },
+  {
+    "id": "saoc-100",
+    "album": "saoc",
+    "src": "/images/saoc/whatsapp-image-2026-04-23-at-10-19-46.webp",
+    "thumbnail": "/images/saoc/whatsapp-image-2026-04-23-at-10-19-46-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 828,
+    "height": 821,
+    "original": "WhatsApp-Image-2026-04-23-at-10.19.46.jpeg"
+  },
+  {
+    "id": "saoc-104",
+    "album": "saoc",
+    "src": "/images/saoc/whatsapp-image-2026-04-23-at-10-19-47.webp",
+    "thumbnail": "/images/saoc/whatsapp-image-2026-04-23-at-10-19-47-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 828,
+    "height": 826,
+    "original": "WhatsApp-Image-2026-04-23-at-10.19.47.jpeg"
+  },
+  {
+    "id": "saoc-109",
+    "album": "saoc",
+    "src": "/images/saoc/whatsapp-image-2026-04-23-at-11-10-17.webp",
+    "thumbnail": "/images/saoc/whatsapp-image-2026-04-23-at-11-10-17-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 828,
+    "height": 1033,
+    "original": "WhatsApp-Image-2026-04-23-at-11.10.17.jpeg"
+  },
+  {
+    "id": "saoc-115",
+    "album": "saoc",
+    "src": "/images/saoc/new-1.webp",
+    "thumbnail": "/images/saoc/new-1-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-1.jpg"
+  },
+  {
+    "id": "saoc-121",
+    "album": "saoc",
+    "src": "/images/saoc/new-2-1.webp",
+    "thumbnail": "/images/saoc/new-2-1-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-2-1.jpg"
+  },
+  {
+    "id": "saoc-133",
+    "album": "saoc",
+    "src": "/images/saoc/new-3.webp",
+    "thumbnail": "/images/saoc/new-3-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-3.jpg"
+  },
+  {
+    "id": "saoc-139",
+    "album": "saoc",
+    "src": "/images/saoc/new-4.webp",
+    "thumbnail": "/images/saoc/new-4-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-4.jpg"
+  },
+  {
+    "id": "saoc-145",
+    "album": "saoc",
+    "src": "/images/saoc/new-5.webp",
+    "thumbnail": "/images/saoc/new-5-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-5.jpg"
+  },
+  {
+    "id": "saoc-151",
+    "album": "saoc",
+    "src": "/images/saoc/new-6.webp",
+    "thumbnail": "/images/saoc/new-6-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 1427,
+    "height": 1600,
+    "original": "new-6.jpg"
+  },
+  {
+    "id": "saoc-154",
+    "album": "saoc",
+    "src": "/images/saoc/salem-flyer-backgorund.webp",
+    "thumbnail": "/images/saoc/salem-flyer-backgorund-thumb.webp",
+    "alt": "SAOC 2026 \u00b7 Conference moments",
+    "width": 611,
+    "height": 433,
+    "original": "salem-flyer-backgorund.png"
+  }
+]

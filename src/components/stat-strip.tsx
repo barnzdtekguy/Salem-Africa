@@ -14,7 +14,7 @@ export function StatStrip() {
   const stats = [
     { value: CHURCHES.length, suffix: '', label: 'Church locations' },
     { value: nations, suffix: '', label: 'Nations reached' },
-    { value: MINISTRIES.length, suffix: '', label: 'Ministry arms' },
+    { value: MINISTRIES.length, suffix: '', label: 'Departments' },
     { value: years, suffix: '+', label: 'Years of mandate' },
   ];
 
@@ -23,7 +23,7 @@ export function StatStrip() {
       <div className="mx-auto max-w-container px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-6">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.06} className="text-center sm:text-left">
+            <Reveal key={s.label} delay={i * 0.06} className="text-center">
               <p className="text-5xl font-semibold tracking-[-0.06em] text-red-300 sm:text-6xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </p>

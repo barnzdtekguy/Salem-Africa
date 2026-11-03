@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,16 +31,16 @@ const NAV: NavEntry[] = [
     ],
   },
   {
-    label: 'Ministries',
+    label: 'Departments',
     items: [
-      { href: '/ministries', title: 'All Ministries', text: '35 ministry arms — find where you fit.' },
+      { href: '/ministries', title: 'All Departments', text: '35 departments. Find where you fit.' },
       { href: '/ministries', title: 'Missions', text: 'Sharing Christ across nations.' },
       { href: '/ministries', title: 'Welfare', text: 'Care for all.' },
       { href: '/ministries', title: 'Training', text: 'Raising the next generation.' },
     ],
   },
   {
-    label: 'Media',
+    label: 'Salem Media',
     items: [
       { href: '/media/live', title: 'Live', text: 'Join the service as it happens.' },
       { href: '/media/messages', title: 'Previous Messages', text: 'Watch past sermons on demand.' },
@@ -55,6 +55,7 @@ const NAV: NavEntry[] = [
 
 export function Header() {
   const pathname = usePathname();
+  const mobilePanel = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -89,9 +90,18 @@ export function Header() {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Tab') {
+        const items = Array.from(mobilePanel.current?.querySelectorAll<HTMLElement>('a[href]:not([tabindex="-1"]),button') ?? []).filter(el => el.offsetParent !== null);
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
     };
+    const focusTimer = requestAnimationFrame(() => mobilePanel.current?.querySelector<HTMLButtonElement>('button')?.focus());
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    return () => cancelAnimationFrame(focusTimer);
+      window.removeEventListener('keydown', onKey);
+      document.querySelector<HTMLButtonElement>('header button[aria-controls="mobile-menu"]')?.focus();
   }, [open]);
 
   /*
@@ -112,6 +122,10 @@ export function Header() {
   const mobileMenu = (
     <div
       id="mobile-menu"
+      ref={mobilePanel}
+      role="dialog"
+      aria-modal={open ? true : undefined}
+      aria-label="Site navigation"
       className={`fixed inset-0 z-[60] bg-surface/95 backdrop-blur-xl transition-[transform,visibility] duration-500 ease-entrance lg:hidden ${
         open ? 'visible translate-x-0' : 'invisible translate-x-full'
       }`}
@@ -198,10 +212,10 @@ export function Header() {
     >
       <div className="mx-auto flex h-20 max-w-container items-center justify-between px-4 sm:px-6 lg:h-[5.75rem] lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-3">
-          <Image src="/images/logo.png" alt="Salem Africa" width={44} height={44} className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
-          <span className="max-w-[200px] text-[10px] font-semibold leading-tight text-ink sm:text-sm">
-            Salem Int&apos;l Christian Centre
-            <span className="block text-[9px] font-normal text-ink-muted sm:text-xs">Lekki, Lagos</span>
+          <Image src="/images/logo.png" alt="" width={44} height={44} className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
+          <span className="max-w-[200px] text-[10px] font-semibold leading-tight text-ink sm:max-w-[250px] sm:text-sm">
+            Salem Int&apos;l Christian Centre,
+            <span className="block text-[9px] font-normal text-ink-muted sm:text-xs">Lagos | Africa</span>
           </span>
         </Link>
 
@@ -217,7 +231,7 @@ export function Header() {
                   <ChevronDown size={13} className="transition-transform duration-300 group-hover:rotate-180" />
                 </button>
 
-                <div className="pointer-events-none absolute left-1/2 top-full w-[440px] -translate-x-1/2 translate-y-2 pt-2 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="invisible pointer-events-none absolute left-1/2 top-full w-[440px] -translate-x-1/2 translate-y-2 pt-2 opacity-0 transition-all duration-300 group-hover:visible group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   <div className="grid grid-cols-2 gap-3 rounded-2xl border border-black/5 bg-white p-5 shadow-panel">
                     {entry.items.map((item) => (
                       <Link

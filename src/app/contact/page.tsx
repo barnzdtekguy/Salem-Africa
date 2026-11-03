@@ -57,12 +57,14 @@ export default function ContactPage() {
       <section className="py-20 sm:py-28">
         <div className="mx-auto grid max-w-container gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <Reveal>
-            <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">Reach Us</span>
-            <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Contact Information</h2>
-            <p className="mt-4 text-sm leading-7 text-ink-muted">
-              Our administrative team is always ready to assist you with inquiries, prayers, or
-              counseling needs.
-            </p>
+            <div className="section-title-group">
+              <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">Reach Us</span>
+              <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Contact Information</h2>
+              <p className="mt-4 text-sm leading-7 text-ink-muted">
+                Our administrative team is always ready to assist you with inquiries, prayers, or
+                counseling needs.
+              </p>
+            </div>
 
             <div className="mt-8 space-y-6">
               <div className="flex gap-4">
@@ -127,7 +129,7 @@ export default function ContactPage() {
 
           <Reveal delay={0.1}>
             <div className="rounded-2xl border border-ink/[0.07] bg-white p-7 shadow-soft sm:p-8">
-              <h2 className="font-display text-2xl text-ink">Send a Message</h2>
+              <h2 className="text-center font-display text-2xl text-ink">Send a Message</h2>
               <div className="mt-6">
                 <ContactForm />
               </div>

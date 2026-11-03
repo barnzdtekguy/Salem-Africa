@@ -19,7 +19,7 @@ const sans = localFont({
 export const metadata: Metadata = {
   title: 'Salem International Christian Centre | Saving, Healing and Making Many Mighty',
   description:
-    'Salem Africa is an international church family across 37 locations and 35 ministries, under the leadership of Archbishop Dr Sam Amaga — strong in faith, empowered by wisdom.',
+    'Salem Africa is an international church family across 37 locations and 35 departments, under the leadership of Archbishop Dr Sam Amaga, strong in faith and empowered by wisdom.',
   icons: { icon: '/images/logo.png' },
 };
 
@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={sans.variable} suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         {children}
         <WhatsAppButton phoneNumber={WHATSAPP_PHONE_NUMBER} />
       </body>

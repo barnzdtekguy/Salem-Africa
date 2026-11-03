@@ -20,7 +20,7 @@ export default function AudioPage() {
       <PageHero
         eyebrow="Listen"
         title="Audio Messages"
-        subtitle="Take the Word with you — on the commute, in the kitchen, wherever you are."
+        subtitle="Take the Word with you on the commute, in the kitchen, or wherever you are."
         image="/images/hero-bg-3.jpg"
       />
       <MediaTabs />
@@ -50,7 +50,7 @@ export default function AudioPage() {
                         <div>
                           <h3 className="font-display text-base text-ink">{title}</h3>
                           <p className="mt-1 text-xs text-ink-muted">
-                            {speaker} — {date}
+                            {speaker}, {date}
                           </p>
                         </div>
                       </div>

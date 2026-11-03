@@ -18,14 +18,14 @@ export function LeadershipMarquee() {
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-        <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
-          <div>
+        <Reveal className="section-header-row mb-10">
+          <div className="section-title-group">
             <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">Our Covering</span>
             <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Leadership</h2>
           </div>
           <Link
             href="/leadership"
-            className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-terracotta hover:text-terracotta"
+            className="section-header-actions inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-semibold text-ink transition hover:border-terracotta hover:text-terracotta"
           >
             View All Leaders
             <ArrowRight size={15} />

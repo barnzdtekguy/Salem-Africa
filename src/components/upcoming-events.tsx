@@ -22,8 +22,8 @@ export function UpcomingEvents() {
   return (
     <section aria-labelledby="upcoming-events-heading" className="bg-paper py-20 sm:py-28">
       <div className="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4">
-          <div>
+        <Reveal className="section-header-row mb-8">
+          <div className="section-title-group">
             <p className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">
               What’s happening
             </p>
@@ -31,7 +31,7 @@ export function UpcomingEvents() {
               Upcoming at Salem
             </h2>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="section-header-actions flex items-center gap-3">
             <Link
               href="/events"
               className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink transition hover:text-gold-dark"
@@ -81,14 +81,14 @@ export function UpcomingEvents() {
         )}
 
         {weeklyEvents.length > 0 && (
-          <Reveal className="mt-12 flex flex-wrap items-end justify-between gap-4">
-            <div>
+          <Reveal className="section-header-row mt-12">
+            <div className="section-title-group">
               <p className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-gold-dark">
                 Gather with us
               </p>
               <h3 className="mt-2 font-display text-2xl text-ink sm:text-3xl">Weekly Services</h3>
             </div>
-            <div className="hidden items-center gap-2 sm:flex">
+            <div className="section-header-actions hidden items-center gap-2 sm:flex">
               <button
                 type="button"
                 onClick={() => scrollBy(-1)}

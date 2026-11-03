@@ -22,15 +22,17 @@ export function CountUp({
   value,
   suffix = '',
   duration = DURATION.count,
+  margin = '-80px',
   className = '',
 }: {
   value: number;
   suffix?: string;
   duration?: number;
+  margin?: '-80px' | '0px';
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin });
   const reduced = useReducedMotion();
 
   // Starts at the true value so SSR and first paint match. The effect knocks it

@@ -42,7 +42,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="Our Story"
         title="A Divine Mandate"
-        subtitle="The genesis of a call to save, heal and make many mighty — and what it's grown into since."
+        subtitle="The genesis of a call to save, heal and make many mighty, and what it's grown into since."
         image="/images/hero-bg-1.jpg"
       />
 
@@ -59,8 +59,10 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">Founder &amp; Visionary</span>
-            <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Archbishop Dr Sam Amaga</h2>
+            <div className="section-title-group">
+              <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">Founder &amp; Visionary</span>
+              <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">Archbishop Dr Sam Amaga</h2>
+            </div>
 
             <ReadMore
               preview={
@@ -95,7 +97,7 @@ export default function AboutPage() {
                 <p>
                   He is the International President of the International Covenant Ministerial Council
                   (ICMC), presently focused on raising strong and effective leadership for a network of
-                  churches and ministries across the globe — over 1,000 churches, ministries, and
+                  churches and ministries across the globe, with over 1,000 churches, ministries, and
                   ministers strong.
                 </p>
                 <p>

@@ -18,7 +18,7 @@ const LEADERS = [
     body: [
       'Dr. Sam Amaga received the call into full-time ministry while heading the management of a leading pharmaceutical company in Nigeria, in July 1982. He is a graduate of Microbiology and holds a C.Th. (Counsellor of Theology) from the Freelandia Institute, Evangelical College & Seminary, 1988.',
       'He was honoured in 1992 with a Doctor of Theology from Evangel Christian University of America, and in 1994 he and his wife were honoured with Doctor of Divinity from the All Nations for Christ Bible Institute, Benin City, Nigeria.',
-      'He is President of Salem Pastoral and Missions College (SPAMIC), International President of the International Covenant Ministerial Council (ICMC) — a network of over 1,000 churches, ministries, and ministers — and a founding member of the Trans Atlantic and Pacific Alliance of Churches (TAPAC).',
+      'He is President of Salem Pastoral and Missions College (SPAMIC), International President of the International Covenant Ministerial Council (ICMC), a network of over 1,000 churches, ministries, and ministers, and a founding member of the Trans Atlantic and Pacific Alliance of Churches (TAPAC).',
       "Archbishop Sam Amaga is National President of the Pentecostal Bishops' Communion of Nigeria (PEBICON), Chancellor and Visioneer of Salem University, Lokoja, and founder of the Salem International Leadership Centre, raising leaders who are change agents.",
     ],
   },
@@ -103,8 +103,10 @@ export default function LeadershipPage() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">{leader.role}</span>
-                <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">{leader.name}</h2>
+                <div className="section-title-group">
+                  <span className="font-label text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">{leader.role}</span>
+                  <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">{leader.name}</h2>
+                </div>
 
                 <ReadMore preview={<p className="mt-5 text-sm leading-7 text-ink-muted">{leader.preview}</p>}>
                   <div className="space-y-3 text-sm leading-7 text-ink-muted">

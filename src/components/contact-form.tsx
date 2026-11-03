@@ -17,7 +17,7 @@ export function ContactForm() {
     const message = String(form.get('message') ?? '');
 
     const subject = encodeURIComponent(`[${category}] Message from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    const body = encodeURIComponent(`${message}\n\n${name} (${email})`);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   }
 

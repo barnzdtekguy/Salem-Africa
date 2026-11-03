@@ -1,130 +1,53 @@
-# Salem International Christian Centre — Website
+# Salem Africa
 
-A full redesign and rebuild of the Salem Africa site (Next.js 14, App
-Router, TypeScript, Tailwind). Verified clean: `npx tsc --noEmit`,
-`npm run build`, and `npx next lint` all pass with zero errors or
-warnings, all 9 pages statically generated.
+A responsive website for Salem International Christian Centre, retaining the original church, ministry, event, leadership and contact content.
 
-## Design system
+## Run locally
 
-Inspired by mixlr.com's confidence — bold display type, generous white
-space, a clean sticky nav, big data-driven stat callouts — recolored
-around a palette that's actually African rather than the generic
-"church website" crimson/navy/gold, or the cream-and-terracotta combo
-every AI tool defaults to:
-
-| Token | Hex | Used for |
-|---|---|---|
-| `terracotta` | `#C1440E` | Primary accent, CTAs (laterite/burnt clay) |
-| `gold` | `#C6912E` | Secondary accent, stat numbers (savanna) |
-| `forest` | `#4C6B45` | Tertiary accent, used sparingly (acacia) |
-| `indigo` | `#2B3A55` | Cool contrast note (adire dye) |
-| `ink` / `ink-deep` | `#221A14` / `#140D09` | Text & dark sections (warm, not cold navy) |
-| `paper` / `sand` | `#FBFAF6` / `#F1E9DA` | Backgrounds |
-
-**Type**: Fraunces (display serif) + Manrope (body) + JetBrains Mono
-(stat numbers, eyebrows, dates) — self-hosted via `@fontsource` so
-fonts load reliably without depending on Google's CDN.
-
-**Signature motif**: the "kente seam" — a small woven triangle pattern
-(pure CSS, see `.kente-seam` in `globals.css`) used at every section
-boundary instead of a generic curve, and echoed in card corners and
-image placeholders. Component: `src/components/kente-divider.tsx`.
-
-## What's new, feature by feature
-
-### Landing page — every section, one tap away
-`src/components/explore-grid.tsx` is a bento grid linking to all 8
-inner pages (About, Vision, Leadership, Churches, Ministries, Events,
-Give, Contact) directly from the homepage, alongside a Mixlr-style
-stat strip (`stat-strip.tsx`) pulling real counts from your data files
-— so "37 churches / 5 nations / 35 ministries" updates itself if you
-add or remove entries, never needs manual editing.
-
-### Ministries page — auto-scrolling, image-backed
-`src/components/ministries-marquee.tsx` splits all 35 ministries into
-three rows that scroll continuously right-to-left at slightly
-different speeds (pure CSS animation, pauses on hover/tap, respects
-`prefers-reduced-motion`). Tap any card to open a modal with a full
-photo, description, and sub-ministries. Typing in the search box swaps
-the marquee for a static filtered grid.
-
-### Events page — real calendar + Add to Calendar
-`src/components/event-calendar.tsx` is an interactive month calendar —
-days with events are highlighted, tap a day to filter the list below,
-navigate months with the arrows. Every event card and detail modal has
-an **Add to Calendar** button (`add-to-calendar.tsx`) offering Google
-Calendar, Outlook, and a downloadable `.ics` file that works with
-Apple Calendar and everything else — all generated client-side in
-`src/lib/calendar.ts`, no backend required.
-
-### Photo pipeline — placeholders that fill themselves in
-`src/components/image-with-fallback.tsx` tries to load the real photo
-first; if it's not there yet, it renders a designed placeholder (brand
-gradient + icon + label) instead of a broken image. **Drop a real
-photo into `public/assets/` with the exact filename and it appears
-automatically — no code changes.** Full filename-to-entry mapping is
-in `public/assets/README.md` (35 ministries, 37 churches, 9 events).
-
-## Pages
-
-- `/` — Home: hero, stat strip, welcome message, explore grid, vision highlights, leadership preview
-- `/about` — Founder bio (expandable) + history timeline
-- `/vision` — 7-item accordion (mandate, message, priorities, platforms, goals, values, passion)
-- `/leadership` — 4 full leader profiles with jump-nav
-- `/churches` — searchable directory of all 37 church locations, with live map + photo thumbnails
-- `/ministries` — all 35 ministries, auto-scrolling marquee + detail modal
-- `/events` — calendar + image-backed event cards + Add to Calendar
-- `/give` — giving categories
-- `/contact` — contact info, map, working contact form, FAQ
-
-## Honest gaps (carried over, not hidden)
-
-- **Give page**: no real bank/payment details exist yet, so the page
-  says that plainly rather than showing fake account numbers. Update
-  `src/app/give/page.tsx` once finance has the details.
-- **Contact page phone/email**: still placeholder text
-  (`+234 (0) XXX XXX XXXX`, `info@salemafrica.placeholder.org`) —
-  swap in the real details in `src/app/contact/page.tsx`.
-- **Contact form**: opens the visitor's email client with the message
-  pre-filled (`mailto:`) — zero backend needed. Swapping this for a
-  real inbox/database submission is a small, separate upgrade.
-- **Ministry/church/event photos**: none exist yet on either the old
-  site or this one — see the Photo pipeline section above for how to
-  add them without touching any code.
-
-## Setup
+Use Node.js 22.13 or later.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-## Project structure
+Open the local URL shown in the terminal. The project retains the Next.js App Router and React components and uses Vinext/Vite for Cloudflare Workers hosting.
 
+```bash
+npm run typecheck
+npm run build
 ```
-src/
-  app/
-    page.tsx, about/, vision/, leadership/, churches/,
-    ministries/, events/, give/, contact/
-  components/
-    header.tsx, footer.tsx, page-shell.tsx, page-hero.tsx
-    hero-slider.tsx, welcome-gate.tsx, welcome-message.tsx, wind-transition.tsx
-    stat-strip.tsx, explore-grid.tsx, vision-highlights.tsx, leadership-marquee.tsx
-    ministries-marquee.tsx, church-locator.tsx
-    event-calendar.tsx, events-directory.tsx, add-to-calendar.tsx
-    image-with-fallback.tsx, kente-divider.tsx, section-texture.tsx
-    accordion.tsx, read-more.tsx, contact-form.tsx, reveal.tsx
-  data/
-    churches.ts / .json     — all 37 churches
-    ministries.ts / .json   — all 35 ministries
-    events.ts / .json       — upcoming events
-  lib/
-    calendar.ts              — .ics / Google / Outlook calendar links
-public/
-  images/                   — original site photography (leaders, hero backgrounds, logo)
-  assets/
-    README.md                — exact filename → entry mapping
-    images/                   — drop ministry & church photos here
-    events/                   — drop event photos here
-```
+
+`npm run start` runs the built Worker locally with Wrangler. The original Next.js configuration remains available for a conventional Next.js deployment; run `npx next dev` or `npx next build` for that target.
+
+## What's included
+
+- Fourteen supplied hero photographs, with automatic rotation, manual navigation and a persistent pause control.
+- A responsive Salem Lagos photo carousel; every card links to the full Lagos album.
+- A photo library at `/media/pictures`, with 46 Lagos photos, 25 unique SAOC files and 14 hero images. Album links are shareable through `?album=lagos`, `?album=saoc` and `?album=hero`.
+- Full-screen photographs with previous/next controls, arrow-key navigation, Escape to close and downloads.
+- The supplied city texture at 4.5% opacity behind light sections.
+- Optimized WebP photos and separate thumbnails. WordPress size variants and exact duplicate exports are mapped in `src/data/asset-manifest.json`; the gallery uses the largest supplied version of each unique image.
+- Original routes, church directory and maps, ministry directory, event details, live-stream links, sermon-feed integration, contact and giving pages.
+- Keyboard navigation, a mobile menu focus loop, reduced-motion support and local fonts.
+
+## Main files
+
+- `src/app/page.tsx`: landing-page structure.
+- `src/components/hero-slider.tsx`: hero slideshow.
+- `src/components/salem-moments-carousel.tsx`: homepage photo carousel.
+- `src/components/photo-gallery.tsx`: album filtering and photograph viewer.
+- `src/data/gallery.json`: photo metadata.
+- `src/data/asset-manifest.json`: source-to-web-image mapping.
+- `src/app/globals.css`: shared styling and responsive layouts.
+- `src/data/`: original church, ministry, event and contact records.
+
+## Updating photographs
+
+Put a full-size optimized photograph and a small thumbnail in the relevant `public/images/` album folder. Add its metadata to `src/data/gallery.json` following an existing record. Keep the `album` value as `lagos`, `saoc` or `hero`.
+
+## Verification and external services
+
+TypeScript and the production build pass. Browser checks covered hero navigation, the Lagos carousel-to-library route, album filters, loading all Lagos photographs, full-screen next/previous navigation and the mobile homepage/menu.
+
+YouTube feeds, livestreams, Google Maps, social links, WhatsApp and email depend on their external services. The existing contact form uses the visitor's mail application; it is not a new hosted submission service. Giving/payment and audio availability retain the original project's behavior and content.
