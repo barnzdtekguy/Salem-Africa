@@ -2,11 +2,15 @@ import type { Metadata } from 'next';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
 import { EventsDirectory } from '@/components/events-directory';
-import { EVENTS } from '@/data/events';
+import { getPublicProgramsAndEvents } from '@/lib/content/repository';
 
 export const metadata: Metadata = { title: 'Services & Events | Salem Africa' };
 
-export default function EventsPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function EventsPage() {
+  const events = await getPublicProgramsAndEvents();
+
   return (
     <PageShell>
       <PageHero
@@ -17,7 +21,7 @@ export default function EventsPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <EventsDirectory events={EVENTS} />
+        <EventsDirectory events={events} />
       </section>
     </PageShell>
   );

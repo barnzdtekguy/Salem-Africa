@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
-import { EVENTS } from '@/data/events';
+import { getPublicProgramsAndEvents } from '@/lib/content/repository';
 import { CONTACT_EMAIL } from '@/data/contact';
 
 const QUICK_LINKS = [
@@ -14,7 +14,9 @@ const QUICK_LINKS = [
   { href: '/churches', label: 'Our Churches' },
 ];
 
-export function Footer() {
+export async function Footer() {
+  const events = await getPublicProgramsAndEvents();
+
   return (
     <footer className="bg-sand text-ink">
       <div className="mx-auto max-w-container px-4 pb-12 pt-20 sm:px-6 sm:pt-24 lg:px-8">
@@ -66,7 +68,7 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-black">Services &amp; Events</h4>
             <div className="mt-7 space-y-5">
-              {EVENTS.map((event) => (
+              {events.map((event) => (
                 <div key={event.slug}>
                   <p className="text-sm font-black text-terracotta">{event.title}</p>
                   <p className="mt-1 text-sm leading-5 text-ink-muted">{event.frequency} · {event.schedule}</p>

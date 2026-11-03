@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
 import { Reveal } from '@/components/reveal';
@@ -18,7 +19,7 @@ const FAQS: AccordionItem[] = [
         Extraordinary Life Service is every Sunday at 8:00 AM, and Covenant Breakthrough Service is
         every Wednesday at 5:30 PM. Continental Family Prayer Hour is every Friday at 5:00 AM in
         Benin Republic and Togo, and 6:00 AM WAT in Nigeria. See our{' '}
-        <a href="/events" className="text-terracotta underline underline-offset-2">weekly schedule</a>.
+        <Link href="/events" className="text-terracotta underline underline-offset-2">weekly schedule</Link>.
       </p>
     ),
   },

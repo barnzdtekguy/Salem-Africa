@@ -5,7 +5,7 @@ import { PageHero } from '@/components/page-hero';
 import { MediaTabs } from '@/components/media-tabs';
 import { Reveal } from '@/components/reveal';
 import { Radio, CalendarClock, Bell, MapPin } from 'lucide-react';
-import { EVENTS } from '@/data/events';
+import { getPublicProgramsAndEvents } from '@/lib/content/repository';
 
 export const metadata: Metadata = { title: 'Live | Salem Africa' };
 
@@ -14,7 +14,11 @@ const YOUTUBE_LIVE_STREAMS_PLAYLIST_ID = `UULV${YOUTUBE_CHANNEL_ID.slice(2)}`;
 const LIVE_STREAM_EMBED_URL = `https://www.youtube.com/embed/videoseries?list=${YOUTUBE_LIVE_STREAMS_PLAYLIST_ID}&autoplay=1&mute=1&playsinline=1`;
 const YOUTUBE_STREAMS_URL = 'https://www.youtube.com/@SalemLagosLive/streams';
 
-export default function LivePage() {
+export const dynamic = 'force-dynamic';
+
+export default async function LivePage() {
+  const events = await getPublicProgramsAndEvents();
+
   return (
     <PageShell>
       <PageHero
@@ -58,7 +62,7 @@ export default function LivePage() {
           </Reveal>
 
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {EVENTS.map((event, i) => (
+            {events.map((event, i) => (
               <Reveal key={event.slug} delay={i * 0.08}>
                 <div className="h-full rounded-2xl border border-ink/[0.07] bg-white p-7 shadow-soft">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-terracotta-soft text-terracotta">

@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Radio, PlayCircle, Headphones, Images, type LucideIcon } from 'lucide-react';
+import { Radio, PlayCircle, Headphones, Images, BookOpenText, type LucideIcon } from 'lucide-react';
 
 const TABS: Array<{ href: string; label: string; icon: LucideIcon }> = [
   { href: '/media/live', label: 'Live', icon: Radio },
   { href: '/media/messages', label: 'Previous Messages', icon: PlayCircle },
   { href: '/media/audio', label: 'Audio', icon: Headphones },
   { href: '/media/pictures', label: 'Service Pictures', icon: Images },
+  { href: '/devotionals', label: 'Devotionals', icon: BookOpenText },
 ];
 
 export function MediaTabs() {
@@ -18,7 +19,7 @@ export function MediaTabs() {
     <nav className="border-b border-sand-line bg-sand">
       <div className="mx-auto flex max-w-container gap-2 overflow-x-auto px-4 py-4 sm:px-6 lg:px-8">
         {TABS.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href;
+          const active = pathname === href || (href === '/devotionals' && pathname.startsWith('/devotionals/'));
           return (
             <Link
               key={href}

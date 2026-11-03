@@ -3,21 +3,36 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, CalendarClock, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
-import { EVENTS } from '@/data/events';
+import type { SalemEvent } from '@/data/events';
 import { ImageWithFallback } from '@/components/image-with-fallback';
 import { Reveal } from '@/components/reveal';
 
+function dateInLagos() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Africa/Lagos',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
 /** Homepage strip for recurring weekly services and their current flyers. */
-export function UpcomingEvents() {
+export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const featuredEvent = EVENTS.find((event) => event.category.startsWith('Conference'));
-  const weeklyEvents = EVENTS.filter((event) => event !== featuredEvent);
+  const today = dateInLagos();
+  const featuredEvent = events.find((event) =>
+    (event.contentType === 'event' || event.category.startsWith('Conference'))
+    && (!event.startsAt || new Date(event.startsAt).getTime() >= Date.now()),
+  );
+  const weeklyEvents = events.filter((event) => event !== featuredEvent && event.contentType !== 'event');
 
   function scrollBy(dir: 1 | -1) {
     trackRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
   }
 
-  if (EVENTS.length === 0) return null;
+  if (events.length === 0) return null;
 
   return (
     <section aria-labelledby="upcoming-events-heading" className="bg-paper py-20 sm:py-28">
@@ -47,7 +62,7 @@ export function UpcomingEvents() {
             <article className="grid overflow-hidden rounded-2xl border border-ink/[0.07] bg-white shadow-soft lg:grid-cols-[0.9fr_1.1fr]">
               <ImageWithFallback
                 src={featuredEvent.image}
-                alt={`${featuredEvent.title} event flyer`}
+                alt={featuredEvent.imageAlt || `${featuredEvent.title} event flyer`}
                 label={featuredEvent.title}
                 className="aspect-[4/3] w-full bg-sand lg:aspect-auto lg:min-h-[360px]"
                 imgClassName="object-contain"
@@ -69,10 +84,10 @@ export function UpcomingEvents() {
                 </p>
                 <p className="mt-4 text-sm leading-6 text-ink-muted">{featuredEvent.description}</p>
                 <Link
-                  href="/events"
+                  href={featuredEvent.contentType === 'event' ? `/events/${featuredEvent.slug}` : '/events'}
                   className="mt-5 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
                 >
-                  Conference details
+                  Event details
                   <ArrowRight size={15} aria-hidden="true" />
                 </Link>
               </div>
@@ -113,13 +128,13 @@ export function UpcomingEvents() {
           {weeklyEvents.map((event) => (
               <Link
                 key={event.slug}
-                href="/events"
+                href={event.contentType === 'event' ? `/events/${event.slug}` : '/events'}
                 className="group w-72 shrink-0 snap-start"
               >
                 <div className="relative overflow-hidden rounded-2xl">
                   <ImageWithFallback
                     src={event.image}
-                    alt={event.title}
+                    alt={event.imageAlt || event.title}
                     label={event.title}
                     className="aspect-[4/5] w-full bg-sand"
                     imgClassName="object-contain transition duration-500 group-hover:scale-105"
@@ -133,6 +148,11 @@ export function UpcomingEvents() {
                 <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
                   <CalendarClock size={13} className="mt-0.5 shrink-0" /> {event.schedule}
                 </p>
+                {event.exceptions?.filter((exception) => exception.date >= today).map((exception) => (
+                  <p key={exception.date} className="mt-2 border-l-2 border-terracotta pl-2 text-xs leading-5 text-terracotta">
+                    {exception.date}: {exception.status === 'cancelled' ? 'Cancelled' : `Changed${exception.startTime ? ` to ${exception.startTime}` : ''}${exception.venue ? ` at ${exception.venue}` : ''}`}
+                  </p>
+                ))}
                 {event.location && (
                   <p className="mt-1 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
                     <MapPin size={13} className="mt-0.5 shrink-0" /> {event.location}
