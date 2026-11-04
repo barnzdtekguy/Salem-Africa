@@ -4,6 +4,7 @@ import { admin } from 'better-auth/plugins';
 import { headers } from 'next/headers';
 import { getDatabase } from './db';
 import { getAuthOptions } from './auth-options';
+import { logServerError } from './security/diagnostics';
 
 function createAuth() {
   return betterAuth({
@@ -28,13 +29,25 @@ export type StaffContext = {
 };
 
 export async function getStaffContext(): Promise<StaffContext | null> {
-  const session = await getAuth().api.getSession({ headers: await headers() });
+  let session;
+  try {
+    session = await getAuth().api.getSession({ headers: await headers() });
+  } catch (error) {
+    logServerError('staff_session_lookup_failed', error);
+    throw error;
+  }
   if (!session) return null;
 
-  const [rows] = await getDatabase().execute<import('mysql2/promise').RowDataPacket[]>(
-    'SELECT id, email, role, banned FROM `user` WHERE id = ? LIMIT 1',
-    [session.user.id],
-  );
+  let rows: import('mysql2/promise').RowDataPacket[];
+  try {
+    [rows] = await getDatabase().execute<import('mysql2/promise').RowDataPacket[]>(
+      'SELECT id, email, role, banned FROM `user` WHERE id = ? LIMIT 1',
+      [session.user.id],
+    );
+  } catch (error) {
+    logServerError('staff_permission_lookup_failed', error);
+    throw error;
+  }
   const user = rows[0] as { id: string; email: string; role: string | null; banned: boolean | null } | undefined;
   if (!user || user.banned) return null;
   if (user.role !== 'admin' && user.role !== 'user') return null;

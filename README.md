@@ -87,6 +87,24 @@ For local development, put configuration in the ignored `.env` or `.env.local` f
 6. Deploy from the project root using Hostinger's Node.js app settings: Node 22+, install `npm ci`, build `npm run build`, start `npm run start`. Configure the app's public domain and private environment variables before starting it.
 7. Verify `/`, `/events`, `/devotionals`, `/admin/login`, password recovery delivery, the complete invitation acceptance flow with a new email address, an Editor's denied access to user management, content publication, a media upload, and public rendering. A scheduled item should appear publicly after its Africa/Lagos publication time even if no one has the dashboard open.
 
+### Staff invitation production diagnostics
+
+The invitation feature requires `staff_invitations`. For an existing Hostinger database, do not rerun migration 001. In hPanel, open phpMyAdmin for the database assigned to the Node.js app, choose that database, open the SQL tab, and execute the complete contents of [`db/migrations/002_staff_invitations.sql`](./db/migrations/002_staff_invitations.sql). This is additive: it creates only the invitation table and does not modify staff accounts or content. Then verify:
+
+```sql
+SHOW TABLES LIKE 'staff_invitations';
+SHOW CREATE TABLE `staff_invitations`;
+SELECT COUNT(*) AS pending_invitations
+FROM `staff_invitations`
+WHERE `accepted_at` IS NULL AND `revoked_at` IS NULL;
+```
+
+Restart/redeploy the Node.js app after applying the migration. As an administrator, open **Users** in `/admin`: `GET /api/admin/users` should return 200 with both `users` and `invitations`. An unauthenticated request should return 401, and an Editor request should return 403. If the migration is absent, the UI/API reports that `002_staff_invitations.sql` is required; the server log includes `ER_NO_SUCH_TABLE`.
+
+Invitation creation saves to MariaDB before sending mail. A database-save failure returns an error saying no email was sent; SMTP delivery failure returns a distinct error and revokes the just-created token when possible. Production logs emit structured diagnostic events with the exception message, database code/errno/SQL state, and stack trace. Credentials, connection URLs, email addresses, IDs, IP addresses, and token-like strings are redacted. Search Hostinger runtime logs for `staff_listing_`, `staff_invitation_`, or `staff_session_` to identify whether the issue is session/permission lookup, Better Auth listing, invitation-table access, save, or email delivery.
+
+After a successful `POST /api/admin/users` (201), verify delivery to an inbox controlled by the site owner, accept the 48-hour link, and sign in at `/admin/login`. Do not test by sending credentials or invitation links through logs or support messages.
+
 ### Roles, publication, and media
 
 Administrators manage staff and all content; Editors manage content only. Protected APIs check the authenticated database-backed role server-side. Public content queries return only published items and scheduled items whose `publish_at` has passed. Drafts and future scheduled items are never returned publicly. Optimistic version checks prevent one editor from silently overwriting another's changes. Public routes are rendered dynamically and invalidated after admin changes. Weekly-program cards link to `/weekly-programmes/<slug>` and event cards link to `/events/<slug>`.

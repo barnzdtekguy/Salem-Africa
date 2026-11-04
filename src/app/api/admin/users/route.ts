@@ -3,11 +3,16 @@ import type { RowDataPacket } from 'mysql2/promise';
 import { getAuth, requireStaff } from '@/lib/auth';
 import { getDatabase } from '@/lib/db';
 import { sendStaffInvitationEmail } from '@/lib/email';
+import { logServerError } from '@/lib/security/diagnostics';
 import { getSiteUrl, rejectCrossOriginMutation } from '@/lib/security/request';
 
 export const runtime = 'nodejs';
 
 const INVITATION_LIFETIME_HOURS = 48;
+
+function getErrorCode(error: unknown) {
+  return error && typeof error === 'object' && 'code' in error ? error.code : undefined;
+}
 
 function hashToken(token: string) {
   return createHash('sha256').update(token).digest('hex');
@@ -27,46 +32,77 @@ async function revokeAfterDeliveryFailure(id: string, tokenHash: string) {
 }
 
 export async function GET(request: Request) {
-  const authorization = await requireStaff(['administrator']);
+  let authorization;
+  try {
+    authorization = await requireStaff(['administrator']);
+  } catch (error) {
+    logServerError('staff_listing_authorization_failed', error);
+    return Response.json({ error: 'Could not verify staff-management access.' }, { status: 500 });
+  }
   if (authorization.response) return authorization.response;
 
+  let users;
   try {
     const result = await getAuth().api.listUsers({
       query: { limit: 1000, offset: 0 },
       headers: request.headers,
     });
-    const [invitationRows] = await getDatabase().execute<RowDataPacket[]>(
+    users = result.users.map((user) => ({
+      user_id: user.id,
+      email: user.email,
+      role: user.role === 'admin' ? 'administrator' : 'editor',
+      active: !user.banned,
+      created_at: user.createdAt,
+    }));
+  } catch (error) {
+    logServerError('staff_listing_better_auth_failed', error);
+    return Response.json({ error: 'Could not load staff accounts.' }, { status: 500 });
+  }
+
+  let invitationRows: RowDataPacket[];
+  try {
+    [invitationRows] = await getDatabase().execute<RowDataPacket[]>(
       `SELECT id, email, role, expires_at
        FROM staff_invitations
        WHERE accepted_at IS NULL AND revoked_at IS NULL
        ORDER BY created_at DESC`,
     );
-    return Response.json({
-      users: result.users.map((user) => ({
-        user_id: user.id,
-        email: user.email,
-        role: user.role === 'admin' ? 'administrator' : 'editor',
-        active: !user.banned,
-        created_at: user.createdAt,
-      })),
-      invitations: invitationRows.map((row) => ({
-        id: row.id as string,
-        email: row.email as string,
-        role: row.role as 'administrator' | 'editor',
-        expires_at: row.expires_at instanceof Date ? row.expires_at.toISOString() : String(row.expires_at),
-        expired: new Date(row.expires_at as string | Date).getTime() <= Date.now(),
-      })),
-    });
-  } catch {
-    console.error('Staff listing failed.');
-    return Response.json({ error: 'Could not load staff and invitations.' }, { status: 500 });
+  } catch (error) {
+    logServerError('staff_listing_invitations_query_failed', error);
+    if (getErrorCode(error) === 'ER_NO_SUCH_TABLE') {
+      return Response.json(
+        {
+          users,
+          invitations: [],
+          invitationSetupRequired: true,
+        },
+      );
+    }
+    return Response.json({ error: 'Could not load pending invitations.' }, { status: 500 });
   }
+
+  return Response.json({
+    users,
+    invitations: invitationRows.map((row) => ({
+      id: row.id as string,
+      email: row.email as string,
+      role: row.role as 'administrator' | 'editor',
+      expires_at: row.expires_at instanceof Date ? row.expires_at.toISOString() : String(row.expires_at),
+      expired: new Date(row.expires_at as string | Date).getTime() <= Date.now(),
+    })),
+  });
 }
 
 export async function POST(request: Request) {
   const originError = rejectCrossOriginMutation(request);
   if (originError) return originError;
-  const authorization = await requireStaff(['administrator']);
+  let authorization;
+  try {
+    authorization = await requireStaff(['administrator']);
+  } catch (error) {
+    logServerError('staff_invitation_authorization_failed', error);
+    return Response.json({ error: 'Could not verify staff-management access.' }, { status: 500 });
+  }
   if (authorization.response || !authorization.staff) return authorization.response;
 
   const body: unknown = await request.json().catch(() => null);
@@ -82,8 +118,21 @@ export async function POST(request: Request) {
   const cleanEmail = email.trim().toLowerCase();
   const token = randomBytes(32).toString('base64url');
   const tokenHash = hashToken(token);
+  let url: string;
+  try {
+    url = invitationUrl(request, token);
+  } catch (error) {
+    logServerError('staff_invitation_url_configuration_failed', error);
+    return Response.json({ error: 'The staff invitation link could not be configured. Contact the site administrator.' }, { status: 503 });
+  }
   let invitationId: string = randomUUID();
-  const connection = await getDatabase().getConnection();
+  let connection;
+  try {
+    connection = await getDatabase().getConnection();
+  } catch (error) {
+    logServerError('staff_invitation_database_connection_failed', error);
+    return Response.json({ error: 'Could not connect to the staff database. No invitation was created.' }, { status: 503 });
+  }
   try {
     await connection.beginTransaction();
     const [existingRows] = await connection.execute<RowDataPacket[]>(
@@ -114,27 +163,37 @@ export async function POST(request: Request) {
     }
     await connection.commit();
   } catch (error) {
-    await connection.rollback();
-    const code = error && typeof error === 'object' && 'code' in error ? error.code : undefined;
+    try {
+      await connection.rollback();
+    } catch (rollbackError) {
+      logServerError('staff_invitation_rollback_failed', rollbackError);
+    }
+    logServerError('staff_invitation_database_save_failed', error);
+    const code = getErrorCode(error);
+    if (code === 'ER_NO_SUCH_TABLE') {
+      return Response.json(
+        { error: 'Staff invitations are not configured in the production database. Apply db/migrations/002_staff_invitations.sql, then retry.' },
+        { status: 503 },
+      );
+    }
     if (code === 'ER_DUP_ENTRY') {
       return Response.json({ error: 'An invitation was just created for this email. Refresh the staff list and use Resend invitation if needed.' }, { status: 409 });
     }
-    console.error('Staff invitation could not be saved.');
-    return Response.json({ error: 'Could not create this invitation.' }, { status: 500 });
+    return Response.json({ error: 'Could not save the invitation in the staff database. No invitation email was sent.' }, { status: 500 });
   } finally {
     connection.release();
   }
 
   try {
-    await sendStaffInvitationEmail(cleanEmail, invitationUrl(request, token));
-  } catch {
+    await sendStaffInvitationEmail(cleanEmail, url);
+  } catch (error) {
+    logServerError('staff_invitation_email_delivery_failed', error);
     try {
       await revokeAfterDeliveryFailure(invitationId, tokenHash);
-    } catch {
-      console.error('Failed invitation could not be revoked after email delivery failed.');
+    } catch (revokeError) {
+      logServerError('staff_invitation_email_failure_revoke_failed', revokeError);
       return Response.json({ error: 'Email delivery failed and the pending invitation could not be revoked. Ask an administrator to resend or revoke it.' }, { status: 500 });
     }
-    console.error('Staff invitation email delivery failed.');
     return Response.json({ error: 'Could not send the invitation email. The invitation was revoked; check SMTP configuration and retry.' }, { status: 502 });
   }
 

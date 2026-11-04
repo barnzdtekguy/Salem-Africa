@@ -140,6 +140,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
   const [items, setItems] = useState<ContentItem[]>([]);
   const [users, setUsers] = useState<StaffUser[]>([]);
   const [invitations, setInvitations] = useState<StaffInvitation[]>([]);
+  const [invitationSetupRequired, setInvitationSetupRequired] = useState(false);
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
@@ -186,6 +187,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
     if (!response.ok) throw new Error(result.error ?? 'Could not load staff.');
     setUsers(result.users as StaffUser[]);
     setInvitations(result.invitations as StaffInvitation[]);
+    setInvitationSetupRequired(Boolean(result.invitationSetupRequired));
   }
 
   async function loadMedia() {
@@ -906,6 +908,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                   </select>
                 </label>
                 <button type="submit" className="admin-primary-button" disabled={busy}>Send invitation</button>
+                {invitationSetupRequired && <p role="alert" className="admin-error">Staff invitation storage is missing. Apply <code>db/migrations/002_staff_invitations.sql</code> to the production database before inviting staff.</p>}
                 <p>Invite any valid email address, including an email with an existing account. New recipients create a password from the single-use 48-hour link; existing account passwords are not changed. Public registration is disabled.</p>
               </form>
             </section>
@@ -934,6 +937,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
             </section>
             <section className="admin-panel">
               <h2>Pending invitations</h2>
+              {invitationSetupRequired && <p role="alert" className="admin-error">Pending invitations cannot be listed until <code>db/migrations/002_staff_invitations.sql</code> is applied.</p>}
               {invitations.map((invitation) => (
                 <article className="admin-list-row admin-user-row" key={invitation.id}>
                   <span>
