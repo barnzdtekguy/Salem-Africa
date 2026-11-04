@@ -24,13 +24,6 @@ function invitationUrl(request: Request, token: string) {
   return url.toString();
 }
 
-async function revokeAfterDeliveryFailure(id: string, tokenHash: string) {
-  await getDatabase().execute(
-    'UPDATE `staff_invitations` SET revoked_at = UTC_TIMESTAMP(3) WHERE id = ? AND token_hash = ? AND accepted_at IS NULL',
-    [id, tokenHash],
-  );
-}
-
 export async function GET(request: Request) {
   let authorization;
   try {
@@ -188,13 +181,13 @@ export async function POST(request: Request) {
     await sendStaffInvitationEmail(cleanEmail, url);
   } catch (error) {
     logServerError('staff_invitation_email_delivery_failed', error);
-    try {
-      await revokeAfterDeliveryFailure(invitationId, tokenHash);
-    } catch (revokeError) {
-      logServerError('staff_invitation_email_failure_revoke_failed', revokeError);
-      return Response.json({ error: 'Email delivery failed and the pending invitation could not be revoked. Ask an administrator to resend or revoke it.' }, { status: 500 });
-    }
-    return Response.json({ error: 'Could not send the invitation email. The invitation was revoked; check SMTP configuration and retry.' }, { status: 502 });
+    return Response.json(
+      {
+        error: 'The invitation was saved, but its email could not be delivered. It remains pending; check SMTP settings and use Resend invitation.',
+        invitationPending: true,
+      },
+      { status: 502 },
+    );
   }
 
   return Response.json({ ok: true }, { status: 201 });

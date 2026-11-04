@@ -458,7 +458,17 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
         body: JSON.stringify({ email: staffEmail, role: staffRole }),
       });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? 'Could not invite staff member.');
+      if (!response.ok) {
+        if (result.invitationPending) {
+          try {
+            await loadUsers();
+          } catch (refreshError) {
+            const refreshMessage = refreshError instanceof Error ? refreshError.message : 'Could not load staff.';
+            throw new Error(`${result.error ?? 'Could not invite staff member.'} The pending invitation list could not be refreshed: ${refreshMessage}`);
+          }
+        }
+        throw new Error(result.error ?? 'Could not invite staff member.');
+      }
       setStaffEmail('');
       setNotice('Invitation email sent. The recipient can create their name and password from the secure link.');
       await loadUsers();
@@ -476,7 +486,17 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
     try {
       const response = await fetch(`/api/admin/users/invitations/${invitation.id}/resend`, { method: 'POST' });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? 'Could not resend this invitation.');
+      if (!response.ok) {
+        if (result.invitationPending) {
+          try {
+            await loadUsers();
+          } catch (refreshError) {
+            const refreshMessage = refreshError instanceof Error ? refreshError.message : 'Could not load staff.';
+            throw new Error(`${result.error ?? 'Could not resend this invitation.'} The pending invitation list could not be refreshed: ${refreshMessage}`);
+          }
+        }
+        throw new Error(result.error ?? 'Could not resend this invitation.');
+      }
       setNotice(`A fresh invitation was sent to ${invitation.email}. The previous link is no longer valid.`);
       await loadUsers();
     } catch (requestError) {

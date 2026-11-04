@@ -101,7 +101,19 @@ WHERE `accepted_at` IS NULL AND `revoked_at` IS NULL;
 
 Restart/redeploy the Node.js app after applying the migration. As an administrator, open **Users** in `/admin`: `GET /api/admin/users` should return 200 with both `users` and `invitations`. An unauthenticated request should return 401, and an Editor request should return 403. If the migration is absent, the UI/API reports that `002_staff_invitations.sql` is required; the server log includes `ER_NO_SUCH_TABLE`.
 
-Invitation creation saves to MariaDB before sending mail. A database-save failure returns an error saying no email was sent; SMTP delivery failure returns a distinct error and revokes the just-created token when possible. Production logs emit structured diagnostic events with the exception message, database code/errno/SQL state, and stack trace. Credentials, connection URLs, email addresses, IDs, IP addresses, and token-like strings are redacted. Search Hostinger runtime logs for `staff_listing_`, `staff_invitation_`, or `staff_session_` to identify whether the issue is session/permission lookup, Better Auth listing, invitation-table access, save, or email delivery.
+Invitation creation saves to MariaDB before sending mail. A database-save failure returns an error saying no email was sent; SMTP delivery failure returns a distinct error and leaves the invitation pending so an administrator can resend it. A resend replaces the stored token before delivery, so any earlier link is invalidated even if that email attempt fails. The mailer checks that the SMTP server accepted the recipient instead of treating a rejected recipient as successful delivery. Production logs emit structured diagnostic events with SMTP error codes, response codes, commands, sanitized server responses, and stack traces. Credentials, connection URLs, email addresses, IDs, IP addresses, and token-like strings are redacted. Search Hostinger runtime logs for `staff_listing_`, `staff_invitation_`, or `staff_session_` to identify whether the issue is session/permission lookup, Better Auth listing, invitation-table access, save, or email delivery.
+
+Configure these server-only variables in Hostinger's Node.js app environment settings; do not add `NEXT_PUBLIC_` to them:
+
+| Variable | Value |
+|---|---|
+| `SMTP_HOST` | SMTP hostname shown by your email provider |
+| `SMTP_PORT` | Provider's SMTP port, commonly `465` for implicit TLS or `587` for STARTTLS |
+| `SMTP_USER` | Full SMTP mailbox username |
+| `SMTP_PASSWORD` | Mailbox password or provider-issued SMTP/app password |
+| `SMTP_FROM` | Verified sender address (or provider-approved display name and address) |
+
+Use the exact hostname, port, TLS mode, username, password, and allowed sender shown in the provider's mail-client setup; do not assume Hostinger Mail is the configured provider. In local development, Next.js loads `.env`/`.env.local` automatically. On Hostinger, add the variables in the Node.js app's private environment settings and restart the app (or start a new build if the provider applies variables at build time). Never upload `.env` files or commit credentials. The app validates required values and the port at send time. For failures, inspect the redacted `staff_invitation_email_delivery_failed` or `staff_invitation_resend_email_delivery_failed` runtime log: `EAUTH` indicates authentication, `ECONNECTION`/`ETIMEDOUT` indicates connection or network, and `responseCode`/`response` help diagnose SMTP server rejection. The local environment file contains SMTP variable names, but its values and Hostinger's configured environment were not inspected, so production credentials and delivery still need verification there.
 
 After a successful `POST /api/admin/users` (201), verify delivery to an inbox controlled by the site owner, accept the 48-hour link, and sign in at `/admin/login`. Do not test by sending credentials or invitation links through logs or support messages.
 

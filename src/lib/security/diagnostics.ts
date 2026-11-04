@@ -23,6 +23,9 @@ function diagnosticFields(error: unknown) {
     code?: unknown;
     errno?: unknown;
     sqlState?: unknown;
+    responseCode?: unknown;
+    command?: unknown;
+    response?: unknown;
   };
   return {
     name: redactDiagnosticText(detail.name),
@@ -30,6 +33,9 @@ function diagnosticFields(error: unknown) {
     ...(typeof detail.code === 'string' || typeof detail.code === 'number' ? { code: detail.code } : {}),
     ...(typeof detail.errno === 'string' || typeof detail.errno === 'number' ? { errno: detail.errno } : {}),
     ...(typeof detail.sqlState === 'string' ? { sqlState: detail.sqlState } : {}),
+    ...(typeof detail.responseCode === 'number' ? { responseCode: detail.responseCode } : {}),
+    ...(typeof detail.command === 'string' ? { command: redactDiagnosticText(detail.command).slice(0, 200) } : {}),
+    ...(typeof detail.response === 'string' ? { response: redactDiagnosticText(detail.response).slice(0, 2000) } : {}),
     ...(detail.stack ? { stack: redactDiagnosticText(detail.stack).slice(0, 8000) } : {}),
   };
 }
