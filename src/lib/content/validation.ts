@@ -55,7 +55,7 @@ const eventSchema = z.object({
 
 const devotionalSchema = z.object({
   publicationDate: dateSchema,
-  author: z.string().trim().min(1).max(180),
+  author: z.string().trim().max(180).default(''),
   bibleReference: z.string().trim().min(1).max(180),
   scriptureText: z.string().trim().min(1).max(12000),
   message: z.string().trim().min(1).max(30000),
@@ -101,6 +101,7 @@ export function parseContentInput(input: unknown): ValidContentInput {
     if (data.recurrence === 'specific_dates' && data.specificDates.length === 0) {
       throw new Error('Add at least one date for a date-specific program.');
     }
+
     if (data.endTime && data.endTime <= data.startTime) {
       throw new Error('The end time must be later than the start time.');
     }
@@ -139,4 +140,14 @@ export function parseContentInput(input: unknown): ValidContentInput {
     slug: base.slug.toLowerCase(),
     data: parsedData,
   };
+}
+
+export function contentValidationMessage(error: unknown) {
+  if (error instanceof z.ZodError) {
+    return error.issues.map((issue) => {
+      const field = issue.path.map(String).filter((part) => part !== 'data').join(' ');
+      return `${field ? `${field}: ` : ''}${issue.message}`;
+    }).join(' ');
+  }
+  return error instanceof Error ? error.message : 'Check the content fields and try again.';
 }

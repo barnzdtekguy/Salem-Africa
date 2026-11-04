@@ -19,7 +19,7 @@ export interface SalemEvent {
   theme?: string;
   speakers?: string[];
   minister?: string;
-  exceptions?: { date: string; status: 'changed' | 'cancelled'; startTime?: string; venue?: string }[];
+  exceptions?: { date: string; status: 'changed' | 'cancelled'; startTime?: string; venue?: string; note?: string }[];
 }
 
 export const EVENTS = rawEvents as SalemEvent[];

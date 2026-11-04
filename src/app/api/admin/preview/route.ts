@@ -16,7 +16,9 @@ export async function POST(request: Request) {
     return Response.json({ html: renderSafeMarkdown(body.markdown) });
   } catch (error) {
     return Response.json({
-      error: error instanceof Error ? error.message : 'Could not render the preview.',
+      error: error instanceof z.ZodError
+        ? error.issues.map((issue) => `${issue.path.join(' ')}: ${issue.message}`).join(' ')
+        : error instanceof Error ? error.message : 'Could not render the preview.',
     }, { status: 400 });
   }
 }

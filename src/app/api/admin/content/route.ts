@@ -1,6 +1,6 @@
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { createContent, listContent } from '@/lib/content/repository';
-import { parseContentInput } from '@/lib/content/validation';
+import { contentValidationMessage, parseContentInput } from '@/lib/content/validation';
 import { requireStaff } from '@/lib/auth';
 import { rejectCrossOriginMutation } from '@/lib/security/request';
 
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
   try {
     input = parseContentInput(await request.json());
   } catch (error) {
-    return Response.json({ error: error instanceof Error ? error.message : 'Invalid content.' }, { status: 400 });
+    return Response.json({ error: contentValidationMessage(error) }, { status: 400 });
   }
 
   const slug = input.slug || input.title
@@ -65,7 +65,11 @@ export function invalidatePublicContent(kind: string, slug?: string) {
     revalidatePath('/events');
     if (slug) revalidatePath(`/events/${slug}`);
   }
-  if (kind === 'weekly_program') revalidatePath('/');
+  if (kind === 'weekly_program') {
+    revalidatePath('/');
+    revalidatePath('/events');
+    if (slug) revalidatePath(`/weekly-programmes/${slug}`);
+  }
   if (kind === 'devotional') {
     revalidatePath('/devotionals');
     if (slug) revalidatePath(`/devotionals/${slug}`);

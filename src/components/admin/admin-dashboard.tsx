@@ -38,6 +38,16 @@ function text(data: Record<string, unknown>, key: string, fallback = '') {
   return typeof value === 'string' ? value : fallback;
 }
 
+function slugFromTitle(title: string) {
+  return title
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 170);
+}
+
 function dateInLagos() {
   return new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Africa/Lagos',
@@ -240,6 +250,17 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
   function updateDraft(patch: Partial<Draft>) {
     setDraft((current) => current ? { ...current, ...patch } : current);
     setDirty(true);
+  }
+
+  function updateTitle(title: string) {
+    setDraft((current) => {
+      if (!current) return current;
+      const autoSlug = !current.slug || current.slug === slugFromTitle(current.title);
+      return { ...current, title, slug: autoSlug ? slugFromTitle(title) : current.slug };
+    });
+    setDirty(true);
+    setPreview(false);
+    setPreviewHtml('');
   }
 
   function updateData(key: string, value: unknown) {
@@ -603,7 +624,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                 <form onSubmit={(event) => { event.preventDefault(); void saveContent(); }} className="admin-form-stack">
                   <label>
                     Title
-                    <input required maxLength={180} value={draft.title} onChange={(event) => updateDraft({ title: event.target.value })} />
+                    <input required maxLength={180} value={draft.title} onChange={(event) => updateTitle(event.target.value)} />
                   </label>
                   <label>
                     Page address
@@ -698,7 +719,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                           <input type="date" required value={text(draft.data, 'publicationDate', dateInLagos())} onChange={(event) => updateData('publicationDate', event.target.value)} />
                           <span>Dates and schedules use Africa/Lagos time (WAT, UTC+01:00).</span>
                         </label>
-                        <label>Author<input required value={text(draft.data, 'author')} onChange={(event) => updateData('author', event.target.value)} /></label>
+                        <label>Author (optional)<input value={text(draft.data, 'author')} onChange={(event) => updateData('author', event.target.value)} /></label>
                         <label>Bible reference<input required value={text(draft.data, 'bibleReference')} onChange={(event) => updateData('bibleReference', event.target.value)} placeholder="e.g. Psalm 23:1" /></label>
                       </div>
                       <label>Scripture text

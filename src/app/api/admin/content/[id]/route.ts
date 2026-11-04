@@ -1,6 +1,6 @@
 import { invalidatePublicContent } from '../route';
 import { deleteContent, getContentById, updateContent } from '@/lib/content/repository';
-import { parseContentInput } from '@/lib/content/validation';
+import { contentValidationMessage, parseContentInput } from '@/lib/content/validation';
 import { requireStaff } from '@/lib/auth';
 import { rejectCrossOriginMutation } from '@/lib/security/request';
 
@@ -18,11 +18,12 @@ export async function PATCH(request: Request, context: RouteContext) {
     try {
       input = parseContentInput(await request.json());
     } catch (error) {
-      return Response.json({ error: error instanceof Error ? error.message : 'Invalid content.' }, { status: 400 });
+      return Response.json({ error: contentValidationMessage(error) }, { status: 400 });
     }
     if (!input.expected_version) {
       return Response.json({ error: 'Reload this item before saving to prevent overwriting newer edits.' }, { status: 400 });
     }
+    const previous = await getContentById(id);
     const item = await updateContent(id, input.expected_version, input, authorization.staff);
     if (!item) {
       const current = await getContentById(id);
@@ -31,6 +32,7 @@ export async function PATCH(request: Request, context: RouteContext) {
         : Response.json({ error: 'Content item not found.' }, { status: 404 });
     }
     invalidatePublicContent(item.kind, item.slug);
+    if (previous && previous.slug !== item.slug) invalidatePublicContent(previous.kind, previous.slug);
     return Response.json({ item });
   } catch (error) {
     const duplicate = typeof error === 'object' && error !== null && 'code' in error && error.code === 'ER_DUP_ENTRY';

@@ -5,14 +5,13 @@ import { notFound } from 'next/navigation';
 import { CalendarClock, Clock, MapPin, Radio } from 'lucide-react';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
-import { getPublicProgramsAndEvents } from '@/lib/content/repository';
+import { getPublicEvent } from '@/lib/content/repository';
 
 type RouteContext = { params: Promise<{ slug: string }> };
 export const dynamic = 'force-dynamic';
 
 async function findEvent(slug: string) {
-  const items = await getPublicProgramsAndEvents();
-  return items.find((item) => item.slug === slug && item.contentType === 'event') ?? null;
+  return getPublicEvent(slug);
 }
 
 export async function generateMetadata({ params }: RouteContext): Promise<Metadata> {

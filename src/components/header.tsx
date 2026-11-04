@@ -49,6 +49,7 @@ const NAV: NavEntry[] = [
     ],
   },
   { label: 'Events', href: '/events' },
+  { label: 'Daily Devotion', href: '/devotionals' },
   { label: 'Store', href: '/store' },
   { label: 'Contact', href: '/contact' },
 ];

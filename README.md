@@ -29,6 +29,8 @@ npm run build
 - The supplied city texture at 4.5% opacity behind light sections.
 - Optimized WebP photos and separate thumbnails. WordPress size variants and exact duplicate exports are mapped in `src/data/asset-manifest.json`; the gallery uses the largest supplied version of each unique image.
 - Original routes, church directory and maps, ministry directory, event details, live-stream links, sermon-feed integration, contact and giving pages.
+- Streamlined event and weekly-program cards linking directly to the selected item's full details.
+- A Daily Devotion archive with date-grouped reading pages and downloadable Salem Africa PDFs.
 - Keyboard navigation, a mobile menu focus loop, reduced-motion support and local fonts.
 
 ## Main files
@@ -69,11 +71,11 @@ The Hostinger account API did not return plan details during this implementation
 
 ### Local configuration
 
-Copy `.env.example` to `.env.local` for local development. In Hostinger, enter the same values through the Node.js app's private environment-variable settings instead of uploading an env file. Never prefix database, auth, SMTP, or S3 credentials with `NEXT_PUBLIC_`, and do not commit secrets.
+For local development, put configuration in the ignored `.env` or `.env.local` file. In Hostinger, enter the values through the Node.js app's private environment-variable settings instead of uploading an env file. Never prefix database, auth, SMTP, or S3 credentials with `NEXT_PUBLIC_`, and do not commit secrets.
 
 1. Create the database and S3-compatible bucket in Hostinger. Confirm the database credentials are assigned to the website and the storage keys have only the permissions needed for list, get, and put operations in the media bucket.
 2. Run [`db/migrations/001_hostinger_admin.sql`](./db/migrations/001_hostinger_admin.sql) once against the new database using phpMyAdmin or a trusted database client. It creates Better Auth tables and content tables and seeds the current programs/events. Do not rerun it as a reset; it preserves existing rows.
-3. Configure `DATABASE_URL` (or all `DB_*` values), `BETTER_AUTH_SECRET` (at least 32 random characters), `BETTER_AUTH_URL`, `NEXT_PUBLIC_SITE_URL`, `SMTP_*`, and `S3_*` as described in `.env.example`.
+3. Configure `DATABASE_URL` (or all `DB_*` values), `BETTER_AUTH_SECRET` (at least 32 random characters), `BETTER_AUTH_URL`, `NEXT_PUBLIC_SITE_URL`, `SMTP_*`, and `S3_*` in the private environment settings.
 4. Create the first administrator from a secure terminal after the database and environment are configured:
 
    ```sh
@@ -86,7 +88,9 @@ Copy `.env.example` to `.env.local` for local development. In Hostinger, enter t
 
 ### Roles, publication, and media
 
-Administrators manage staff and all content; Editors manage content only. Protected APIs check the authenticated database-backed role server-side. Public content queries return only published items and scheduled items whose `publish_at` has passed. Drafts and future scheduled items are never returned publicly. Optimistic version checks prevent one editor from silently overwriting another's changes. Public routes are rendered dynamically and invalidated after admin changes.
+Administrators manage staff and all content; Editors manage content only. Protected APIs check the authenticated database-backed role server-side. Public content queries return only published items and scheduled items whose `publish_at` has passed. Drafts and future scheduled items are never returned publicly. Optimistic version checks prevent one editor from silently overwriting another's changes. Public routes are rendered dynamically and invalidated after admin changes. Weekly-program cards link to `/weekly-programmes/<slug>` and event cards link to `/events/<slug>`.
+
+The public `/devotionals` archive features the latest published devotional and lists previous devotionals by month and date. Each published item has a server-generated PDF download at `/api/devotionals/<slug>/pdf`; the endpoint uses the same public-only database query as the reading page. Devotional records use the existing `content_items` table and JSON `data` column, and cover images use the existing S3-compatible media integration. For Cloudflare R2, configure `S3_ENDPOINT` as `https://<account-id>.r2.cloudflarestorage.com`, `S3_REGION` as `auto`, and use the R2 bucket name and scoped access keys for `S3_BUCKET`, `S3_ACCESS_KEY_ID`, and `S3_SECRET_ACCESS_KEY`. No incremental MariaDB migration is required for these features. Existing program and event records are left in place.
 
 Uploads accept JPEG, PNG, and WebP, validate their signatures and enforce a 10 MB server-side limit. Original uploaded image bytes are stored without browser-side resizing or lossy re-encoding. Website images are served without Next.js image re-encoding, preserving source quality; use appropriately sized, optimized source files to keep page loads fast. Uploaded objects are never deleted from the admin UI, so replacing a cover cannot break published content. Public devotional Markdown is sanitized before rendering.
 

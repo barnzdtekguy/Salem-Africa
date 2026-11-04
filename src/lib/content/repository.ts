@@ -170,6 +170,19 @@ export async function getPublicContent(kind: ContentKind): Promise<ContentItem[]
   return rows.map(mapContentRow);
 }
 
+export async function getPublicContentBySlug(kind: ContentKind, slug: string): Promise<ContentItem | null> {
+  const [rows] = await getDatabase().execute<ContentRow[]>(
+    `SELECT ${CONTENT_COLUMNS}
+     FROM content_items
+     WHERE kind = ? AND slug = ?
+       AND (status = 'published'
+         OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= UTC_TIMESTAMP(3)))
+     LIMIT 1`,
+    [kind, slug],
+  );
+  return rows[0] ? mapContentRow(rows[0]) : null;
+}
+
 function toLegacyEvent(item: ContentItem): SalemEvent {
   const data = item.data;
   const start = item.starts_at ? new Date(item.starts_at) : null;
@@ -225,8 +238,24 @@ export async function getPublicDevotionals(): Promise<ContentItem[]> {
 }
 
 export async function getPublicDevotional(slug: string): Promise<ContentItem | null> {
-  const items = await getPublicDevotionals();
-  return items.find((item) => item.slug === slug) ?? null;
+  if (!process.env.DATABASE_URL && !process.env.DB_HOST) return null;
+  return getPublicContentBySlug('devotional', slug);
+}
+
+export async function getPublicWeeklyProgram(slug: string): Promise<SalemEvent | null> {
+  if (!process.env.DATABASE_URL && !process.env.DB_HOST) {
+    return LEGACY_EVENTS.find((item) => item.slug === slug && item.contentType !== 'event' && !item.category.startsWith('Conference')) ?? null;
+  }
+  const item = await getPublicContentBySlug('weekly_program', slug);
+  return item ? toLegacyEvent(item) : null;
+}
+
+export async function getPublicEvent(slug: string): Promise<SalemEvent | null> {
+  if (!process.env.DATABASE_URL && !process.env.DB_HOST) {
+    return LEGACY_EVENTS.find((item) => item.slug === slug && (item.contentType === 'event' || item.category.startsWith('Conference'))) ?? null;
+  }
+  const item = await getPublicContentBySlug('event', slug);
+  return item ? toLegacyEvent(item) : null;
 }
 
 export function isPublicationToday(item: ContentItem, now = new Date()) {

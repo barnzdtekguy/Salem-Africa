@@ -2,31 +2,26 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, CalendarClock, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { SalemEvent } from '@/data/events';
 import { ImageWithFallback } from '@/components/image-with-fallback';
 import { Reveal } from '@/components/reveal';
 
-function dateInLagos() {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Africa/Lagos',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).formatToParts(new Date());
-  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
-  return `${values.year}-${values.month}-${values.day}`;
+function detailsHref(event: SalemEvent) {
+  const isEvent = event.contentType === 'event' || event.category.startsWith('Conference');
+  return isEvent ? `/events/${event.slug}` : `/weekly-programmes/${event.slug}`;
 }
 
 /** Homepage strip for recurring weekly services and their current flyers. */
 export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const today = dateInLagos();
   const featuredEvent = events.find((event) =>
     (event.contentType === 'event' || event.category.startsWith('Conference'))
     && (!event.startsAt || new Date(event.startsAt).getTime() >= Date.now()),
   );
-  const weeklyEvents = events.filter((event) => event !== featuredEvent && event.contentType !== 'event');
+  const weeklyEvents = events.filter((event) =>
+    event !== featuredEvent && event.contentType !== 'event' && !event.category.startsWith('Conference'),
+  );
 
   function scrollBy(dir: 1 | -1) {
     trackRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
@@ -69,25 +64,14 @@ export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
                 sizes="(min-width: 1024px) 40vw, 100vw"
               />
               <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-12">
-                <p className="font-label text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                  {featuredEvent.category}
-                </p>
                 <h3 className="mt-3 font-display text-2xl text-ink sm:text-3xl">
                   {featuredEvent.title}
                 </h3>
-                <p className="mt-3 text-sm font-semibold leading-6 text-ink">
-                  {featuredEvent.frequency} · {featuredEvent.schedule}
-                </p>
-                <p className="mt-2 flex items-start gap-2 text-sm leading-6 text-ink-muted">
-                  <MapPin size={16} className="mt-1 shrink-0 text-gold-dark" aria-hidden="true" />
-                  <span>{featuredEvent.location}</span>
-                </p>
-                <p className="mt-4 text-sm leading-6 text-ink-muted">{featuredEvent.description}</p>
                 <Link
-                  href={featuredEvent.contentType === 'event' ? `/events/${featuredEvent.slug}` : '/events'}
+                  href={detailsHref(featuredEvent)}
                   className="mt-5 inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
                 >
-                  Event details
+                  See Details
                   <ArrowRight size={15} aria-hidden="true" />
                 </Link>
               </div>
@@ -126,11 +110,7 @@ export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
 
         <div ref={trackRef} className="mt-6 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
           {weeklyEvents.map((event) => (
-              <Link
-                key={event.slug}
-                href={event.contentType === 'event' ? `/events/${event.slug}` : '/events'}
-                className="group w-72 shrink-0 snap-start"
-              >
+              <article key={event.slug} className="flex w-72 shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-ink/[0.07] bg-white p-3 shadow-soft">
                 <div className="relative overflow-hidden rounded-2xl">
                   <ImageWithFallback
                     src={event.image}
@@ -140,25 +120,16 @@ export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
                     imgClassName="object-contain transition duration-500 group-hover:scale-105"
                     sizes="288px"
                   />
-                  <div className="absolute left-3 top-3 rounded-xl bg-white px-3 py-2 font-label text-[11px] font-bold uppercase tracking-wide text-terracotta shadow-soft">
-                    {event.frequency}
-                  </div>
                 </div>
-                <h3 className="mt-4 text-lg text-ink transition group-hover:text-terracotta">{event.title}</h3>
-                <p className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
-                  <CalendarClock size={13} className="mt-0.5 shrink-0" /> {event.schedule}
-                </p>
-                {event.exceptions?.filter((exception) => exception.date >= today).map((exception) => (
-                  <p key={exception.date} className="mt-2 border-l-2 border-terracotta pl-2 text-xs leading-5 text-terracotta">
-                    {exception.date}: {exception.status === 'cancelled' ? 'Cancelled' : `Changed${exception.startTime ? ` to ${exception.startTime}` : ''}${exception.venue ? ` at ${exception.venue}` : ''}`}
-                  </p>
-                ))}
-                {event.location && (
-                  <p className="mt-1 flex items-start gap-1.5 text-xs leading-5 text-ink-muted">
-                    <MapPin size={13} className="mt-0.5 shrink-0" /> {event.location}
-                  </p>
-                )}
-              </Link>
+                <h3 className="mt-4 text-center text-lg text-ink">{event.title}</h3>
+                <Link
+                  href={detailsHref(event)}
+                  className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terracotta-dark"
+                >
+                  See Details
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </article>
           ))}
         </div>
       </div>

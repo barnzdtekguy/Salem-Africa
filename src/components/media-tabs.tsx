@@ -9,7 +9,7 @@ const TABS: Array<{ href: string; label: string; icon: LucideIcon }> = [
   { href: '/media/messages', label: 'Previous Messages', icon: PlayCircle },
   { href: '/media/audio', label: 'Audio', icon: Headphones },
   { href: '/media/pictures', label: 'Service Pictures', icon: Images },
-  { href: '/devotionals', label: 'Devotionals', icon: BookOpenText },
+  { href: '/devotionals', label: 'Daily Devotion', icon: BookOpenText },
 ];
 
 export function MediaTabs() {
