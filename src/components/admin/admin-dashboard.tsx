@@ -158,6 +158,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
   const [staffEmail, setStaffEmail] = useState('');
   const [staffRole, setStaffRole] = useState<StaffRole>('editor');
   const [resendingInvitationId, setResendingInvitationId] = useState('');
+  const [deletingStaffId, setDeletingStaffId] = useState('');
   const [exceptionDate, setExceptionDate] = useState('');
   const [exceptionStatus, setExceptionStatus] = useState<'changed' | 'cancelled'>('cancelled');
   const [exceptionTime, setExceptionTime] = useState('');
@@ -497,6 +498,29 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
     }
     await loadUsers();
     setNotice('Staff account updated.');
+  }
+
+  async function deleteStaff(user: StaffUser) {
+    if (user.user_id === staff.userId) {
+      setError('You cannot delete your own administrator account.');
+      return;
+    }
+    if (!window.confirm(`Permanently delete the staff account for ${user.email}? This also revokes their active sessions and cannot be undone.`)) return;
+
+    setError('');
+    setNotice('');
+    setDeletingStaffId(user.user_id);
+    try {
+      const response = await fetch(`/api/admin/users/${user.user_id}`, { method: 'DELETE' });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? 'Could not delete this staff account.');
+      await loadUsers();
+      setNotice(`Deleted the staff account for ${user.email}.`);
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : 'Could not delete this staff account.');
+    } finally {
+      setDeletingStaffId('');
+    }
   }
 
   async function signOut() {
@@ -882,7 +906,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                   </select>
                 </label>
                 <button type="submit" className="admin-primary-button" disabled={busy}>Send invitation</button>
-                <p>Only administrators can invite staff or change permissions. Recipients create their own password from a single-use link that expires after 48 hours. Public registration is disabled.</p>
+                <p>Invite any valid email address, including an email with an existing account. New recipients create a password from the single-use 48-hour link; existing account passwords are not changed. Public registration is disabled.</p>
               </form>
             </section>
             <section className="admin-panel">
@@ -896,6 +920,14 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                     </select>
                   </label>
                   <button type="button" className="admin-secondary-button" disabled={user.user_id === staff.userId} onClick={() => void updateStaff(user.user_id, { active: !user.active })}>{user.active ? 'Disable' : 'Enable'}</button>
+                  <button
+                    type="button"
+                    className="admin-danger-button"
+                    disabled={user.user_id === staff.userId || deletingStaffId === user.user_id}
+                    onClick={() => void deleteStaff(user)}
+                  >
+                    {deletingStaffId === user.user_id ? 'Deleting…' : 'Delete user'}
+                  </button>
                 </article>
               ))}
               {!users.length && <p className="admin-empty">No staff accounts were found.</p>}

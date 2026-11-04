@@ -37,15 +37,6 @@ export async function POST(request: Request, context: RouteContext) {
     }
 
     email = invitation.email as string;
-    const [users] = await connection.execute<RowDataPacket[]>(
-      'SELECT id FROM `user` WHERE email = ? LIMIT 1',
-      [email],
-    );
-    if (users.length) {
-      await connection.rollback();
-      return Response.json({ error: 'An account now exists for this email. Manage the existing staff account instead.' }, { status: 409 });
-    }
-
     const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000);
     await connection.execute(
       `UPDATE staff_invitations

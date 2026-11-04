@@ -86,25 +86,12 @@ export async function POST(request: Request) {
   const connection = await getDatabase().getConnection();
   try {
     await connection.beginTransaction();
-    const [users] = await connection.execute<RowDataPacket[]>(
-      'SELECT id FROM `user` WHERE email = ? LIMIT 1',
-      [cleanEmail],
-    );
-    if (users.length) {
-      await connection.rollback();
-      return Response.json({ error: 'An account already exists for this email. Ask an administrator to manage the existing account instead.' }, { status: 409 });
-    }
-
     const [existingRows] = await connection.execute<RowDataPacket[]>(
       'SELECT id, accepted_at, revoked_at FROM staff_invitations WHERE email = ? FOR UPDATE',
       [cleanEmail],
     );
     const existing = existingRows[0];
-    if (existing?.accepted_at) {
-      await connection.rollback();
-      return Response.json({ error: 'This invitation has already been accepted. Manage the existing staff account instead.' }, { status: 409 });
-    }
-    if (existing && !existing.revoked_at) {
+    if (existing && !existing.accepted_at && !existing.revoked_at) {
       await connection.rollback();
       return Response.json({ error: 'An invitation already exists for this email. Use Resend invitation to issue a fresh link.' }, { status: 409 });
     }
