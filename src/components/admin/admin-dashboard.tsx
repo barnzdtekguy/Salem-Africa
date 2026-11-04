@@ -21,6 +21,7 @@ type Draft = {
 };
 
 type StaffUser = { user_id: string; email: string; role: StaffRole; active: boolean };
+type StaffInvitation = { id: string; email: string; role: StaffRole; expires_at: string; expired: boolean };
 type MediaFile = { name: string; url: string; created_at: string | null };
 
 const NAV_ITEMS: { view: View; label: string }[] = [
@@ -138,6 +139,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
   const [view, setView] = useState<View>('dashboard');
   const [items, setItems] = useState<ContentItem[]>([]);
   const [users, setUsers] = useState<StaffUser[]>([]);
+  const [invitations, setInvitations] = useState<StaffInvitation[]>([]);
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
@@ -155,6 +157,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [staffEmail, setStaffEmail] = useState('');
   const [staffRole, setStaffRole] = useState<StaffRole>('editor');
+  const [resendingInvitationId, setResendingInvitationId] = useState('');
   const [exceptionDate, setExceptionDate] = useState('');
   const [exceptionStatus, setExceptionStatus] = useState<'changed' | 'cancelled'>('cancelled');
   const [exceptionTime, setExceptionTime] = useState('');
@@ -181,6 +184,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
     const result = await response.json();
     if (!response.ok) throw new Error(result.error ?? 'Could not load staff.');
     setUsers(result.users as StaffUser[]);
+    setInvitations(result.invitations as StaffInvitation[]);
   }
 
   async function loadMedia() {
@@ -453,12 +457,29 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error ?? 'Could not invite staff member.');
       setStaffEmail('');
-      setNotice('Invitation sent. Ask the staff member to check their email.');
+      setNotice('Invitation email sent. The recipient can create their name and password from the secure link.');
       await loadUsers();
     } catch (inviteError) {
       setError(inviteError instanceof Error ? inviteError.message : 'Could not invite staff member.');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function resendInvitation(invitation: StaffInvitation) {
+    setError('');
+    setNotice('');
+    setResendingInvitationId(invitation.id);
+    try {
+      const response = await fetch(`/api/admin/users/invitations/${invitation.id}/resend`, { method: 'POST' });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? 'Could not resend this invitation.');
+      setNotice(`A fresh invitation was sent to ${invitation.email}. The previous link is no longer valid.`);
+      await loadUsers();
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : 'Could not resend this invitation.');
+    } finally {
+      setResendingInvitationId('');
     }
   }
 
@@ -861,7 +882,7 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                   </select>
                 </label>
                 <button type="submit" className="admin-primary-button" disabled={busy}>Send invitation</button>
-                <p>Only administrators can invite staff or change permissions. Public registration is disabled.</p>
+                <p>Only administrators can invite staff or change permissions. Recipients create their own password from a single-use link that expires after 48 hours. Public registration is disabled.</p>
               </form>
             </section>
             <section className="admin-panel">
@@ -878,6 +899,26 @@ export function AdminDashboard({ staff }: { staff: StaffContext }) {
                 </article>
               ))}
               {!users.length && <p className="admin-empty">No staff accounts were found.</p>}
+            </section>
+            <section className="admin-panel">
+              <h2>Pending invitations</h2>
+              {invitations.map((invitation) => (
+                <article className="admin-list-row admin-user-row" key={invitation.id}>
+                  <span>
+                    <strong>{invitation.email}</strong>
+                    <small>{invitation.role === 'administrator' ? 'Administrator' : 'Editor'} · {invitation.expired ? 'Expired' : `Expires ${new Date(invitation.expires_at).toLocaleString()}`}</small>
+                  </span>
+                  <button
+                    type="button"
+                    className="admin-secondary-button"
+                    disabled={resendingInvitationId === invitation.id}
+                    onClick={() => void resendInvitation(invitation)}
+                  >
+                    {resendingInvitationId === invitation.id ? 'Sending…' : 'Resend invitation'}
+                  </button>
+                </article>
+              ))}
+              {!invitations.length && <p className="admin-empty">There are no pending invitations.</p>}
             </section>
           </div>
         )}

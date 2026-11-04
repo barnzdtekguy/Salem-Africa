@@ -75,16 +75,17 @@ For local development, put configuration in the ignored `.env` or `.env.local` f
 
 1. Create the database and S3-compatible bucket in Hostinger. Confirm the database credentials are assigned to the website and the storage keys have only the permissions needed for list, get, and put operations in the media bucket.
 2. Run [`db/migrations/001_hostinger_admin.sql`](./db/migrations/001_hostinger_admin.sql) once against the new database using phpMyAdmin or a trusted database client. It creates Better Auth tables and content tables and seeds the current programs/events. Do not rerun it as a reset; it preserves existing rows.
-3. Configure `DATABASE_URL` (or all `DB_*` values), `BETTER_AUTH_SECRET` (at least 32 random characters), `BETTER_AUTH_URL`, `NEXT_PUBLIC_SITE_URL`, `SMTP_*`, and `S3_*` in the private environment settings.
-4. Create the first administrator from a secure terminal after the database and environment are configured:
+3. Run [`db/migrations/002_staff_invitations.sql`](./db/migrations/002_staff_invitations.sql) after migration 001. It creates the secure staff invitation table without changing existing users or content.
+4. Configure `DATABASE_URL` (or all `DB_*` values), `BETTER_AUTH_SECRET` (at least 32 random characters), `BETTER_AUTH_URL`, `NEXT_PUBLIC_SITE_URL`, `SMTP_*`, and `S3_*` in the private environment settings.
+5. Create the first administrator from a secure terminal after the database and environment are configured:
 
    ```sh
    npx auth@latest create-admin --email admin@example.org --name "Salem Administrator" --role admin --config src/lib/auth-cli.ts
    ```
 
-   Omit `--password` so the CLI prompts for it; do not put a real password in shell history. Disable public registration in the app configuration, as it is already disabled here. Administrators can create editors or administrators from the dashboard. The new staff member receives a password-setup email.
-5. Deploy from the project root using Hostinger's Node.js app settings: Node 22+, install `npm ci`, build `npm run build`, start `npm run start`. Configure the app's public domain and private environment variables before starting it.
-6. Verify `/`, `/events`, `/devotionals`, `/admin/login`, password recovery delivery, an Editor's denied access to user management, content publication, a media upload, and public rendering. A scheduled item should appear publicly after its Africa/Lagos publication time even if no one has the dashboard open.
+   Omit `--password` so the CLI prompts for it; do not put a real password in shell history. Disable public registration in the app configuration, as it is already disabled here. Administrators can create editors or administrators from the dashboard; invited recipients use the emailed, single-use 48-hour link at `/admin/accept-invitation` to enter their name and create a password. Administrators can resend a pending invitation, invalidating the earlier link.
+6. Deploy from the project root using Hostinger's Node.js app settings: Node 22+, install `npm ci`, build `npm run build`, start `npm run start`. Configure the app's public domain and private environment variables before starting it.
+7. Verify `/`, `/events`, `/devotionals`, `/admin/login`, password recovery delivery, the complete invitation acceptance flow with a new email address, an Editor's denied access to user management, content publication, a media upload, and public rendering. A scheduled item should appear publicly after its Africa/Lagos publication time even if no one has the dashboard open.
 
 ### Roles, publication, and media
 
