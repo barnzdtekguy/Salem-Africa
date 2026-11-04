@@ -1,12 +1,19 @@
 import { generateDevotionalPdf } from '@/lib/content/devotional-pdf.mjs';
 import { getPublicDevotional } from '@/lib/content/repository';
+import { logServerError } from '@/lib/security/diagnostics';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(_request: Request, context: { params: Promise<{ slug: string }> }) {
   const { slug } = await context.params;
-  const item = await getPublicDevotional(slug);
+  let item;
+  try {
+    item = await getPublicDevotional(slug);
+  } catch (error) {
+    logServerError('devotional_pdf_content_lookup_failed', error);
+    return new Response('Devotionals are temporarily unavailable.', { status: 503 });
+  }
   if (!item) return new Response('Devotional not found.', { status: 404 });
 
   try {

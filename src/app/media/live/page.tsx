@@ -5,7 +5,7 @@ import { PageHero } from '@/components/page-hero';
 import { MediaTabs } from '@/components/media-tabs';
 import { Reveal } from '@/components/reveal';
 import { Radio, CalendarClock, Bell, MapPin } from 'lucide-react';
-import { getPublicProgramsAndEvents } from '@/lib/content/repository';
+import { loadPublicProgramsAndEvents } from '@/lib/content/repository';
 
 export const metadata: Metadata = { title: 'Live | Salem Africa' };
 
@@ -17,7 +17,8 @@ const YOUTUBE_STREAMS_URL = 'https://www.youtube.com/@SalemLagosLive/streams';
 export const dynamic = 'force-dynamic';
 
 export default async function LivePage() {
-  const events = await getPublicProgramsAndEvents();
+  const result = await loadPublicProgramsAndEvents();
+  const events = result.status === 'available' ? result.value : [];
 
   return (
     <PageShell>
@@ -62,6 +63,9 @@ export default async function LivePage() {
           </Reveal>
 
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {result.status === 'unavailable' && (
+              <p className="text-sm text-ink-muted">Service schedule details are temporarily unavailable. Please try again later.</p>
+            )}
             {events.map((event, i) => (
               <Reveal key={event.slug} delay={i * 0.08}>
                 <div className="h-full rounded-2xl border border-ink/[0.07] bg-white p-7 shadow-soft">

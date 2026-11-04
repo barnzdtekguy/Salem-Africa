@@ -18,12 +18,22 @@ function markdownToText(markdown) {
 }
 
 function formatPublicationDate(date) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+  if (!match) return null;
+  const [, yearValue, monthValue, dayValue] = match;
+  const year = Number(yearValue);
+  const month = Number(monthValue);
+  const day = Number(dayValue);
+  const parsed = new Date(0);
+  parsed.setUTCHours(12, 0, 0, 0);
+  parsed.setUTCFullYear(year, month - 1, day);
+  if (parsed.getUTCFullYear() !== year || parsed.getUTCMonth() !== month - 1 || parsed.getUTCDate() !== day) return null;
   return new Intl.DateTimeFormat('en-NG', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: 'Africa/Lagos',
-  }).format(new Date(`${date}T12:00:00+01:00`));
+  }).format(parsed);
 }
 
 export function generateDevotionalPdf(item) {
@@ -52,8 +62,10 @@ export function generateDevotionalPdf(item) {
       document.font('Helvetica-Bold').fontSize(24).fillColor('#171719').text(item.title, { lineGap: 3 });
       document.moveDown(0.4);
       document.font('Helvetica').fontSize(10).fillColor('#64615e');
-      const date = item.publication_date ?? item.created_at.slice(0, 10);
-      document.text(formatPublicationDate(date));
+      const date = item.publication_date_invalid
+        ? null
+        : item.publication_date ?? item.created_at.slice(0, 10);
+      document.text(formatPublicationDate(date) ?? 'Date unavailable');
       if (typeof item.data.author === 'string' && item.data.author.trim()) document.text(`By ${item.data.author.trim()}`);
 
       const addSection = (heading, value) => {

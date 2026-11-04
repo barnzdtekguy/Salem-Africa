@@ -5,33 +5,30 @@ import { notFound } from 'next/navigation';
 import { CalendarClock, Clock, MapPin, Radio } from 'lucide-react';
 import { PageHero } from '@/components/page-hero';
 import { PageShell } from '@/components/page-shell';
-import { getPublicWeeklyProgram } from '@/lib/content/repository';
+import { PublicContentUnavailable } from '@/components/public-content-unavailable';
+import { loadPublicWeeklyProgram } from '@/lib/content/repository';
+import { formatCalendarDate } from '@/lib/content/calendar-date';
 
 type RouteContext = { params: Promise<{ slug: string }> };
 export const dynamic = 'force-dynamic';
 
-async function findProgram(slug: string) {
-  return getPublicWeeklyProgram(slug);
-}
-
-export async function generateMetadata({ params }: RouteContext): Promise<Metadata> {
-  const { slug } = await params;
-  const program = await findProgram(slug);
-  return { title: program ? `${program.title} | Salem Africa` : 'Weekly Programme | Salem Africa' };
-}
+export const metadata: Metadata = { title: 'Weekly Programmes | Salem Africa' };
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-NG', {
+  return formatCalendarDate(date, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'Africa/Lagos',
-  }).format(new Date(`${date}T12:00:00+01:00`));
+  }) ?? 'Date unavailable';
 }
 
 export default async function WeeklyProgramPage({ params }: RouteContext) {
   const { slug } = await params;
-  const program = await findProgram(slug);
+  const result = await loadPublicWeeklyProgram(slug);
+  if (result.status === 'unavailable') {
+    return <PublicContentUnavailable title="Weekly Programme" image="/images/hero-bg-2.jpg" />;
+  }
+  const program = result.value;
   if (!program) notFound();
 
   const exceptions = program.exceptions ?? [];

@@ -56,7 +56,7 @@ function GatheringCard({ event, index }: { event: SalemEvent; index: number }) {
   );
 }
 
-export function EventsDirectory({ events }: { events: SalemEvent[] }) {
+export function EventsDirectory({ events, unavailable = false }: { events: SalemEvent[]; unavailable?: boolean }) {
   const today = dateInLagos();
   const upcoming = events.filter((event) => !event.startsAt || eventDateInLagos(event.startsAt) >= today);
   const past = events.filter((event) => event.contentType === 'event' && event.startsAt && eventDateInLagos(event.startsAt) < today);
@@ -73,7 +73,9 @@ export function EventsDirectory({ events }: { events: SalemEvent[] }) {
           {upcoming.map((event, index) => <GatheringCard key={event.slug} event={event} index={index} />)}
         </div>
       ) : (
-        <p className="py-12 text-center text-sm text-ink-muted">There are no upcoming programs or events right now.</p>
+        <p className="py-12 text-center text-sm text-ink-muted">
+          {unavailable ? 'Programs and events are temporarily unavailable. Please try again later.' : 'There are no upcoming programs or events right now.'}
+        </p>
       )}
 
       {past.length > 0 && (

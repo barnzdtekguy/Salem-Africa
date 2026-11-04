@@ -5,33 +5,32 @@ import { notFound } from 'next/navigation';
 import { CalendarClock, Clock, MapPin, Radio } from 'lucide-react';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
-import { getPublicEvent } from '@/lib/content/repository';
+import { PublicContentUnavailable } from '@/components/public-content-unavailable';
+import { loadPublicEvent } from '@/lib/content/repository';
 
 type RouteContext = { params: Promise<{ slug: string }> };
 export const dynamic = 'force-dynamic';
 
-async function findEvent(slug: string) {
-  return getPublicEvent(slug);
-}
-
-export async function generateMetadata({ params }: RouteContext): Promise<Metadata> {
-  const { slug } = await params;
-  const event = await findEvent(slug);
-  return { title: event ? `${event.title} | Salem Africa` : 'Event | Salem Africa' };
-}
+export const metadata: Metadata = { title: 'Events | Salem Africa' };
 
 function formatEventDate(date: string) {
+  const timestamp = Date.parse(date);
+  if (!Number.isFinite(timestamp)) return 'Date unavailable';
   return new Intl.DateTimeFormat('en-NG', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
     timeZone: 'Africa/Lagos',
-  }).format(new Date(date));
+  }).format(new Date(timestamp));
 }
 
 export default async function EventDetailsPage({ params }: RouteContext) {
   const { slug } = await params;
-  const event = await findEvent(slug);
+  const result = await loadPublicEvent(slug);
+  if (result.status === 'unavailable') {
+    return <PublicContentUnavailable title="Event details" image="/images/hero-bg-2.jpg" />;
+  }
+  const event = result.value;
   if (!event) notFound();
 
   const start = event.startsAt ? formatEventDate(event.startsAt) : event.frequency;

@@ -11,6 +11,7 @@ export type ContentItem = {
   starts_at: string | null;
   ends_at: string | null;
   publication_date: string | null;
+  publication_date_invalid?: boolean;
   image_url: string | null;
   image_alt: string;
   data: Record<string, unknown>;
@@ -22,3 +23,7 @@ export type ContentItem = {
   created_at: string;
   updated_at: string;
 };
+
+export type PublicContentResult<T> =
+  | { status: 'available'; value: T }
+  | { status: 'unavailable'; value: null };

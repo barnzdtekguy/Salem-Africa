@@ -1,7 +1,10 @@
 import { z } from 'zod';
+import { normalizeCalendarDate } from './calendar-date';
 import type { ContentKind, ContentStatus } from './types';
 
-const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use a valid YYYY-MM-DD date.');
+const dateSchema = z.string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Use a valid YYYY-MM-DD date.')
+  .refine((value) => normalizeCalendarDate(value) !== null, 'Use a real calendar date.');
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, 'Use a valid 24-hour time.');
 const dateTimeSchema = z.string().datetime({ offset: true });
 const optionalUrl = z.union([z.literal(''), z.string().url()]);

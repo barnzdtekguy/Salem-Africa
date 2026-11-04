@@ -3,10 +3,13 @@ import type { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { randomUUID } from 'node:crypto';
 import { EVENTS as LEGACY_EVENTS, type SalemEvent } from '@/data/events';
 import { getDatabase } from '@/lib/db';
-import type { ContentItem, ContentKind, ContentStatus } from './types';
+import { logServerError } from '@/lib/security/diagnostics';
+import { normalizeCalendarDate, normalizeDatabaseDateTime } from './calendar-date';
+import type { ContentItem, ContentKind, ContentStatus, PublicContentResult } from './types';
 
-type ContentRow = RowDataPacket & Omit<ContentItem, 'data' | 'publish_at' | 'starts_at' | 'ends_at' | 'created_at' | 'updated_at'> & {
+type ContentRow = RowDataPacket & Omit<ContentItem, 'data' | 'publication_date' | 'publish_at' | 'starts_at' | 'ends_at' | 'created_at' | 'updated_at'> & {
   data: string | Record<string, unknown>;
+  publication_date: Date | string | null;
   publish_at: Date | string | null;
   starts_at: Date | string | null;
   ends_at: Date | string | null;
@@ -14,20 +17,29 @@ type ContentRow = RowDataPacket & Omit<ContentItem, 'data' | 'publish_at' | 'sta
   updated_at: Date | string;
 };
 
-function toIso(value: Date | string | null) {
-  if (value === null) return null;
-  if (value instanceof Date) return value.toISOString();
-  return `${value.replace(' ', 'T')}Z`;
-}
-
 function mapContentRow(row: ContentRow): ContentItem {
+  const publicationDate = normalizeCalendarDate(row.publication_date);
+  const invalidPublicationDate = row.publication_date !== null && !publicationDate;
+  if (invalidPublicationDate) {
+    const dateDetail = row.publication_date instanceof Date
+      ? 'invalid JavaScript Date from MariaDB'
+      : typeof row.publication_date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(row.publication_date)
+        ? `invalid MariaDB DATE ${row.publication_date}`
+        : `unsupported MariaDB DATE type ${typeof row.publication_date}`;
+    logServerError(
+      'content_row_invalid_publication_date',
+      new Error(`Ignoring ${dateDetail} for content kind ${row.kind}.`),
+    );
+  }
   return {
     ...row,
-    publish_at: toIso(row.publish_at),
-    starts_at: toIso(row.starts_at),
-    ends_at: toIso(row.ends_at),
-    created_at: toIso(row.created_at) ?? '',
-    updated_at: toIso(row.updated_at) ?? '',
+    publication_date: publicationDate,
+    publication_date_invalid: invalidPublicationDate,
+    publish_at: normalizeDatabaseDateTime(row.publish_at),
+    starts_at: normalizeDatabaseDateTime(row.starts_at),
+    ends_at: normalizeDatabaseDateTime(row.ends_at),
+    created_at: normalizeDatabaseDateTime(row.created_at) ?? '',
+    updated_at: normalizeDatabaseDateTime(row.updated_at) ?? '',
     data: typeof row.data === 'string' ? JSON.parse(row.data) as Record<string, unknown> : row.data,
   };
 }
@@ -232,9 +244,37 @@ export async function getPublicProgramsAndEvents(): Promise<SalemEvent[]> {
   return [...programs.map(toLegacyEvent), ...events.map(toLegacyEvent)];
 }
 
+export async function loadPublicProgramsAndEvents(): Promise<PublicContentResult<SalemEvent[]>> {
+  try {
+    return { status: 'available', value: await getPublicProgramsAndEvents() };
+  } catch (error) {
+    logServerError('public_programs_and_events_unavailable', error);
+    return { status: 'unavailable', value: null };
+  }
+}
+
 export async function getPublicDevotionals(): Promise<ContentItem[]> {
   if (!process.env.DATABASE_URL && !process.env.DB_HOST) return [];
-  return getPublicContent('devotional');
+  const devotionals = await getPublicContent('devotional');
+  return devotionals;
+}
+
+export async function loadPublicDevotionals(): Promise<PublicContentResult<ContentItem[]>> {
+  try {
+    return { status: 'available', value: await getPublicDevotionals() };
+  } catch (error) {
+    logServerError('public_devotionals_unavailable', error);
+    return { status: 'unavailable', value: null };
+  }
+}
+
+export async function loadPublicDevotional(slug: string): Promise<PublicContentResult<ContentItem | null>> {
+  try {
+    return { status: 'available', value: await getPublicDevotional(slug) };
+  } catch (error) {
+    logServerError('public_devotional_detail_unavailable', error);
+    return { status: 'unavailable', value: null };
+  }
 }
 
 export async function getPublicDevotional(slug: string): Promise<ContentItem | null> {
@@ -250,6 +290,15 @@ export async function getPublicWeeklyProgram(slug: string): Promise<SalemEvent |
   return item ? toLegacyEvent(item) : null;
 }
 
+export async function loadPublicWeeklyProgram(slug: string): Promise<PublicContentResult<SalemEvent | null>> {
+  try {
+    return { status: 'available', value: await getPublicWeeklyProgram(slug) };
+  } catch (error) {
+    logServerError('public_weekly_program_unavailable', error);
+    return { status: 'unavailable', value: null };
+  }
+}
+
 export async function getPublicEvent(slug: string): Promise<SalemEvent | null> {
   if (!process.env.DATABASE_URL && !process.env.DB_HOST) {
     return LEGACY_EVENTS.find((item) => item.slug === slug && (item.contentType === 'event' || item.category.startsWith('Conference'))) ?? null;
@@ -258,13 +307,23 @@ export async function getPublicEvent(slug: string): Promise<SalemEvent | null> {
   return item ? toLegacyEvent(item) : null;
 }
 
+export async function loadPublicEvent(slug: string): Promise<PublicContentResult<SalemEvent | null>> {
+  try {
+    return { status: 'available', value: await getPublicEvent(slug) };
+  } catch (error) {
+    logServerError('public_event_unavailable', error);
+    return { status: 'unavailable', value: null };
+  }
+}
+
 export function isPublicationToday(item: ContentItem, now = new Date()) {
-  if (!item.publication_date) return false;
+  const publicationDate = normalizeCalendarDate(item.publication_date);
+  if (!publicationDate) return false;
   const localDate = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Africa/Lagos',
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
   }).format(now);
-  return item.publication_date === localDate;
+  return publicationDate === localDate;
 }

@@ -13,7 +13,7 @@ function detailsHref(event: SalemEvent) {
 }
 
 /** Homepage strip for recurring weekly services and their current flyers. */
-export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
+export function UpcomingEvents({ events, unavailable = false }: { events: SalemEvent[]; unavailable?: boolean }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const featuredEvent = events.find((event) =>
     (event.contentType === 'event' || event.category.startsWith('Conference'))
@@ -27,7 +27,7 @@ export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
     trackRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
   }
 
-  if (events.length === 0) return null;
+  if (events.length === 0 && !unavailable) return null;
 
   return (
     <section aria-labelledby="upcoming-events-heading" className="bg-paper py-20 sm:py-28">
@@ -51,6 +51,10 @@ export function UpcomingEvents({ events }: { events: SalemEvent[] }) {
             </Link>
           </div>
         </Reveal>
+
+        {unavailable && (
+          <p className="py-8 text-center text-sm text-ink-muted">Programs and events are temporarily unavailable. Please try again later.</p>
+        )}
 
         {featuredEvent && (
           <Reveal className="mt-10">

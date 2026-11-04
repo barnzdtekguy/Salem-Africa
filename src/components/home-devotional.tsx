@@ -1,20 +1,30 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { getPublicDevotionals, isPublicationToday } from '@/lib/content/repository';
+import { isPublicationToday, loadPublicDevotionals } from '@/lib/content/repository';
 import { renderSafeMarkdown } from '@/lib/content/markdown';
+import { formatCalendarDate, normalizeCalendarDate } from '@/lib/content/calendar-date';
 
 function formatLagosDate(date: string) {
-  const parsed = new Date(`${date}T12:00:00+01:00`);
-  return new Intl.DateTimeFormat('en-NG', {
+  return formatCalendarDate(date, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'Africa/Lagos',
-  }).format(parsed);
+  });
 }
 
 export async function HomeDevotional() {
-  const devotionals = await getPublicDevotionals();
+  const result = await loadPublicDevotionals();
+  if (result.status === 'unavailable') {
+    return (
+      <section className="bg-white py-16 sm:py-20" aria-labelledby="home-devotional-heading">
+        <div className="mx-auto max-w-container px-4 text-center sm:px-6 lg:px-8">
+          <h2 id="home-devotional-heading" className="font-display text-2xl text-ink">Daily Devotion</h2>
+          <p className="mt-3 text-sm text-ink-muted">Today’s devotional is temporarily unavailable. Please try again later.</p>
+        </div>
+      </section>
+    );
+  }
+  const devotionals = result.value;
   const devotional = devotionals.find((item) => isPublicationToday(item)) ?? devotionals[0];
   if (!devotional) return null;
 
@@ -31,7 +41,11 @@ export async function HomeDevotional() {
             {devotional.title}
           </h2>
           <p className="mt-3 text-sm text-ink-muted">
-            {formatLagosDate(devotional.publication_date ?? devotional.created_at.slice(0, 10))}
+            {formatLagosDate(
+              devotional.publication_date
+                ?? (devotional.publication_date_invalid ? null : normalizeCalendarDate(devotional.created_at.slice(0, 10)))
+                ?? '',
+            ) ?? 'Date unavailable'}
             {typeof devotional.data.author === 'string' && ` · ${devotional.data.author}`}
           </p>
           {typeof devotional.data.bibleReference === 'string' && (

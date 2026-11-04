@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
-import { getPublicProgramsAndEvents } from '@/lib/content/repository';
 import { CONTACT_EMAIL } from '@/data/contact';
 
 const QUICK_LINKS = [
@@ -14,9 +13,7 @@ const QUICK_LINKS = [
   { href: '/churches', label: 'Our Churches' },
 ];
 
-export async function Footer() {
-  const events = await getPublicProgramsAndEvents();
-
+export function Footer() {
   return (
     <footer className="bg-sand text-ink">
       <div className="mx-auto max-w-container px-4 pb-12 pt-20 sm:px-6 sm:pt-24 lg:px-8">
@@ -68,13 +65,10 @@ export async function Footer() {
           <div>
             <h4 className="text-lg font-black">Services &amp; Events</h4>
             <div className="mt-7 space-y-5">
-              {events.map((event) => (
-                <div key={event.slug}>
-                  <p className="text-sm font-black text-terracotta">{event.title}</p>
-                  <p className="mt-1 text-sm leading-5 text-ink-muted">{event.frequency} · {event.schedule}</p>
-                  {event.location && <p className="mt-1 text-xs leading-5 text-ink-muted">{event.location}</p>}
-                </div>
-              ))}
+              <p className="text-sm leading-6 text-ink-muted">Explore our weekly gatherings and upcoming events.</p>
+              <Link href="/events" className="inline-flex min-h-11 items-center text-sm font-semibold text-terracotta hover:underline">
+                View programs and events
+              </Link>
               <div>
                 <p className="text-sm font-black text-terracotta">Office Hours</p>
                 <p className="mt-1 text-sm text-ink-muted">Mon&ndash;Fri: 9am &ndash; 5pm</p>

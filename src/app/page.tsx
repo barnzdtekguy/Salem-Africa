@@ -14,7 +14,7 @@ import { LeadershipMarquee } from '@/components/leadership-marquee';
 import { CtaBox } from '@/components/cta-box';
 import { Footer } from '@/components/footer';
 import { SalemUniversity } from '@/components/salem-university';
-import { getPublicProgramsAndEvents } from '@/lib/content/repository';
+import { loadPublicProgramsAndEvents } from '@/lib/content/repository';
 import { HomeDevotional } from '@/components/home-devotional';
 import Link from 'next/link';
 import { ArrowRight, HandCoins, MapPin, PlayCircle, UsersRound } from 'lucide-react';
@@ -22,7 +22,8 @@ import { ArrowRight, HandCoins, MapPin, PlayCircle, UsersRound } from 'lucide-re
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const events = await getPublicProgramsAndEvents();
+  const eventsResult = await loadPublicProgramsAndEvents();
+  const events = eventsResult.status === 'available' ? eventsResult.value : [];
 
   return (
     <>
@@ -64,7 +65,7 @@ export default async function HomePage() {
         <VisionHighlights />
         <SalemUniversity />
         <HomeMinistryPreview />
-        <UpcomingEvents events={events} />
+        <UpcomingEvents events={events} unavailable={eventsResult.status === 'unavailable'} />
         <HomeDevotional />
         <SalemMomentsCarousel />
         <HomeMediaPreview />

@@ -5,30 +5,31 @@ import { notFound } from 'next/navigation';
 import { Download } from 'lucide-react';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
-import { getPublicDevotional } from '@/lib/content/repository';
+import { PublicContentUnavailable } from '@/components/public-content-unavailable';
+import { loadPublicDevotional } from '@/lib/content/repository';
 import { renderSafeMarkdown } from '@/lib/content/markdown';
+import { formatCalendarDate } from '@/lib/content/calendar-date';
 
 type RouteContext = { params: Promise<{ slug: string }> };
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: RouteContext): Promise<Metadata> {
-  const { slug } = await params;
-  const item = await getPublicDevotional(slug);
-  return { title: item ? `${item.title} | Salem Africa` : 'Devotional | Salem Africa' };
-}
+export const metadata: Metadata = { title: 'Daily Devotion | Salem Africa' };
 
 function formatDate(date: string) {
-  return new Intl.DateTimeFormat('en-NG', {
+  return formatCalendarDate(date, {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'Africa/Lagos',
-  }).format(new Date(`${date}T12:00:00+01:00`));
+  });
 }
 
 export default async function DevotionalPage({ params }: RouteContext) {
   const { slug } = await params;
-  const item = await getPublicDevotional(slug);
+  const result = await loadPublicDevotional(slug);
+  if (result.status === 'unavailable') {
+    return <PublicContentUnavailable title="Daily Devotion" image="/images/hero-bg-3.jpg" />;
+  }
+  const item = result.value;
   if (!item) notFound();
 
   const data = item.data;
@@ -39,13 +40,13 @@ export default async function DevotionalPage({ params }: RouteContext) {
   return (
     <PageShell>
       <PageHero
-        eyebrow={item.publication_date ? formatDate(item.publication_date) : 'Daily Devotional'}
+        eyebrow={item.publication_date ? formatDate(item.publication_date) ?? 'Daily Devotional' : 'Daily Devotional'}
         title={item.title}
         subtitle={typeof data.author === 'string' ? `By ${data.author}` : ''}
         image={item.image_url || '/images/hero-bg-3.jpg'}
       />
       <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
-        <p className="text-sm text-ink-muted">{item.publication_date ? formatDate(item.publication_date) : 'Daily Devotion'}</p>
+        <p className="text-sm text-ink-muted">{item.publication_date ? formatDate(item.publication_date) ?? 'Daily Devotion' : 'Daily Devotion'}</p>
         {typeof data.author === 'string' && data.author && (
           <p className="mt-1 text-sm text-ink-muted">By {data.author}</p>
         )}

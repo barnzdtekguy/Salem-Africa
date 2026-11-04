@@ -2,14 +2,15 @@ import type { Metadata } from 'next';
 import { PageShell } from '@/components/page-shell';
 import { PageHero } from '@/components/page-hero';
 import { EventsDirectory } from '@/components/events-directory';
-import { getPublicProgramsAndEvents } from '@/lib/content/repository';
+import { loadPublicProgramsAndEvents } from '@/lib/content/repository';
 
 export const metadata: Metadata = { title: 'Services & Events | Salem Africa' };
 
 export const dynamic = 'force-dynamic';
 
 export default async function EventsPage() {
-  const events = await getPublicProgramsAndEvents();
+  const result = await loadPublicProgramsAndEvents();
+  const events = result.status === 'available' ? result.value : [];
 
   return (
     <PageShell>
@@ -21,7 +22,7 @@ export default async function EventsPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <EventsDirectory events={events} />
+        <EventsDirectory events={events} unavailable={result.status === 'unavailable'} />
       </section>
     </PageShell>
   );
