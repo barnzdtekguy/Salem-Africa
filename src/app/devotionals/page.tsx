@@ -116,7 +116,7 @@ export default async function DevotionalsPage() {
                       <Link href={`/devotionals/${latest.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-terracotta px-5 text-sm font-semibold text-white transition hover:bg-terracotta-dark">
                         Read devotional <ArrowRight size={16} aria-hidden="true" />
                       </Link>
-                      <a href={`/api/devotionals/${encodeURIComponent(latest.slug)}/pdf`} className="inline-flex min-h-11 items-center gap-2 border border-ink/15 px-5 text-sm font-semibold text-ink transition hover:bg-sand">
+                      <a href={`/api/devotionals/${encodeURIComponent(latest.slug)}/pdf`} download className="inline-flex min-h-11 items-center gap-2 border border-ink/15 px-5 text-sm font-semibold text-ink transition hover:bg-sand">
                         <Download size={16} aria-hidden="true" /> Download PDF
                       </a>
                     </div>
@@ -151,7 +151,7 @@ export default async function DevotionalsPage() {
                                 <Link href={`/devotionals/${item.slug}`} className="inline-flex min-h-11 items-center text-sm font-semibold text-terracotta hover:underline">
                                   Read
                                 </Link>
-                                <a href={`/api/devotionals/${encodeURIComponent(item.slug)}/pdf`} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink hover:text-terracotta">
+                                <a href={`/api/devotionals/${encodeURIComponent(item.slug)}/pdf`} download className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-ink hover:text-terracotta">
                                   <Download size={15} aria-hidden="true" /> Download PDF
                                 </a>
                               </div>

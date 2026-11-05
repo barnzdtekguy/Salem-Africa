@@ -45,13 +45,14 @@ export default async function DevotionalPage({ params }: RouteContext) {
         subtitle={typeof data.author === 'string' ? `By ${data.author}` : ''}
         image={item.image_url || '/images/hero-bg-3.jpg'}
       />
-      <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+      <article lang="en" className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-sm text-ink-muted">{item.publication_date ? formatDate(item.publication_date) ?? 'Daily Devotion' : 'Daily Devotion'}</p>
         {typeof data.author === 'string' && data.author && (
           <p className="mt-1 text-sm text-ink-muted">By {data.author}</p>
         )}
         <a
           href={`/api/devotionals/${encodeURIComponent(item.slug)}/pdf`}
+          download
           className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full border border-ink/15 px-5 text-sm font-semibold text-ink transition hover:bg-sand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
         >
           <Download size={16} aria-hidden="true" /> Download PDF
@@ -71,13 +72,13 @@ export default async function DevotionalPage({ params }: RouteContext) {
           {scripture}
         </blockquote>
         <div
-          className="prose prose-lg mt-10 max-w-none text-ink-muted"
+          className="devotional-copy mt-10 text-ink-muted"
           dangerouslySetInnerHTML={{ __html: renderSafeMarkdown(message) }}
         />
         <section className="mt-12 border-t border-ink/10 pt-8" aria-labelledby="devotional-prayer-heading">
           <h2 id="devotional-prayer-heading" className="text-center font-display text-2xl text-ink">Prayer</h2>
           <div
-            className="prose mt-4 max-w-none text-ink-muted"
+            className="devotional-copy mt-4 text-ink-muted"
             dangerouslySetInnerHTML={{ __html: renderSafeMarkdown(prayer) }}
           />
         </section>

@@ -22,6 +22,7 @@ export async function GET(_request: Request, context: { params: Promise<{ slug: 
     return new Response(new Uint8Array(bytes), {
       headers: {
         'Content-Type': 'application/pdf',
+        'Content-Length': String(bytes.byteLength),
         'Content-Disposition': `attachment; filename="salem-africa-devotional-${safeSlug}.pdf"`,
         'Cache-Control': 'private, no-store',
         'X-Content-Type-Options': 'nosniff',

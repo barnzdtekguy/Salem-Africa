@@ -199,6 +199,48 @@
 }
 
 @layer utilities {
+  .devotional-copy {
+    max-width: 68ch;
+    margin-inline: auto;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+    line-height: 1.9;
+  }
+  .devotional-copy > :first-child {
+    margin-top: 0;
+  }
+  .devotional-copy > :last-child {
+    margin-bottom: 0;
+  }
+  .devotional-copy p {
+    margin-block: 0 1.25rem;
+  }
+  .devotional-copy h1,
+  .devotional-copy h2,
+  .devotional-copy h3,
+  .devotional-copy h4 {
+    margin-block: 2rem 0.75rem;
+    color: rgb(var(--ink));
+    text-align: left;
+  }
+  .devotional-copy ul,
+  .devotional-copy ol {
+    margin-block: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .devotional-copy ul {
+    list-style: disc;
+  }
+  .devotional-copy ol {
+    list-style: decimal;
+  }
+  .devotional-copy li {
+    padding-left: 0.25rem;
+    margin-block: 0.35rem;
+  }
+
   /* 65–75 character body measure. */
   .measure {
     max-width: 68ch;
